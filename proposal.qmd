@@ -1,8 +1,8 @@
 ---
 title: "Objects Launched into Space"
 subtitle: "Proposal"
-author: Derek Rice
-  - name: "derekriceX"
+author:
+  - name: "Derek Rice"
     affiliations:
       - name: "School of Information, University of Arizona"
 description: "INFO526 Term Project"
@@ -28,7 +28,7 @@ pacman::p_load(tidyverse, tidytuesdayR, dplyr, janitor, lubridate, numpy)
 
 ```
 
-## Dataset: Outer Space Objects 
+## Dataset: Outer Space Objects
 
 ```{r}
 #| label: load-dataset
@@ -56,7 +56,6 @@ glimpse(outer_space_objects)
 ```
 
 ```{r}
-
 filtered_outer_space_objects = outer_space_objects %>%
   filter (Entity %in% c("United States","China","Russia","Japan","France","India","European Space Agency", "Germany"))
 ```

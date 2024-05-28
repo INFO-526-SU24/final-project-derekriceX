@@ -2,9 +2,9 @@
   {
     "objectID": "proposal.html",
     "href": "proposal.html",
-    "title": "Proposal title",
+    "title": "Objects Launched into Space",
     "section": "",
-    "text": "library(tidyverse)"
+    "text": "if (!require(\"pacman\"))\n    install.packages(\"pacman\")\n\npacman::p_load(tidyverse, tidytuesdayR, dplyr, janitor, lubridate, numpy)"
   },
   {
     "objectID": "proposal.html#dataset",
@@ -16,14 +16,14 @@
   {
     "objectID": "proposal.html#questions",
     "href": "proposal.html#questions",
-    "title": "Proposal title",
+    "title": "Objects Launched into Space",
     "section": "Questions",
     "text": "Questions\nThe two questions you want to answer."
   },
   {
     "objectID": "proposal.html#analysis-plan",
     "href": "proposal.html#analysis-plan",
-    "title": "Proposal title",
+    "title": "Objects Launched into Space",
     "section": "Analysis plan",
     "text": "Analysis plan\n\nA plan for answering each of the questions including the variables involved, variables to be created (if any), external data to be merged in (if any)."
   },
@@ -110,5 +110,19 @@
     "title": "About",
     "section": "",
     "text": "This project was developed by [Team Name] For INFO 526 - Data Analysis and Visualization at the University of Arizona, taught by Dr. Greg Chism. The team is comprised of the following team members.\n\nTeam member 1: One sentence description of Team member 1 (e.g., year, major, etc.).\nTeam member 2: One sentence description of Team member 2 (e.g., year, major, etc.).\nTeam member 3: One sentence description of Team member 3 (e.g., year, major, etc.).\nTeam member 4: One sentence description of Team member 4 (e.g., year, major, etc.)."
+  },
+  {
+    "objectID": "proposal.html#dataset-outer-space-objects",
+    "href": "proposal.html#dataset-outer-space-objects",
+    "title": "Objects Launched into Space",
+    "section": "Dataset: Outer Space Objects",
+    "text": "Dataset: Outer Space Objects\n\n# cite: https://github.com/rfordatascience/tidytuesday/blob/master/data/2024/2024-04-23/readme.md\n\n# Option 1: tidytuesdayR package \n## install.packages(\"tidytuesdayR\")\n\ntuesdata <- tidytuesdayR::tt_load('2024-04-23')\n\n\n    Downloading file 1 of 1: `outer_space_objects.csv`\n\n## OR\ntuesdata <- tidytuesdayR::tt_load(2024, week = 17)\n\n\n    Downloading file 1 of 1: `outer_space_objects.csv`\n\nouter_space_objects <- tuesdata$outer_space_objects\n\n\nhead(outer_space_objects)\n\n# A tibble: 6 × 4\n  Entity  Code   Year num_objects\n  <chr>   <chr> <dbl>       <dbl>\n1 APSCO   <NA>   2023           1\n2 Algeria DZA    2002           1\n3 Algeria DZA    2010           1\n4 Algeria DZA    2016           3\n5 Algeria DZA    2017           1\n6 Angola  AGO    2017           1\n\n\n\nglimpse(outer_space_objects)\n\nRows: 1,175\nColumns: 4\n$ Entity      <chr> \"APSCO\", \"Algeria\", \"Algeria\", \"Algeria\", \"Algeria\", \"Ango…\n$ Code        <chr> NA, \"DZA\", \"DZA\", \"DZA\", \"DZA\", \"AGO\", \"AGO\", NA, NA, NA, …\n$ Year        <dbl> 2023, 2002, 2010, 2016, 2017, 2017, 2022, 1985, 1992, 1996…\n$ num_objects <dbl> 1, 1, 1, 3, 1, 1, 1, 2, 1, 2, 1, 2, 1, 2, 1, 1, 1, 1, 1, 3…\n\n\n\nfiltered_outer_space_objects = outer_space_objects %>%\n  filter (Entity %in% c(\"United States\",\"China\",\"Russia\",\"Japan\",\"France\",\"India\",\"European Space Agency\", \"Germany\"))"
+  },
+  {
+    "objectID": "proposal.html#description",
+    "href": "proposal.html#description",
+    "title": "Objects Launched into Space",
+    "section": "Description",
+    "text": "Description\nA brief description of your dataset including its provenance, dimensions, etc. as well as the reason why you chose this dataset.\nMake sure to load the data and use inline code for some of this information.\n\nggplot(data = filtered_outer_space_objects, aes(x=Year, y=num_objects, color = Entity)) +\n  geom_smooth(se = FALSE, method = loess) +\n  labs(\n    x = \"year of launch\",\n    y = \"number of objects launched\",\n    title = \"Number of objects launched into space by year\",\n    subtitle = \"data collected from United Nations Office of Outer Space Affairs\",\n    caption = \"objects are defined as satelllites, probes, landers, crewed spacecrafts, and space station flights\"\n  ) +\n  theme(\n    axis.text.x = element_text(size = 8, face = \"bold\"),\n    axis.text.y = element_text(size = 8, face = \"bold\"),\n    plot.title = element_text (size = 10, face = \"bold\", hjust = 0.5),\n    plot.subtitle = element_text(size = 8, face = \"plain\", hjust = 0.5),\n    plot.caption = element_text(size = 6, face = \"plain\", hjust = 1),\n    panel.background = element_rect(fill = \"white\"),\n    plot.background = element_rect(fill = \"white\"),\n    panel.grid.major = element_line(color = \"gray90\"),\n    panel.grid.minor = element_line(color = \"gray95\")\n  )"
   }
 ]

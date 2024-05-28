@@ -1,11 +1,11 @@
 ---
-title: "Proposal title"
+title: "Objects Launched into Space"
 subtitle: "Proposal"
-author: 
-  - name: "Team Name"
+author: Derek Rice
+  - name: "derekriceX"
     affiliations:
       - name: "School of Information, University of Arizona"
-description: "Project description"
+description: "INFO526 Term Project"
 format:
   html:
     code-tools: true
@@ -21,19 +21,74 @@ execute:
 ```{r}
 #| label: load-pkgs
 #| message: false
-library(tidyverse)
+if (!require("pacman"))
+    install.packages("pacman")
+
+pacman::p_load(tidyverse, tidytuesdayR, dplyr, janitor, lubridate, numpy)
+
 ```
 
-## Dataset
+## Dataset: Outer Space Objects 
 
 ```{r}
 #| label: load-dataset
 #| message: false
+
+# cite: https://github.com/rfordatascience/tidytuesday/blob/master/data/2024/2024-04-23/readme.md
+
+# Option 1: tidytuesdayR package 
+## install.packages("tidytuesdayR")
+
+tuesdata <- tidytuesdayR::tt_load('2024-04-23')
+## OR
+tuesdata <- tidytuesdayR::tt_load(2024, week = 17)
+
+outer_space_objects <- tuesdata$outer_space_objects
+
 ```
+
+```{r}
+head(outer_space_objects)
+```
+
+```{r}
+glimpse(outer_space_objects)
+```
+
+```{r}
+
+filtered_outer_space_objects = outer_space_objects %>%
+  filter (Entity %in% c("United States","China","Russia","Japan","France","India","European Space Agency", "Germany"))
+```
+
+## **Description**
 
 A brief description of your dataset including its provenance, dimensions, etc. as well as the reason why you chose this dataset.
 
 Make sure to load the data and use inline code for some of this information.
+
+```{r}
+ggplot(data = filtered_outer_space_objects, aes(x=Year, y=num_objects, color = Entity)) +
+  geom_smooth(se = FALSE, method = loess) +
+  labs(
+    x = "year of launch",
+    y = "number of objects launched",
+    title = "Number of objects launched into space by year",
+    subtitle = "data collected from United Nations Office of Outer Space Affairs",
+    caption = "objects are defined as satelllites, probes, landers, crewed spacecrafts, and space station flights"
+  ) +
+  theme(
+    axis.text.x = element_text(size = 8, face = "bold"),
+    axis.text.y = element_text(size = 8, face = "bold"),
+    plot.title = element_text (size = 10, face = "bold", hjust = 0.5),
+    plot.subtitle = element_text(size = 8, face = "plain", hjust = 0.5),
+    plot.caption = element_text(size = 6, face = "plain", hjust = 1),
+    panel.background = element_rect(fill = "white"),
+    plot.background = element_rect(fill = "white"),
+    panel.grid.major = element_line(color = "gray90"),
+    panel.grid.minor = element_line(color = "gray95")
+  ) 
+```
 
 ## Questions
 

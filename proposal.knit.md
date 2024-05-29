@@ -18,15 +18,16 @@ execute:
   warning: false
 ---
 
-```{r}
-#| label: load-pkgs
-#| message: false
+::: {.cell}
+
+```{.r .cell-code}
 if (!require("pacman"))
     install.packages("pacman")
 
 pacman::p_load(tidyverse, tidytuesdayR, dplyr, janitor, lubridate,ggplot2)
-
 ```
+:::
+
 
 ## Dataset: Outer Space Objects
 
@@ -37,36 +38,92 @@ pacman::p_load(tidyverse, tidytuesdayR, dplyr, janitor, lubridate,ggplot2)
 -   I choose the data set because I was thinking it would be interesting to identify the countries launching gadgets into space and the magnitude of the difference between the United States and other countries.
 -   A graphical plot summary of the data is provided below - the plot presents an overview of the dataset and visually displays the number of launches per entity between 1957 and 2023.
 
-```{r}
-#| label: load-dataset
-#| message: false
 
+::: {.cell}
+
+```{.r .cell-code}
 # cite: https://github.com/rfordatascience/tidytuesday/blob/master/data/2024/2024-04-23/readme.md
 
 outer_space_objects <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2024/2024-04-23/outer_space_objects.csv')
-
 ```
+:::
 
-```{r}
+::: {.cell}
+
+```{.r .cell-code}
 dim(outer_space_objects)
 ```
 
-```{r}
+::: {.cell-output .cell-output-stdout}
+
+```
+[1] 1175    4
+```
+
+
+:::
+:::
+
+::: {.cell}
+
+```{.r .cell-code}
 head(outer_space_objects)
 ```
 
-```{r}
+::: {.cell-output .cell-output-stdout}
+
+```
+# A tibble: 6 × 4
+  Entity  Code   Year num_objects
+  <chr>   <chr> <dbl>       <dbl>
+1 APSCO   <NA>   2023           1
+2 Algeria DZA    2002           1
+3 Algeria DZA    2010           1
+4 Algeria DZA    2016           3
+5 Algeria DZA    2017           1
+6 Angola  AGO    2017           1
+```
+
+
+:::
+:::
+
+::: {.cell}
+
+```{.r .cell-code}
 glimpse(outer_space_objects)
 ```
 
-```{r}
+::: {.cell-output .cell-output-stdout}
+
+```
+Rows: 1,175
+Columns: 4
+$ Entity      <chr> "APSCO", "Algeria", "Algeria", "Algeria", "Algeria", "Ango…
+$ Code        <chr> NA, "DZA", "DZA", "DZA", "DZA", "AGO", "AGO", NA, NA, NA, …
+$ Year        <dbl> 2023, 2002, 2010, 2016, 2017, 2017, 2022, 1985, 1992, 1996…
+$ num_objects <dbl> 1, 1, 1, 3, 1, 1, 1, 2, 1, 2, 1, 2, 1, 2, 1, 1, 1, 1, 1, 3…
+```
+
+
+:::
+:::
+
+::: {.cell}
+
+```{.r .cell-code}
 filtered_outer_space_objects = outer_space_objects %>%
   filter (Entity %in% c("United States","China","Russia","Japan","France","India","European Space Agency", "Germany"))
 ```
+:::
+
 
 ## Graphical Summary of the Dataset
 
-```{r}
+
+::: {.cell}
+
+```{.r .cell-code}
 ggplot(data = filtered_outer_space_objects, aes(x=Year, y=num_objects, color = Entity)) +
   geom_smooth(se = FALSE, method = loess) +
   labs(
@@ -88,6 +145,12 @@ ggplot(data = filtered_outer_space_objects, aes(x=Year, y=num_objects, color = E
     panel.grid.minor = element_line(color = "gray95")
   ) 
 ```
+
+::: {.cell-output-display}
+![](proposal_files/figure-html/unnamed-chunk-7-1.png){width=672}
+:::
+:::
+
 
 ## Description
 
@@ -118,3 +181,4 @@ ggplot(data = filtered_outer_space_objects, aes(x=Year, y=num_objects, color = E
 -   With longitude and latitude defined for each row/event I would then plot the launches on a map.
 
 -   Perhaps the map can be set up to display the launches year to year? I have no talent for programming so this idea of a map displaying launches by year is going to be a bit of a trick.
+

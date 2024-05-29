@@ -4,7 +4,7 @@
     "href": "proposal.html",
     "title": "Objects Launched into Space",
     "section": "",
-    "text": "if (!require(\"pacman\"))\n    install.packages(\"pacman\")\n\npacman::p_load(tidyverse, tidytuesdayR, dplyr, janitor, lubridate, numpy)"
+    "text": "if (!require(\"pacman\"))\n    install.packages(\"pacman\")\n\npacman::p_load(tidyverse, tidytuesdayR, dplyr, janitor, lubridate,ggplot2)"
   },
   {
     "objectID": "proposal.html#dataset",
@@ -18,14 +18,14 @@
     "href": "proposal.html#questions",
     "title": "Objects Launched into Space",
     "section": "Questions",
-    "text": "Questions\nThe two questions you want to answer."
+    "text": "Questions\n\nQuestion 1 - what country is most likely to become the first “space faring nation” and is there a close second?\nQuestion 2 - are any of the countries in the developing world engaged in space launch events?"
   },
   {
     "objectID": "proposal.html#analysis-plan",
     "href": "proposal.html#analysis-plan",
     "title": "Objects Launched into Space",
     "section": "Analysis plan",
-    "text": "Analysis plan\n\nA plan for answering each of the questions including the variables involved, variables to be created (if any), external data to be merged in (if any)."
+    "text": "Analysis plan\n\nThe analysis plan is to plot the data on a map and display the launches by country over time. Currently, I have no idea how to do this, create a map, and plot an event from the data set onto the map?\nI am thinking I will need to get a map of the world with the countries displayed. Another data set with the longitude and latitude for each country may be needed.\nThe launch event data set includes country and number of launches per year, to this I am thinking I will need to add columns defining the longitude and latitude of each launch event.\nWith longitude and latitude defined for each row/event I would then plot the launches on a map.\nPerhaps the map can be set up to display the launches year to year? I have no talent for programming so this idea of a map displaying launches by year is going to be a bit of a trick."
   },
   {
     "objectID": "index.html",
@@ -45,22 +45,22 @@
     "objectID": "presentation.html#quarto",
     "href": "presentation.html#quarto",
     "title": "Project title",
-    "section": "Quarto",
-    "text": "Quarto\n\nThe presentation is created using the Quarto CLI\n## sets the start of a new slide"
+    "section": "",
+    "text": "The presentation is created using the Quarto CLI\n## sets the start of a new slide"
   },
   {
     "objectID": "presentation.html#layouts",
     "href": "presentation.html#layouts",
     "title": "Project title",
-    "section": "Layouts",
-    "text": "Layouts\nYou can use plain text\n\n\n\nor bullet points1\n\n\nor in two columns\n\n\n\nlike\nthis\n\nAnd add footnotes"
+    "section": "",
+    "text": "You can use plain text\n\n\n\nor bullet points1\n\n\nor in two columns\n\n\n\nlike\nthis"
   },
   {
     "objectID": "presentation.html#code",
     "href": "presentation.html#code",
     "title": "Project title",
-    "section": "Code",
-    "text": "Code\n\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic       p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;         &lt;dbl&gt;\n1 (Intercept)   25.3      3.08        8.22 0.00000000358\n2 speed         -0.116    0.0642     -1.81 0.0806       \n\n\n# A tibble: 1 × 12\n  r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC\n      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1    0.0983        0.0682  5.82      3.27  0.0806     1  -101.  207.  212.\n# ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;"
+    "section": "",
+    "text": "# A tibble: 2 × 5\n  term        estimate std.error statistic       p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;         &lt;dbl&gt;\n1 (Intercept)   25.3      3.08        8.22 0.00000000358\n2 speed         -0.116    0.0642     -1.81 0.0806       \n\n\n# A tibble: 1 × 12\n  r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC\n      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1    0.0983        0.0682  5.82      3.27  0.0806     1  -101.  207.  212.\n# ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;"
   },
   {
     "objectID": "presentation.html#plots",
@@ -73,22 +73,22 @@
     "objectID": "presentation.html#plot-and-text",
     "href": "presentation.html#plot-and-text",
     "title": "Project title",
-    "section": "Plot and text",
-    "text": "Plot and text\n\n\n\nSome text\ngoes here"
+    "section": "",
+    "text": "Some text\ngoes here"
   },
   {
     "objectID": "presentation.html#tables",
     "href": "presentation.html#tables",
     "title": "Project title",
     "section": "Tables",
-    "text": "Tables\nIf you want to generate a table, make sure it is in the HTML format (instead of Markdown or other formats), e.g.,\n\n\n\n\n\nspecies\nisland\nbill_length_mm\nbill_depth_mm\nflipper_length_mm\nbody_mass_g\nsex\n\n\n\n\nAdelie\nTorgersen\n39.1\n18.7\n181\n3750\nmale\n\n\nAdelie\nTorgersen\n39.5\n17.4\n186\n3800\nfemale\n\n\nAdelie\nTorgersen\n40.3\n18.0\n195\n3250\nfemale\n\n\nAdelie\nTorgersen\nNA\nNA\nNA\nNA\nNA\n\n\nAdelie\nTorgersen\n36.7\n19.3\n193\n3450\nfemale\n\n\nAdelie\nTorgersen\n39.3\n20.6\n190\n3650\nmale"
+    "text": "Tables\nIf you want to generate a table, make sure it is in the HTML format (instead of Markdown or other formats), e.g.,\n\n\n\n\n\n\nspecies\nisland\nbill_length_mm\nbill_depth_mm\nflipper_length_mm\nbody_mass_g\nsex\n\n\n\n\nAdelie\nTorgersen\n39.1\n18.7\n181\n3750\nmale\n\n\nAdelie\nTorgersen\n39.5\n17.4\n186\n3800\nfemale\n\n\nAdelie\nTorgersen\n40.3\n18.0\n195\n3250\nfemale\n\n\nAdelie\nTorgersen\nNA\nNA\nNA\nNA\nNA\n\n\nAdelie\nTorgersen\n36.7\n19.3\n193\n3450\nfemale\n\n\nAdelie\nTorgersen\n39.3\n20.6\n190\n3650\nmale"
   },
   {
     "objectID": "presentation.html#images",
     "href": "presentation.html#images",
     "title": "Project title",
     "section": "Images",
-    "text": "Images\n\nImage credit: Danielle Navarro, Percolate."
+    "text": "Images\n\n\n\nImage credit: Danielle Navarro, Percolate."
   },
   {
     "objectID": "presentation.html#math-expressions",
@@ -116,13 +116,34 @@
     "href": "proposal.html#dataset-outer-space-objects",
     "title": "Objects Launched into Space",
     "section": "Dataset: Outer Space Objects",
-    "text": "Dataset: Outer Space Objects\n\n# cite: https://github.com/rfordatascience/tidytuesday/blob/master/data/2024/2024-04-23/readme.md\n\n# Option 1: tidytuesdayR package \n## install.packages(\"tidytuesdayR\")\n\ntuesdata <- tidytuesdayR::tt_load('2024-04-23')\n\n\n    Downloading file 1 of 1: `outer_space_objects.csv`\n\n## OR\ntuesdata <- tidytuesdayR::tt_load(2024, week = 17)\n\n\n    Downloading file 1 of 1: `outer_space_objects.csv`\n\nouter_space_objects <- tuesdata$outer_space_objects\n\n\nhead(outer_space_objects)\n\n# A tibble: 6 × 4\n  Entity  Code   Year num_objects\n  <chr>   <chr> <dbl>       <dbl>\n1 APSCO   <NA>   2023           1\n2 Algeria DZA    2002           1\n3 Algeria DZA    2010           1\n4 Algeria DZA    2016           3\n5 Algeria DZA    2017           1\n6 Angola  AGO    2017           1\n\n\n\nglimpse(outer_space_objects)\n\nRows: 1,175\nColumns: 4\n$ Entity      <chr> \"APSCO\", \"Algeria\", \"Algeria\", \"Algeria\", \"Algeria\", \"Ango…\n$ Code        <chr> NA, \"DZA\", \"DZA\", \"DZA\", \"DZA\", \"AGO\", \"AGO\", NA, NA, NA, …\n$ Year        <dbl> 2023, 2002, 2010, 2016, 2017, 2017, 2022, 1985, 1992, 1996…\n$ num_objects <dbl> 1, 1, 1, 3, 1, 1, 1, 2, 1, 2, 1, 2, 1, 2, 1, 1, 1, 1, 1, 3…\n\n\n\nfiltered_outer_space_objects = outer_space_objects %>%\n  filter (Entity %in% c(\"United States\",\"China\",\"Russia\",\"Japan\",\"France\",\"India\",\"European Space Agency\", \"Germany\"))"
+    "text": "Dataset: Outer Space Objects\n\nThe data set summarizes the number of objects launced into space from 1957 to 2023 as a function of entity.\nThe source of the dataset is the United Nations Office of Outer Space Affairs. A prior analysis of the dataset is available here: https://ourworldindata.org/grapher/yearly-number-of-objects-launched-into-outer-space\nDataset source: https://github.com/rfordatascience/tidytuesday/blob/master/data/2024/2024-04-23/readme.md\nThe data set is comprised of 4 columns and 1175 rows - see “head” and “glimpse” summarized herein.\nI choose the data set because I was thinking it would be interesting to identify the countries launching gadgets into space and the magnitude of the difference between the United States and other countries.\nA graphical plot summary of the data is provided below - the plot presents an overview of the dataset and visually displays the number of launches per entity between 1957 and 2023.\n\n\n# cite: https://github.com/rfordatascience/tidytuesday/blob/master/data/2024/2024-04-23/readme.md\n\nouter_space_objects &lt;- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2024/2024-04-23/outer_space_objects.csv')\n\n\ndim(outer_space_objects)\n\n[1] 1175    4\n\n\n\nhead(outer_space_objects)\n\n# A tibble: 6 × 4\n  Entity  Code   Year num_objects\n  &lt;chr&gt;   &lt;chr&gt; &lt;dbl&gt;       &lt;dbl&gt;\n1 APSCO   &lt;NA&gt;   2023           1\n2 Algeria DZA    2002           1\n3 Algeria DZA    2010           1\n4 Algeria DZA    2016           3\n5 Algeria DZA    2017           1\n6 Angola  AGO    2017           1\n\n\n\nglimpse(outer_space_objects)\n\nRows: 1,175\nColumns: 4\n$ Entity      &lt;chr&gt; \"APSCO\", \"Algeria\", \"Algeria\", \"Algeria\", \"Algeria\", \"Ango…\n$ Code        &lt;chr&gt; NA, \"DZA\", \"DZA\", \"DZA\", \"DZA\", \"AGO\", \"AGO\", NA, NA, NA, …\n$ Year        &lt;dbl&gt; 2023, 2002, 2010, 2016, 2017, 2017, 2022, 1985, 1992, 1996…\n$ num_objects &lt;dbl&gt; 1, 1, 1, 3, 1, 1, 1, 2, 1, 2, 1, 2, 1, 2, 1, 1, 1, 1, 1, 3…\n\n\n\nfiltered_outer_space_objects = outer_space_objects %&gt;%\n  filter (Entity %in% c(\"United States\",\"China\",\"Russia\",\"Japan\",\"France\",\"India\",\"European Space Agency\", \"Germany\"))"
   },
   {
     "objectID": "proposal.html#description",
     "href": "proposal.html#description",
     "title": "Objects Launched into Space",
     "section": "Description",
-    "text": "Description\nA brief description of your dataset including its provenance, dimensions, etc. as well as the reason why you chose this dataset.\nMake sure to load the data and use inline code for some of this information.\n\nggplot(data = filtered_outer_space_objects, aes(x=Year, y=num_objects, color = Entity)) +\n  geom_smooth(se = FALSE, method = loess) +\n  labs(\n    x = \"year of launch\",\n    y = \"number of objects launched\",\n    title = \"Number of objects launched into space by year\",\n    subtitle = \"data collected from United Nations Office of Outer Space Affairs\",\n    caption = \"objects are defined as satelllites, probes, landers, crewed spacecrafts, and space station flights\"\n  ) +\n  theme(\n    axis.text.x = element_text(size = 8, face = \"bold\"),\n    axis.text.y = element_text(size = 8, face = \"bold\"),\n    plot.title = element_text (size = 10, face = \"bold\", hjust = 0.5),\n    plot.subtitle = element_text(size = 8, face = \"plain\", hjust = 0.5),\n    plot.caption = element_text(size = 6, face = \"plain\", hjust = 1),\n    panel.background = element_rect(fill = \"white\"),\n    plot.background = element_rect(fill = \"white\"),\n    panel.grid.major = element_line(color = \"gray90\"),\n    panel.grid.minor = element_line(color = \"gray95\")\n  )"
+    "text": "Description\n\nThe dataset comprises 4 columns and 1175 rows. The dataset summarizes space launch events between 1957 and 2023 as a function of the entity or country responsible for the launch.\nEntity:  the country launching the space object\nCode:  the type of gadget launched into Earth orbit or beyond (satellites, probes, landers, crewed spacecrafts, and space station components)\nYear:  the year of the lauch\nnum_objects:  the number of objects lauched by “Entity” during a year."
+  },
+  {
+    "objectID": "presentation.html",
+    "href": "presentation.html",
+    "title": "Project title",
+    "section": "",
+    "text": "The presentation is created using the Quarto CLI\n## sets the start of a new slide\n\n\n\n\nYou can use plain text\n\n\n\nor bullet points1\n\n\nor in two columns\n\n\n\nlike\nthis\n\n\n\n\n\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic       p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;         &lt;dbl&gt;\n1 (Intercept)   25.3      3.08        8.22 0.00000000358\n2 speed         -0.116    0.0642     -1.81 0.0806       \n\n\n# A tibble: 1 × 12\n  r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC\n      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1    0.0983        0.0682  5.82      3.27  0.0806     1  -101.  207.  212.\n# ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSome text\ngoes here"
+  },
+  {
+    "objectID": "presentation.html#footnotes",
+    "href": "presentation.html#footnotes",
+    "title": "Project title",
+    "section": "Footnotes",
+    "text": "Footnotes\n\n\nAnd add footnotes↩︎"
+  },
+  {
+    "objectID": "proposal.html#graphical-summary-of-the-dataset",
+    "href": "proposal.html#graphical-summary-of-the-dataset",
+    "title": "Objects Launched into Space",
+    "section": "Graphical Summary of the Dataset",
+    "text": "Graphical Summary of the Dataset\n\nggplot(data = filtered_outer_space_objects, aes(x=Year, y=num_objects, color = Entity)) +\n  geom_smooth(se = FALSE, method = loess) +\n  labs(\n    x = \"year of launch\",\n    y = \"number of objects launched\",\n    title = \"Number of objects launched into space by year\",\n    subtitle = \"data collected from United Nations Office of Outer Space Affairs\",\n    caption = \"objects are defined as satelllites, probes, landers, crewed spacecrafts, and space station flights\"\n  ) +\n  theme(\n    axis.text.x = element_text(size = 8, face = \"bold\"),\n    axis.text.y = element_text(size = 8, face = \"bold\"),\n    plot.title = element_text (size = 10, face = \"bold\", hjust = 0.5),\n    plot.subtitle = element_text(size = 8, face = \"plain\", hjust = 0.5),\n    plot.caption = element_text(size = 6, face = \"plain\", hjust = 1),\n    panel.background = element_rect(fill = \"white\"),\n    plot.background = element_rect(fill = \"white\"),\n    panel.grid.major = element_line(color = \"gray90\"),\n    panel.grid.minor = element_line(color = \"gray95\")\n  )"
   }
 ]

@@ -30,11 +30,11 @@ pacman::p_load(tidyverse, tidytuesdayR, dplyr, janitor, lubridate,ggplot2)
 
 ## Dataset: Outer Space Objects
 
--   The data set summarizes the number of objects launced into space from 1957 to 2023 as a function of entity.
+-   The dataset summarizes the number of objects launched into space from 1957 to 2023 as a function of entity.
 -   The source of the dataset is the United Nations Office of Outer Space Affairs. A prior analysis of the dataset is available here: https://ourworldindata.org/grapher/yearly-number-of-objects-launched-into-outer-space
 -   Dataset source: https://github.com/rfordatascience/tidytuesday/blob/master/data/2024/2024-04-23/readme.md
--   The data set is comprised of 4 columns and 1175 rows - see "head" and "glimpse" summarized herein.
--   I choose the data set because I was thinking it would be interesting to identify the countries launching gadgets into space and the magnitude of the difference between the United States and other countries.
+-   The dataset is comprised of 4 columns and 1175 rows - see "head" and "glimpse" summarized herein.
+-   I choose the dataset because I was thinking it would be interesting to identify the countries launching gadgets into space and the magnitude of the difference between the United States and other countries.
 -   A graphical plot summary of the data is provided below - the plot presents an overview of the dataset and visually displays the number of launches per entity between 1957 and 2023.
 
 ```{r}
@@ -89,7 +89,7 @@ ggplot(data = filtered_outer_space_objects, aes(x=Year, y=num_objects, color = E
   ) 
 ```
 
-## Description
+## Dataset Variable (column) Descriptions
 
 -   The dataset comprises 4 columns and 1175 rows. The dataset summarizes space launch events between 1957 and 2023 as a function of the entity or country responsible for the launch.
 
@@ -97,15 +97,13 @@ ggplot(data = filtered_outer_space_objects, aes(x=Year, y=num_objects, color = E
 
 -   **Code**: <character> the type of gadget launched into Earth orbit or beyond (satellites, probes, landers, crewed spacecrafts, and space station components)
 
--   **Year**: <double-precision floating-point number> the year of the lauch
+-   **Year**: <double-precision floating-point number> the year of the launch
 
--   **num_objects**: <double-precision floating-point number> the number of objects lauched by "Entity" during a year.
+-   **num_objects**: <double-precision floating-point number> the number of objects launched by "Entity" during a year.
 
 ## Questions
 
--   Question 1 - what country is most likely to become the first "space faring nation" and is there a close second?
-
--   Question 2 - are any of the countries in the developing world engaged in space launch events?
+-   Question 1 - what country is most likely to become the first "space faring nation" and is there a close second? I propose to define "space faring nation" as the country that launches an order of magnitude more vehicles into space than all other countries combined. I\'ll fit a polynomial regression model to the dataset by country and extrapolate the model into the future to help identify the likely candidates.
 
 ## Analysis plan
 
@@ -117,4 +115,33 @@ ggplot(data = filtered_outer_space_objects, aes(x=Year, y=num_objects, color = E
 
 -   With longitude and latitude defined for each row/event I would then plot the launches on a map.
 
--   Perhaps the map can be set up to display the launches year to year? I have no talent for programming so this idea of a map displaying launches by year is going to be a bit of a trick.
+-   The analysis plan is to have an office hours meetign with Professor Chism the week of June 3rd and discuss how to plot country launch data on a world map. I'll then completed the required learning and apply that new skillset to the launch dataset.
+
+## Detailed Analysis Plan
+
+-   Review with Professor Chism how best to plot data on a world map
+
+-   Use a polynomial regression model to extrapolate the launch data by country into the future for the six most prominant countries
+
+-   Plot the extrapolated dataset onto a world map to identify the most likely country to become a "Space Faring Nation".
+
+## Plan of Attack
+
+| Task Name                                        | Status      | Date      | Summary                                                           |
+|-----------------|-----------------|-----------------|----------------------|
+| Select dataset                                   | complete    | May 27th  | selected the Space Object Launch Dataset                          |
+| Define question to be answered                   | complete    | May 28th  | what country is most likely to become the 1st space faring nation |
+| Submit draft proposal for peer review            | complete    | May 29th  | proposal submitted - comments under review                        |
+| Response to peer review                          | complete    | June 2nd  | peer review comments incorporate into the proposal                |
+| Submit project proposal                          | complete    | June 3rd  | proposal submitted to Professor Chism                             |
+| Office hours with Prof Chism to discuss approach | in-work     | June 9th  | need to learn how to plot launch data on a map?                   |
+| Complete required learning                       | in-work     | June 15th | Reviewed material suggested by Prof. Chism                        |
+| Complete initial analysis of the dataset         | not started | June 15th | Data plotted on a map                                             |
+| draft presentation and writeup                   | not started | June 21st | draft files committed to github                                   |
+| Complete presentation                            | not started | June 23rd | submit to github                                                  |
+| Comlete writeup                                  | not started | June 23rd | submit to github                                                  |
+| final submission                                 | not started | June 24th | submit to github                                                  |
+|                                                  |             |           |                                                                   |
+|                                                  |             |           |                                                                   |
+
+: Approach by Task

@@ -168,8 +168,6 @@ ggplot(data = filtered_outer_space_objects, aes(x=Year, y=num_objects, color = E
 
 -   Question 1 - what country is most likely to become the first "space faring nation" and is there a close second?
 
--   Question 2 - are any of the countries in the developing world engaged in space launch events?
-
 ## Analysis plan
 
 -   The analysis plan is to plot the data on a map and display the launches by country over time. Currently, I have no idea how to do this, create a map, and plot an event from the data set onto the map?
@@ -180,5 +178,26 @@ ggplot(data = filtered_outer_space_objects, aes(x=Year, y=num_objects, color = E
 
 -   With longitude and latitude defined for each row/event I would then plot the launches on a map.
 
--   Perhaps the map can be set up to display the launches year to year? I have no talent for programming so this idea of a map displaying launches by year is going to be a bit of a trick.
+-   The analysis plan is to have an office hours meetign with Professor Chism the week of June 3rd and discuss how to plot country launch data on a world map. I'll then completed the required learning and apply that new skillset to the launch dataset.
+
+-   
+
+| Task Name                                        | Status      | Date      | Summary                                                           |
+|--------------------------------------------------|-------------|-----------|-------------------------------------------------------------------|
+| Select dataset                                   | complete    | May 27th  | selected the Space Object Launch Dataset                          |
+| Define question to be answered                   | complete    | May 28th  | what country is most likely to become the 1st space faring nation |
+| Submit draft proposal for peer review            | complete    | May 29th  | proposal submitted - comments under review                        |
+| Response to peer review                          | complete    | June 2nd  | peer review comments incorporate into the proposal                |
+| Submit project proposal                          | complete    | June 3rd  | proposal submitted to Professor Chism                             |
+| Office hours with Prof Chism to discuss approach | in-work     | June 9th  | need to learn how to plot launch data on a map?                   |
+| Complete required learning                       | in-work     | June 15th | Reviewed material suggested by Prof. Chism                        |
+| Complete initial analysis of the dataset         | not started | June 15th | Data plotted on a map                                             |
+| draft presentation and writeup                   | not started | June 21st | draft files committed to github                                   |
+| Complete presentation                            | not started | June 23rd | submit to github                                                  |
+| Comlete writeup                                  | not started | June 23rd | submit to github                                                  |
+| final submission                                 | not started | June 24th | submit to github                                                  |
+|                                                  |             |           |                                                                   |
+|                                                  |             |           |                                                                   |
+
+: Approach by Task
 

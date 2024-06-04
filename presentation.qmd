@@ -1,7 +1,7 @@
 ---
-title: "Project title"
+title: "Outer Space Launch Data by Country"
 subtitle: "INFO 526 - Summer 2024 - Final Project"
-author: "Author names"
+author: "Derek Rice"
 title-slide-attributes:
   data-background-image: images/watercolour_sys02_img34_teacup-ocean.jpg
   data-background-size: stretch
@@ -17,12 +17,13 @@ execute:
 ---
 
 ```{r}
-#| label: load-packages
-#| include: false
 
-# Load packages here
-pacman::p_load(tidymodels,
-               tidyverse)
+#| label: load-pkgs
+#| message: false
+if (!require("pacman"))
+    install.packages("pacman")
+
+pacman::p_load(tidyverse, tidytuesdayR, dplyr, janitor, lubridate,ggplot2,ggmap, maps,mapproj,tmap)
 
 ```
 
@@ -46,10 +47,49 @@ knitr::opts_chunk$set(
 #| label: load-data
 #| include: false
 # Load data here
-data(mtcars)
-mtcars$speed <- mtcars$hp / mtcars$wt
+outer_space_objects <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2024/2024-04-23/outer_space_objects.csv')
+```
 
-data("penguins")
+```{r}
+outer_space_objects <- na.omit(outer_space_objects)
+outer_space_objects <- outer_space_objects |>
+  filter(Entity != c("World","APSCO"))
+
+head(outer_space_objects)
+```
+
+```{r}
+# cite: https://www.youtube.com/watch?v=2rnsbodsJVc
+
+world_map = map_data("world")
+str(world_map)
+head(world_map)
+```
+
+```{r}
+unique_values <- unique(c(outer_space_objects$Entity, world_map$region))
+
+print(unique_values)
+
+```
+
+```{r}
+
+launch_map <- merge(world_map, outer_space_objects, by.x="region", by.y="Entity")
+
+launch_map <- launch_map |>
+  arrange(region,Year)
+
+head(launch_map)
+dim(launch_map)
+```
+
+```{r}
+
+```
+
+```{r}
+
 ```
 
 # Using Quarto for presentations
@@ -83,21 +123,14 @@ or in two columns
 ## Code
 
 ```{r, echo=FALSE}
-model <- lm(mpg ~ speed, data = mtcars) 
 
-model |> tidy()
-
-model |> glance()
 
 ```
 
 ## Plots
 
 ```{r}
-penguins |>
-  mutate(species = ifelse(species == "Adelie", "Adelie", "Other")) |>
-  ggplot(aes(x = flipper_length_mm, y = body_mass_g, color = species)) +
-  geom_point()
+
 ```
 
 ## Plot and text
@@ -110,13 +143,7 @@ penguins |>
 :::
 
 ::: {.column width="50%"}
-```{r, warning=FALSE, fig.width=5.5}
-penguins |>
-  ggplot(aes(x = bill_length_mm, y = species, color = species)) +
-  geom_boxplot(linewidth = 0.75,
-               outlier.size = 2.5) +
-  theme_minimal(base_size = 15) +
-  theme(legend.key.size = unit(0.8, "cm"))
+```         
 ```
 :::
 :::
@@ -128,10 +155,7 @@ penguins |>
 If you want to generate a table, make sure it is in the HTML format (instead of Markdown or other formats), e.g.,
 
 ```{r}
-penguins |> 
-  head() |>
-  kableExtra::kable() |>
-  kableExtra::kable_styling()
+
 ```
 
 ## Images

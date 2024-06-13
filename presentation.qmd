@@ -77,7 +77,7 @@ outer_space_objects <- na.omit(outer_space_objects)
 outer_space_objects <- outer_space_objects |>
   filter(Entity != c("World","APSCO"))
 
-head(outer_space_objects)
+view(outer_space_objects)
 ```
 
 ```{r}
@@ -85,7 +85,7 @@ head(outer_space_objects)
 
 world_map = map_data("world")
 str(world_map)
-head(world_map)
+
 ```
 
 ```{r}
@@ -102,8 +102,8 @@ launch_map <- merge(world_map, outer_space_objects, by.x="region", by.y="Entity"
 launch_map <- launch_map |>
   arrange(region,Year)
 
-head(launch_map)
-dim(launch_map)
+# head(launch_map)
+# dim(launch_map)
 ```
 
 ```{r}

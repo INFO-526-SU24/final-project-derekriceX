@@ -16,31 +16,53 @@ execute:
   echo: false
 ---
 
-```{r}
+```{r load-packages, message = FALSE}
+#| echo: FALSE
+#| warning: FALSE
 
-#| label: load-pkgs
-#| message: false
-if (!require("pacman"))
-    install.packages("pacman")
+# Install and load packages
+if(!require(pacman))
+  install.packages("pacman")
 
-pacman::p_load(tidyverse, tidytuesdayR, dplyr, janitor, lubridate,ggplot2,ggmap, maps,mapproj,tmap)
+pacman::p_load(tidyverse,
+               sf,
+               ggspatial,
+               rnaturalearth,
+               rnaturalearthdata,
+               mapproj,
+               geofacet,
+               glue,
+               countdown,
+               here,
+               ggthemes,
+               ggrepel,
+               dlpyr,
+               viridis,
+               tigris,
+               readxl,
+               patchwork
+               )
 
-```
+# global theme 
 
-```{r}
-#| label: setup
-#| include: false
 
-# Plot theme
-ggplot2::theme_set(ggplot2::theme_minimal(base_size = 11))
+# set theme for ggplot2
+ggplot2::theme_set(ggplot2::theme_minimal(base_size=25))
 
-# For better figure resolution
+# set width of code output
+options(width = 65)
+
+# set figure parameters for knitr
 knitr::opts_chunk$set(
+  fig.width = 15,
+  fig.asp = 0.618,
   fig.retina = 3, 
-  dpi = 300, 
-  fig.width = 6, 
-  fig.asp = 0.618 
-  )
+  fig.align = "center",
+  dpi = 300
+)
+                   
+here::here()
+
 ```
 
 ```{r}
@@ -69,7 +91,7 @@ head(world_map)
 ```{r}
 unique_values <- unique(c(outer_space_objects$Entity, world_map$region))
 
-print(unique_values)
+#print(unique_values)
 
 ```
 
@@ -85,6 +107,8 @@ dim(launch_map)
 ```
 
 ```{r}
+
+
 
 ```
 

@@ -18,14 +18,14 @@
     "href": "proposal.html#questions",
     "title": "Objects Launched into Space",
     "section": "Questions",
-    "text": "Questions\n\nQuestion 1 - what country is most likely to become the first “space faring nation” and is there a close second?"
+    "text": "Questions\n\nQuestion 1 - what country is most likely to become the first “space faring nation” and is there a close second? I propose to define “space faring nation” as the country that launches an order of magnitude more vehicles into space than all other countries combined. I’ll fit a polynomial regression model to the dataset by country and extrapolate the model into the future to help identify the likely candidates."
   },
   {
     "objectID": "proposal.html#analysis-plan",
     "href": "proposal.html#analysis-plan",
     "title": "Objects Launched into Space",
     "section": "Analysis plan",
-    "text": "Analysis plan\n\nThe analysis plan is to plot the data on a map and display the launches by country over time. Currently, I have no idea how to do this, create a map, and plot an event from the data set onto the map?\nI am thinking I will need to get a map of the world with the countries displayed. Another data set with the longitude and latitude for each country may be needed.\nThe launch event data set includes country and number of launches per year, to this I am thinking I will need to add columns defining the longitude and latitude of each launch event.\nWith longitude and latitude defined for each row/event I would then plot the launches on a map.\nThe analysis plan is to have an office hours meetign with Professor Chism the week of June 3rd and discuss how to plot country launch data on a world map. I’ll then completed the required learning and apply that new skillset to the launch dataset.\n\n\n\nApproach by Task\n\n\n\n\n\n\n\n\nTask Name\nStatus\nDate\nSummary\n\n\n\n\nSelect dataset\ncomplete\nMay 27th\nselected the Space Object Launch Dataset\n\n\nDefine question to be answered\ncomplete\nMay 28th\nwhat country is most likely to become the 1st space faring nation\n\n\nSubmit draft proposal for peer review\ncomplete\nMay 29th\nproposal submitted - comments under review\n\n\nResponse to peer review\ncomplete\nJune 2nd\npeer review comments incorporate into the proposal\n\n\nSubmit project proposal\ncomplete\nJune 3rd\nproposal submitted to Professor Chism\n\n\nOffice hours with Prof Chism to discuss approach\nin-work\nJune 9th\nneed to learn how to plot launch data on a map?\n\n\nComplete required learning\nin-work\nJune 15th\nReviewed material suggested by Prof. Chism\n\n\nComplete initial analysis of the dataset\nnot started\nJune 15th\nData plotted on a map\n\n\ndraft presentation and writeup\nnot started\nJune 21st\ndraft files committed to github\n\n\nComplete presentation\nnot started\nJune 23rd\nsubmit to github\n\n\nComlete writeup\nnot started\nJune 23rd\nsubmit to github\n\n\nfinal submission\nnot started\nJune 24th\nsubmit to github"
+    "text": "Analysis plan\n\nThe analysis plan is to plot the data on a map and display the launches by country over time. Currently, I have no idea how to do this, create a map, and plot an event from the data set onto the map?\nI am thinking I will need to get a map of the world with the countries displayed. Another data set with the longitude and latitude for each country may be needed.\nThe launch event data set includes country and number of launches per year, to this I am thinking I will need to add columns defining the longitude and latitude of each launch event.\nWith longitude and latitude defined for each row/event I would then plot the launches on a map.\nThe analysis plan is to have an office hours meetign with Professor Chism the week of June 3rd and discuss how to plot country launch data on a world map. I’ll then completed the required learning and apply that new skillset to the launch dataset."
   },
   {
     "objectID": "index.html",
@@ -44,63 +44,63 @@
   {
     "objectID": "presentation.html#quarto",
     "href": "presentation.html#quarto",
-    "title": "Project title",
-    "section": "",
-    "text": "The presentation is created using the Quarto CLI\n## sets the start of a new slide"
+    "title": "Outer Space Launch Data by Country",
+    "section": "Quarto",
+    "text": "Quarto\n\nThe presentation is created using the Quarto CLI\n## sets the start of a new slide"
   },
   {
     "objectID": "presentation.html#layouts",
     "href": "presentation.html#layouts",
-    "title": "Project title",
-    "section": "",
-    "text": "You can use plain text\n\n\n\nor bullet points1\n\n\nor in two columns\n\n\n\nlike\nthis"
+    "title": "Outer Space Launch Data by Country",
+    "section": "Layouts",
+    "text": "Layouts\nYou can use plain text\n\n\n\nor bullet points1\n\n\nor in two columns\n\n\n\nlike\nthis\n\nAnd add footnotes"
   },
   {
     "objectID": "presentation.html#code",
     "href": "presentation.html#code",
-    "title": "Project title",
-    "section": "",
-    "text": "# A tibble: 2 × 5\n  term        estimate std.error statistic       p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;         &lt;dbl&gt;\n1 (Intercept)   25.3      3.08        8.22 0.00000000358\n2 speed         -0.116    0.0642     -1.81 0.0806       \n\n\n# A tibble: 1 × 12\n  r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC\n      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1    0.0983        0.0682  5.82      3.27  0.0806     1  -101.  207.  212.\n# ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;"
+    "title": "Outer Space Launch Data by Country",
+    "section": "Code",
+    "text": "Code"
   },
   {
     "objectID": "presentation.html#plots",
     "href": "presentation.html#plots",
-    "title": "Project title",
+    "title": "Outer Space Launch Data by Country",
     "section": "Plots",
     "text": "Plots"
   },
   {
     "objectID": "presentation.html#plot-and-text",
     "href": "presentation.html#plot-and-text",
-    "title": "Project title",
-    "section": "",
-    "text": "Some text\ngoes here"
+    "title": "Outer Space Launch Data by Country",
+    "section": "Plot and text",
+    "text": "Plot and text\n\n\n\nSome text\ngoes here"
   },
   {
     "objectID": "presentation.html#tables",
     "href": "presentation.html#tables",
-    "title": "Project title",
+    "title": "Outer Space Launch Data by Country",
     "section": "Tables",
-    "text": "Tables\nIf you want to generate a table, make sure it is in the HTML format (instead of Markdown or other formats), e.g.,\n\n\n\n\n\n\nspecies\nisland\nbill_length_mm\nbill_depth_mm\nflipper_length_mm\nbody_mass_g\nsex\n\n\n\n\nAdelie\nTorgersen\n39.1\n18.7\n181\n3750\nmale\n\n\nAdelie\nTorgersen\n39.5\n17.4\n186\n3800\nfemale\n\n\nAdelie\nTorgersen\n40.3\n18.0\n195\n3250\nfemale\n\n\nAdelie\nTorgersen\nNA\nNA\nNA\nNA\nNA\n\n\nAdelie\nTorgersen\n36.7\n19.3\n193\n3450\nfemale\n\n\nAdelie\nTorgersen\n39.3\n20.6\n190\n3650\nmale"
+    "text": "Tables\nIf you want to generate a table, make sure it is in the HTML format (instead of Markdown or other formats), e.g.,"
   },
   {
     "objectID": "presentation.html#images",
     "href": "presentation.html#images",
-    "title": "Project title",
+    "title": "Outer Space Launch Data by Country",
     "section": "Images",
-    "text": "Images\n\n\n\nImage credit: Danielle Navarro, Percolate."
+    "text": "Images\n\nImage credit: Danielle Navarro, Percolate."
   },
   {
     "objectID": "presentation.html#math-expressions",
     "href": "presentation.html#math-expressions",
-    "title": "Project title",
+    "title": "Outer Space Launch Data by Country",
     "section": "Math Expressions",
     "text": "Math Expressions\nYou can write LaTeX math expressions inside a pair of dollar signs, e.g. $\\alpha+\\beta$ renders \\(\\alpha + \\beta\\). You can use the display style with double dollar signs:\n$$\\bar{X}=\\frac{1}{n}\\sum_{i=1}^nX_i$$\n\\[\n\\bar{X}=\\frac{1}{n}\\sum_{i=1}^nX_i\n\\]\nLimitations:\n\nThe source code of a LaTeX math expression must be in one line, unless it is inside a pair of double dollar signs, in which case the starting $$ must appear in the very beginning of a line, followed immediately by a non-space character, and the ending $$ must be at the end of a line, led by a non-space character;\nThere should not be spaces after the opening $ or before the closing $."
   },
   {
     "objectID": "presentation.html#feeling-adventurous",
     "href": "presentation.html#feeling-adventurous",
-    "title": "Project title",
+    "title": "Outer Space Launch Data by Country",
     "section": "Feeling adventurous?",
     "text": "Feeling adventurous?\n\nYou are welcomed to use the default styling of the slides. In fact, that’s what I expect majority of you will do. You will differentiate yourself with the content of your presentation.\nBut some of you might want to play around with slide styling. Some solutions for this can be found at https://quarto.org/docs/presentations/revealjs."
   },
@@ -116,7 +116,7 @@
     "href": "proposal.html#dataset-outer-space-objects",
     "title": "Objects Launched into Space",
     "section": "Dataset: Outer Space Objects",
-    "text": "Dataset: Outer Space Objects\n\nThe data set summarizes the number of objects launced into space from 1957 to 2023 as a function of entity.\nThe source of the dataset is the United Nations Office of Outer Space Affairs. A prior analysis of the dataset is available here: https://ourworldindata.org/grapher/yearly-number-of-objects-launched-into-outer-space\nDataset source: https://github.com/rfordatascience/tidytuesday/blob/master/data/2024/2024-04-23/readme.md\nThe data set is comprised of 4 columns and 1175 rows - see “head” and “glimpse” summarized herein.\nI choose the data set because I was thinking it would be interesting to identify the countries launching gadgets into space and the magnitude of the difference between the United States and other countries.\nA graphical plot summary of the data is provided below - the plot presents an overview of the dataset and visually displays the number of launches per entity between 1957 and 2023.\n\n\n# cite: https://github.com/rfordatascience/tidytuesday/blob/master/data/2024/2024-04-23/readme.md\n\nouter_space_objects &lt;- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2024/2024-04-23/outer_space_objects.csv')\n\n\ndim(outer_space_objects)\n\n[1] 1175    4\n\n\n\nhead(outer_space_objects)\n\n# A tibble: 6 × 4\n  Entity  Code   Year num_objects\n  &lt;chr&gt;   &lt;chr&gt; &lt;dbl&gt;       &lt;dbl&gt;\n1 APSCO   &lt;NA&gt;   2023           1\n2 Algeria DZA    2002           1\n3 Algeria DZA    2010           1\n4 Algeria DZA    2016           3\n5 Algeria DZA    2017           1\n6 Angola  AGO    2017           1\n\n\n\nglimpse(outer_space_objects)\n\nRows: 1,175\nColumns: 4\n$ Entity      &lt;chr&gt; \"APSCO\", \"Algeria\", \"Algeria\", \"Algeria\", \"Algeria\", \"Ango…\n$ Code        &lt;chr&gt; NA, \"DZA\", \"DZA\", \"DZA\", \"DZA\", \"AGO\", \"AGO\", NA, NA, NA, …\n$ Year        &lt;dbl&gt; 2023, 2002, 2010, 2016, 2017, 2017, 2022, 1985, 1992, 1996…\n$ num_objects &lt;dbl&gt; 1, 1, 1, 3, 1, 1, 1, 2, 1, 2, 1, 2, 1, 2, 1, 1, 1, 1, 1, 3…\n\n\n\nfiltered_outer_space_objects = outer_space_objects %&gt;%\n  filter (Entity %in% c(\"United States\",\"China\",\"Russia\",\"Japan\",\"France\",\"India\",\"European Space Agency\", \"Germany\"))"
+    "text": "Dataset: Outer Space Objects\n\nThe dataset summarizes the number of objects launched into space from 1957 to 2023 as a function of entity.\nThe source of the dataset is the United Nations Office of Outer Space Affairs. A prior analysis of the dataset is available here: https://ourworldindata.org/grapher/yearly-number-of-objects-launched-into-outer-space\nDataset source: https://github.com/rfordatascience/tidytuesday/blob/master/data/2024/2024-04-23/readme.md\nThe dataset is comprised of 4 columns and 1175 rows - see “head” and “glimpse” summarized herein.\nI choose the dataset because I was thinking it would be interesting to identify the countries launching gadgets into space and the magnitude of the difference between the United States and other countries.\nA graphical plot summary of the data is provided below - the plot presents an overview of the dataset and visually displays the number of launches per entity between 1957 and 2023.\n\n\n# cite: https://github.com/rfordatascience/tidytuesday/blob/master/data/2024/2024-04-23/readme.md\n\nouter_space_objects &lt;- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2024/2024-04-23/outer_space_objects.csv')\n\n\ndim(outer_space_objects)\n\n[1] 1175    4\n\n\n\nhead(outer_space_objects)\n\n# A tibble: 6 × 4\n  Entity  Code   Year num_objects\n  &lt;chr&gt;   &lt;chr&gt; &lt;dbl&gt;       &lt;dbl&gt;\n1 APSCO   &lt;NA&gt;   2023           1\n2 Algeria DZA    2002           1\n3 Algeria DZA    2010           1\n4 Algeria DZA    2016           3\n5 Algeria DZA    2017           1\n6 Angola  AGO    2017           1\n\n\n\nglimpse(outer_space_objects)\n\nRows: 1,175\nColumns: 4\n$ Entity      &lt;chr&gt; \"APSCO\", \"Algeria\", \"Algeria\", \"Algeria\", \"Algeria\", \"Ango…\n$ Code        &lt;chr&gt; NA, \"DZA\", \"DZA\", \"DZA\", \"DZA\", \"AGO\", \"AGO\", NA, NA, NA, …\n$ Year        &lt;dbl&gt; 2023, 2002, 2010, 2016, 2017, 2017, 2022, 1985, 1992, 1996…\n$ num_objects &lt;dbl&gt; 1, 1, 1, 3, 1, 1, 1, 2, 1, 2, 1, 2, 1, 2, 1, 1, 1, 1, 1, 3…\n\n\n\nfiltered_outer_space_objects = outer_space_objects %&gt;%\n  filter (Entity %in% c(\"United States\",\"China\",\"Russia\",\"Japan\",\"France\",\"India\",\"European Space Agency\", \"Germany\"))"
   },
   {
     "objectID": "proposal.html#description",
@@ -128,14 +128,14 @@
   {
     "objectID": "presentation.html",
     "href": "presentation.html",
-    "title": "Project title",
+    "title": "Outer Space Launch Data by Country",
     "section": "",
-    "text": "The presentation is created using the Quarto CLI\n## sets the start of a new slide\n\n\n\n\nYou can use plain text\n\n\n\nor bullet points1\n\n\nor in two columns\n\n\n\nlike\nthis\n\n\n\n\n\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic       p.value\n  &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;         &lt;dbl&gt;\n1 (Intercept)   25.3      3.08        8.22 0.00000000358\n2 speed         -0.116    0.0642     -1.81 0.0806       \n\n\n# A tibble: 1 × 12\n  r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC\n      &lt;dbl&gt;         &lt;dbl&gt; &lt;dbl&gt;     &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1    0.0983        0.0682  5.82      3.27  0.0806     1  -101.  207.  212.\n# ℹ 3 more variables: deviance &lt;dbl&gt;, df.residual &lt;int&gt;, nobs &lt;int&gt;\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSome text\ngoes here"
+    "text": "Loading required package: pacman\n\n\nWarning: package 'pacman' was built under R version 4.2.3\nWarning: There was 1 warning in `filter()`.\nℹ In argument: `Entity != c(\"World\", \"APSCO\")`.\nCaused by warning in `Entity != c(\"World\", \"APSCO\")`:\n! longer object length is not a multiple of shorter object length\n\n\n# A tibble: 6 × 4\n  Entity  Code   Year num_objects\n  &lt;chr&gt;   &lt;chr&gt; &lt;dbl&gt;       &lt;dbl&gt;\n1 Algeria DZA    2002           1\n2 Algeria DZA    2010           1\n3 Algeria DZA    2016           3\n4 Algeria DZA    2017           1\n5 Angola  AGO    2017           1\n6 Angola  AGO    2022           1\n'data.frame':   99338 obs. of  6 variables:\n $ long     : num  -69.9 -69.9 -69.9 -70 -70.1 ...\n $ lat      : num  12.5 12.4 12.4 12.5 12.5 ...\n $ group    : num  1 1 1 1 1 1 1 1 1 1 ...\n $ order    : int  1 2 3 4 5 6 7 8 9 10 ...\n $ region   : chr  \"Aruba\" \"Aruba\" \"Aruba\" \"Aruba\" ...\n $ subregion: chr  NA NA NA NA ...\n\n\n       long      lat group order region subregion\n1 -69.89912 12.45200     1     1  Aruba      &lt;NA&gt;\n2 -69.89571 12.42300     1     2  Aruba      &lt;NA&gt;\n3 -69.94219 12.43853     1     3  Aruba      &lt;NA&gt;\n4 -70.00415 12.50049     1     4  Aruba      &lt;NA&gt;\n5 -70.06612 12.54697     1     5  Aruba      &lt;NA&gt;\n6 -70.05088 12.59707     1     6  Aruba      &lt;NA&gt;\nregion      long      lat group order subregion Code Year num_objects\n1 Algeria 1.9745116 36.56758   486 35976      &lt;NA&gt;  DZA 2002           1\n2 Algeria 2.8464842 36.73887   486 35979      &lt;NA&gt;  DZA 2002           1\n3 Algeria 0.9716797 36.44395   486 35974      &lt;NA&gt;  DZA 2002           1\n4 Algeria 3.2037108 19.78970   486 35769      &lt;NA&gt;  DZA 2002           1\n5 Algeria 2.5933595 36.60069   486 35978      &lt;NA&gt;  DZA 2002           1\n6 Algeria 0.7908204 36.35654   486 35973      &lt;NA&gt;  DZA 2002           1\n\n\n[1] 1620676       9"
   },
   {
     "objectID": "presentation.html#footnotes",
     "href": "presentation.html#footnotes",
-    "title": "Project title",
+    "title": "Outer Space Launch Data by Country",
     "section": "Footnotes",
     "text": "Footnotes\n\n\nAnd add footnotes↩︎"
   },
@@ -145,5 +145,26 @@
     "title": "Objects Launched into Space",
     "section": "Graphical Summary of the Dataset",
     "text": "Graphical Summary of the Dataset\n\nggplot(data = filtered_outer_space_objects, aes(x=Year, y=num_objects, color = Entity)) +\n  geom_smooth(se = FALSE, method = loess) +\n  labs(\n    x = \"year of launch\",\n    y = \"number of objects launched\",\n    title = \"Number of objects launched into space by year\",\n    subtitle = \"data collected from United Nations Office of Outer Space Affairs\",\n    caption = \"objects are defined as satelllites, probes, landers, crewed spacecrafts, and space station flights\"\n  ) +\n  theme(\n    axis.text.x = element_text(size = 8, face = \"bold\"),\n    axis.text.y = element_text(size = 8, face = \"bold\"),\n    plot.title = element_text (size = 10, face = \"bold\", hjust = 0.5),\n    plot.subtitle = element_text(size = 8, face = \"plain\", hjust = 0.5),\n    plot.caption = element_text(size = 6, face = \"plain\", hjust = 1),\n    panel.background = element_rect(fill = \"white\"),\n    plot.background = element_rect(fill = \"white\"),\n    panel.grid.major = element_line(color = \"gray90\"),\n    panel.grid.minor = element_line(color = \"gray95\")\n  )"
+  },
+  {
+    "objectID": "proposal.html#dataset-variable-column-descriptions",
+    "href": "proposal.html#dataset-variable-column-descriptions",
+    "title": "Objects Launched into Space",
+    "section": "Dataset Variable (column) Descriptions",
+    "text": "Dataset Variable (column) Descriptions\n\nThe dataset comprises 4 columns and 1175 rows. The dataset summarizes space launch events between 1957 and 2023 as a function of the entity or country responsible for the launch.\nEntity:  the country launching the space object\nCode:  the type of gadget launched into Earth orbit or beyond (satellites, probes, landers, crewed spacecrafts, and space station components)\nYear:  the year of the launch\nnum_objects:  the number of objects launched by “Entity” during a year."
+  },
+  {
+    "objectID": "proposal.html#detailed-analysis-plan",
+    "href": "proposal.html#detailed-analysis-plan",
+    "title": "Objects Launched into Space",
+    "section": "Detailed Analysis Plan",
+    "text": "Detailed Analysis Plan\n\nReview with Professor Chism how best to plot data on a world map\nUse a polynomial regression model to extrapolate the launch data by country into the future for the six most prominant countries\nPlot the extrapolated dataset onto a world map to identify the most likely country to become a “Space Faring Nation”."
+  },
+  {
+    "objectID": "proposal.html#plan-of-attack",
+    "href": "proposal.html#plan-of-attack",
+    "title": "Objects Launched into Space",
+    "section": "Plan of Attack",
+    "text": "Plan of Attack\n\nApproach by Task\n\n\n\n\n\n\n\n\nTask Name\nStatus\nDate\nSummary\n\n\n\n\nSelect dataset\ncomplete\nMay 27th\nselected the Space Object Launch Dataset\n\n\nDefine question to be answered\ncomplete\nMay 28th\nwhat country is most likely to become the 1st space faring nation\n\n\nSubmit draft proposal for peer review\ncomplete\nMay 29th\nproposal submitted - comments under review\n\n\nResponse to peer review\ncomplete\nJune 2nd\npeer review comments incorporate into the proposal\n\n\nSubmit project proposal\ncomplete\nJune 3rd\nproposal submitted to Professor Chism\n\n\nOffice hours with Prof Chism to discuss approach\nin-work\nJune 9th\nneed to learn how to plot launch data on a map?\n\n\nComplete required learning\nin-work\nJune 15th\nReviewed material suggested by Prof. Chism\n\n\nComplete initial analysis of the dataset\nnot started\nJune 15th\nData plotted on a map\n\n\ndraft presentation and writeup\nnot started\nJune 21st\ndraft files committed to github\n\n\nComplete presentation\nnot started\nJune 23rd\nsubmit to github\n\n\nComlete writeup\nnot started\nJune 23rd\nsubmit to github\n\n\nfinal submission\nnot started\nJune 24th\nsubmit to github"
   }
 ]

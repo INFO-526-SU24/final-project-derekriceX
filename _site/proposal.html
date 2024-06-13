@@ -4756,9 +4756,11 @@ vertical-align: -.125em;
   <ul>
   <li><a href="#dataset-outer-space-objects" id="toc-dataset-outer-space-objects" class="nav-link active" data-scroll-target="#dataset-outer-space-objects">Dataset: Outer Space Objects</a></li>
   <li><a href="#graphical-summary-of-the-dataset" id="toc-graphical-summary-of-the-dataset" class="nav-link" data-scroll-target="#graphical-summary-of-the-dataset">Graphical Summary of the Dataset</a></li>
-  <li><a href="#description" id="toc-description" class="nav-link" data-scroll-target="#description">Description</a></li>
+  <li><a href="#dataset-variable-column-descriptions" id="toc-dataset-variable-column-descriptions" class="nav-link" data-scroll-target="#dataset-variable-column-descriptions">Dataset Variable (column) Descriptions</a></li>
   <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions">Questions</a></li>
   <li><a href="#analysis-plan" id="toc-analysis-plan" class="nav-link" data-scroll-target="#analysis-plan">Analysis plan</a></li>
+  <li><a href="#detailed-analysis-plan" id="toc-detailed-analysis-plan" class="nav-link" data-scroll-target="#detailed-analysis-plan">Detailed Analysis Plan</a></li>
+  <li><a href="#plan-of-attack" id="toc-plan-of-attack" class="nav-link" data-scroll-target="#plan-of-attack">Plan of Attack</a></li>
   </ul>
 </nav>
     </div>
@@ -4812,11 +4814,11 @@ vertical-align: -.125em;
 <section id="dataset-outer-space-objects" class="level2">
 <h2 class="anchored" data-anchor-id="dataset-outer-space-objects">Dataset: Outer Space Objects</h2>
 <ul>
-<li>The data set summarizes the number of objects launced into space from 1957 to 2023 as a function of entity.</li>
+<li>The dataset summarizes the number of objects launched into space from 1957 to 2023 as a function of entity.</li>
 <li>The source of the dataset is the United Nations Office of Outer Space Affairs. A prior analysis of the dataset is available here: https://ourworldindata.org/grapher/yearly-number-of-objects-launched-into-outer-space</li>
 <li>Dataset source: https://github.com/rfordatascience/tidytuesday/blob/master/data/2024/2024-04-23/readme.md</li>
-<li>The data set is comprised of 4 columns and 1175 rows - see “head” and “glimpse” summarized herein.</li>
-<li>I choose the data set because I was thinking it would be interesting to identify the countries launching gadgets into space and the magnitude of the difference between the United States and other countries.</li>
+<li>The dataset is comprised of 4 columns and 1175 rows - see “head” and “glimpse” summarized herein.</li>
+<li>I choose the dataset because I was thinking it would be interesting to identify the countries launching gadgets into space and the magnitude of the difference between the United States and other countries.</li>
 <li>A graphical plot summary of the data is provided below - the plot presents an overview of the dataset and visually displays the number of launches per entity between 1957 and 2023.</li>
 </ul>
 <div class="cell">
@@ -4892,20 +4894,20 @@ $ num_objects &lt;dbl&gt; 1, 1, 1, 3, 1, 1, 1, 2, 1, 2, 1, 2, 1, 2, 1, 1, 1, 1, 
 </div>
 </div>
 </section>
-<section id="description" class="level2">
-<h2 class="anchored" data-anchor-id="description">Description</h2>
+<section id="dataset-variable-column-descriptions" class="level2">
+<h2 class="anchored" data-anchor-id="dataset-variable-column-descriptions">Dataset Variable (column) Descriptions</h2>
 <ul>
 <li><p>The dataset comprises 4 columns and 1175 rows. The dataset summarizes space launch events between 1957 and 2023 as a function of the entity or country responsible for the launch.</p></li>
 <li><p><strong>Entity</strong>: <character> the country launching the space object</character></p></li>
 <li><p><strong>Code</strong>: <character> the type of gadget launched into Earth orbit or beyond (satellites, probes, landers, crewed spacecrafts, and space station components)</character></p></li>
-<li><p><strong>Year</strong>: <double-precision floating-point number> the year of the lauch</double-precision></p></li>
-<li><p><strong>num_objects</strong>: <double-precision floating-point number> the number of objects lauched by “Entity” during a year.</double-precision></p></li>
+<li><p><strong>Year</strong>: <double-precision floating-point number> the year of the launch</double-precision></p></li>
+<li><p><strong>num_objects</strong>: <double-precision floating-point number> the number of objects launched by “Entity” during a year.</double-precision></p></li>
 </ul>
 </section>
 <section id="questions" class="level2">
 <h2 class="anchored" data-anchor-id="questions">Questions</h2>
 <ul>
-<li>Question 1 - what country is most likely to become the first “space faring nation” and is there a close second?</li>
+<li>Question 1 - what country is most likely to become the first “space faring nation” and is there a close second? I propose to define “space faring nation” as the country that launches an order of magnitude more vehicles into space than all other countries combined. I’ll fit a polynomial regression model to the dataset by country and extrapolate the model into the future to help identify the likely candidates.</li>
 </ul>
 </section>
 <section id="analysis-plan" class="level2">
@@ -4916,8 +4918,18 @@ $ num_objects &lt;dbl&gt; 1, 1, 1, 3, 1, 1, 1, 2, 1, 2, 1, 2, 1, 2, 1, 1, 1, 1, 
 <li><p>The launch event data set includes country and number of launches per year, to this I am thinking I will need to add columns defining the longitude and latitude of each launch event.</p></li>
 <li><p>With longitude and latitude defined for each row/event I would then plot the launches on a map.</p></li>
 <li><p>The analysis plan is to have an office hours meetign with Professor Chism the week of June 3rd and discuss how to plot country launch data on a world map. I’ll then completed the required learning and apply that new skillset to the launch dataset.</p></li>
-<li></li>
 </ul>
+</section>
+<section id="detailed-analysis-plan" class="level2">
+<h2 class="anchored" data-anchor-id="detailed-analysis-plan">Detailed Analysis Plan</h2>
+<ul>
+<li><p>Review with Professor Chism how best to plot data on a world map</p></li>
+<li><p>Use a polynomial regression model to extrapolate the launch data by country into the future for the six most prominant countries</p></li>
+<li><p>Plot the extrapolated dataset onto a world map to identify the most likely country to become a “Space Faring Nation”.</p></li>
+</ul>
+</section>
+<section id="plan-of-attack" class="level2">
+<h2 class="anchored" data-anchor-id="plan-of-attack">Plan of Attack</h2>
 <table class="table">
 <caption>Approach by Task</caption>
 <colgroup>
@@ -5703,11 +5715,11 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb11-32"><a href="#cb11-32"></a></span>
 <span id="cb11-33"><a href="#cb11-33"></a><span class="fu">## Dataset: Outer Space Objects</span></span>
 <span id="cb11-34"><a href="#cb11-34"></a></span>
-<span id="cb11-35"><a href="#cb11-35"></a><span class="ss">-   </span>The data set summarizes the number of objects launced into space from 1957 to 2023 as a function of entity.</span>
+<span id="cb11-35"><a href="#cb11-35"></a><span class="ss">-   </span>The dataset summarizes the number of objects launched into space from 1957 to 2023 as a function of entity.</span>
 <span id="cb11-36"><a href="#cb11-36"></a><span class="ss">-   </span>The source of the dataset is the United Nations Office of Outer Space Affairs. A prior analysis of the dataset is available here: https://ourworldindata.org/grapher/yearly-number-of-objects-launched-into-outer-space</span>
 <span id="cb11-37"><a href="#cb11-37"></a><span class="ss">-   </span>Dataset source: https://github.com/rfordatascience/tidytuesday/blob/master/data/2024/2024-04-23/readme.md</span>
-<span id="cb11-38"><a href="#cb11-38"></a><span class="ss">-   </span>The data set is comprised of 4 columns and 1175 rows - see &quot;head&quot; and &quot;glimpse&quot; summarized herein.</span>
-<span id="cb11-39"><a href="#cb11-39"></a><span class="ss">-   </span>I choose the data set because I was thinking it would be interesting to identify the countries launching gadgets into space and the magnitude of the difference between the United States and other countries.</span>
+<span id="cb11-38"><a href="#cb11-38"></a><span class="ss">-   </span>The dataset is comprised of 4 columns and 1175 rows - see &quot;head&quot; and &quot;glimpse&quot; summarized herein.</span>
+<span id="cb11-39"><a href="#cb11-39"></a><span class="ss">-   </span>I choose the dataset because I was thinking it would be interesting to identify the countries launching gadgets into space and the magnitude of the difference between the United States and other countries.</span>
 <span id="cb11-40"><a href="#cb11-40"></a><span class="ss">-   </span>A graphical plot summary of the data is provided below - the plot presents an overview of the dataset and visually displays the number of launches per entity between 1957 and 2023.</span>
 <span id="cb11-41"><a href="#cb11-41"></a></span>
 <span id="cb11-44"><a href="#cb11-44"></a><span class="in">```{r}</span></span>
@@ -5762,7 +5774,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb11-103"><a href="#cb11-103"></a>  ) </span>
 <span id="cb11-104"><a href="#cb11-104"></a><span class="in">```</span></span>
 <span id="cb11-105"><a href="#cb11-105"></a></span>
-<span id="cb11-106"><a href="#cb11-106"></a><span class="fu">## Description</span></span>
+<span id="cb11-106"><a href="#cb11-106"></a><span class="fu">## Dataset Variable (column) Descriptions</span></span>
 <span id="cb11-107"><a href="#cb11-107"></a></span>
 <span id="cb11-108"><a href="#cb11-108"></a><span class="ss">-   </span>The dataset comprises 4 columns and 1175 rows. The dataset summarizes space launch events between 1957 and 2023 as a function of the entity or country responsible for the launch.</span>
 <span id="cb11-109"><a href="#cb11-109"></a></span>
@@ -5770,13 +5782,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb11-111"><a href="#cb11-111"></a></span>
 <span id="cb11-112"><a href="#cb11-112"></a><span class="ss">-   </span>**Code**: &lt;character&gt; the type of gadget launched into Earth orbit or beyond (satellites, probes, landers, crewed spacecrafts, and space station components)</span>
 <span id="cb11-113"><a href="#cb11-113"></a></span>
-<span id="cb11-114"><a href="#cb11-114"></a><span class="ss">-   </span>**Year**: &lt;double-precision floating-point number&gt; the year of the lauch</span>
+<span id="cb11-114"><a href="#cb11-114"></a><span class="ss">-   </span>**Year**: &lt;double-precision floating-point number&gt; the year of the launch</span>
 <span id="cb11-115"><a href="#cb11-115"></a></span>
-<span id="cb11-116"><a href="#cb11-116"></a><span class="ss">-   </span>**num_objects**: &lt;double-precision floating-point number&gt; the number of objects lauched by &quot;Entity&quot; during a year.</span>
+<span id="cb11-116"><a href="#cb11-116"></a><span class="ss">-   </span>**num_objects**: &lt;double-precision floating-point number&gt; the number of objects launched by &quot;Entity&quot; during a year.</span>
 <span id="cb11-117"><a href="#cb11-117"></a></span>
 <span id="cb11-118"><a href="#cb11-118"></a><span class="fu">## Questions</span></span>
 <span id="cb11-119"><a href="#cb11-119"></a></span>
-<span id="cb11-120"><a href="#cb11-120"></a><span class="ss">-   </span>Question 1 - what country is most likely to become the first &quot;space faring nation&quot; and is there a close second?</span>
+<span id="cb11-120"><a href="#cb11-120"></a><span class="ss">-   </span>Question 1 - what country is most likely to become the first &quot;space faring nation&quot; and is there a close second? I propose to define &quot;space faring nation&quot; as the country that launches an order of magnitude more vehicles into space than all other countries combined. I&#39;ll fit a polynomial regression model to the dataset by country and extrapolate the model into the future to help identify the likely candidates.</span>
 <span id="cb11-121"><a href="#cb11-121"></a></span>
 <span id="cb11-122"><a href="#cb11-122"></a><span class="fu">## Analysis plan</span></span>
 <span id="cb11-123"><a href="#cb11-123"></a></span>
@@ -5790,26 +5802,34 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb11-131"><a href="#cb11-131"></a></span>
 <span id="cb11-132"><a href="#cb11-132"></a><span class="ss">-   </span>The analysis plan is to have an office hours meetign with Professor Chism the week of June 3rd and discuss how to plot country launch data on a world map. I&#39;ll then completed the required learning and apply that new skillset to the launch dataset.</span>
 <span id="cb11-133"><a href="#cb11-133"></a></span>
-<span id="cb11-134"><a href="#cb11-134"></a><span class="ss">-   </span></span>
+<span id="cb11-134"><a href="#cb11-134"></a><span class="fu">## Detailed Analysis Plan</span></span>
 <span id="cb11-135"><a href="#cb11-135"></a></span>
-<span id="cb11-136"><a href="#cb11-136"></a>| Task Name                                        | Status      | Date      | Summary                                                           |</span>
-<span id="cb11-137"><a href="#cb11-137"></a>|--------------------------------------------------|-------------|-----------|-------------------------------------------------------------------|</span>
-<span id="cb11-138"><a href="#cb11-138"></a>| Select dataset                                   | complete    | May 27th  | selected the Space Object Launch Dataset                          |</span>
-<span id="cb11-139"><a href="#cb11-139"></a>| Define question to be answered                   | complete    | May 28th  | what country is most likely to become the 1st space faring nation |</span>
-<span id="cb11-140"><a href="#cb11-140"></a>| Submit draft proposal for peer review            | complete    | May 29th  | proposal submitted - comments under review                        |</span>
-<span id="cb11-141"><a href="#cb11-141"></a>| Response to peer review                          | complete    | June 2nd  | peer review comments incorporate into the proposal                |</span>
-<span id="cb11-142"><a href="#cb11-142"></a>| Submit project proposal                          | complete    | June 3rd  | proposal submitted to Professor Chism                             |</span>
-<span id="cb11-143"><a href="#cb11-143"></a>| Office hours with Prof Chism to discuss approach | in-work     | June 9th  | need to learn how to plot launch data on a map?                   |</span>
-<span id="cb11-144"><a href="#cb11-144"></a>| Complete required learning                       | in-work     | June 15th | Reviewed material suggested by Prof. Chism                        |</span>
-<span id="cb11-145"><a href="#cb11-145"></a>| Complete initial analysis of the dataset         | not started | June 15th | Data plotted on a map                                             |</span>
-<span id="cb11-146"><a href="#cb11-146"></a>| draft presentation and writeup                   | not started | June 21st | draft files committed to github                                   |</span>
-<span id="cb11-147"><a href="#cb11-147"></a>| Complete presentation                            | not started | June 23rd | submit to github                                                  |</span>
-<span id="cb11-148"><a href="#cb11-148"></a>| Comlete writeup                                  | not started | June 23rd | submit to github                                                  |</span>
-<span id="cb11-149"><a href="#cb11-149"></a>| final submission                                 | not started | June 24th | submit to github                                                  |</span>
-<span id="cb11-150"><a href="#cb11-150"></a>|                                                  |             |           |                                                                   |</span>
-<span id="cb11-151"><a href="#cb11-151"></a>|                                                  |             |           |                                                                   |</span>
-<span id="cb11-152"><a href="#cb11-152"></a></span>
-<span id="cb11-153"><a href="#cb11-153"></a>: Approach by Task</span>
+<span id="cb11-136"><a href="#cb11-136"></a><span class="ss">-   </span>Review with Professor Chism how best to plot data on a world map</span>
+<span id="cb11-137"><a href="#cb11-137"></a></span>
+<span id="cb11-138"><a href="#cb11-138"></a><span class="ss">-   </span>Use a polynomial regression model to extrapolate the launch data by country into the future for the six most prominant countries</span>
+<span id="cb11-139"><a href="#cb11-139"></a></span>
+<span id="cb11-140"><a href="#cb11-140"></a><span class="ss">-   </span>Plot the extrapolated dataset onto a world map to identify the most likely country to become a &quot;Space Faring Nation&quot;.</span>
+<span id="cb11-141"><a href="#cb11-141"></a></span>
+<span id="cb11-142"><a href="#cb11-142"></a><span class="fu">## Plan of Attack</span></span>
+<span id="cb11-143"><a href="#cb11-143"></a></span>
+<span id="cb11-144"><a href="#cb11-144"></a>| Task Name                                        | Status      | Date      | Summary                                                           |</span>
+<span id="cb11-145"><a href="#cb11-145"></a>|--------------------------------------------------|-------------|-----------|-------------------------------------------------------------------|</span>
+<span id="cb11-146"><a href="#cb11-146"></a>| Select dataset                                   | complete    | May 27th  | selected the Space Object Launch Dataset                          |</span>
+<span id="cb11-147"><a href="#cb11-147"></a>| Define question to be answered                   | complete    | May 28th  | what country is most likely to become the 1st space faring nation |</span>
+<span id="cb11-148"><a href="#cb11-148"></a>| Submit draft proposal for peer review            | complete    | May 29th  | proposal submitted - comments under review                        |</span>
+<span id="cb11-149"><a href="#cb11-149"></a>| Response to peer review                          | complete    | June 2nd  | peer review comments incorporate into the proposal                |</span>
+<span id="cb11-150"><a href="#cb11-150"></a>| Submit project proposal                          | complete    | June 3rd  | proposal submitted to Professor Chism                             |</span>
+<span id="cb11-151"><a href="#cb11-151"></a>| Office hours with Prof Chism to discuss approach | in-work     | June 9th  | need to learn how to plot launch data on a map?                   |</span>
+<span id="cb11-152"><a href="#cb11-152"></a>| Complete required learning                       | in-work     | June 15th | Reviewed material suggested by Prof. Chism                        |</span>
+<span id="cb11-153"><a href="#cb11-153"></a>| Complete initial analysis of the dataset         | not started | June 15th | Data plotted on a map                                             |</span>
+<span id="cb11-154"><a href="#cb11-154"></a>| draft presentation and writeup                   | not started | June 21st | draft files committed to github                                   |</span>
+<span id="cb11-155"><a href="#cb11-155"></a>| Complete presentation                            | not started | June 23rd | submit to github                                                  |</span>
+<span id="cb11-156"><a href="#cb11-156"></a>| Comlete writeup                                  | not started | June 23rd | submit to github                                                  |</span>
+<span id="cb11-157"><a href="#cb11-157"></a>| final submission                                 | not started | June 24th | submit to github                                                  |</span>
+<span id="cb11-158"><a href="#cb11-158"></a>|                                                  |             |           |                                                                   |</span>
+<span id="cb11-159"><a href="#cb11-159"></a>|                                                  |             |           |                                                                   |</span>
+<span id="cb11-160"><a href="#cb11-160"></a></span>
+<span id="cb11-161"><a href="#cb11-161"></a>: Approach by Task</span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->

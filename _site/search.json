@@ -53,7 +53,7 @@
     "href": "presentation.html#layouts",
     "title": "Outer Space Launch Data by Country",
     "section": "Layouts",
-    "text": "Layouts\nYou can use plain text\n\n\n\nor bullet points1\n\n\nor in two columns\n\n\n\nlike\nthis\n\nAnd add footnotes"
+    "text": "Layouts\nYou can use plain text\n\n\n\nor bullet points1\n\n\nor in two columns\n\n\n\nlike\nthis"
   },
   {
     "objectID": "presentation.html#code",
@@ -88,7 +88,7 @@
     "href": "presentation.html#images",
     "title": "Outer Space Launch Data by Country",
     "section": "Images",
-    "text": "Images\n\nImage credit: Danielle Navarro, Percolate."
+    "text": "Images\n\n\n\nImage credit: Danielle Navarro, Percolate."
   },
   {
     "objectID": "presentation.html#math-expressions",
@@ -130,7 +130,7 @@
     "href": "presentation.html",
     "title": "Outer Space Launch Data by Country",
     "section": "",
-    "text": "Loading required package: pacman\n\n\nWarning: package 'pacman' was built under R version 4.2.3\nWarning: There was 1 warning in `filter()`.\nℹ In argument: `Entity != c(\"World\", \"APSCO\")`.\nCaused by warning in `Entity != c(\"World\", \"APSCO\")`:\n! longer object length is not a multiple of shorter object length\n\n\n# A tibble: 6 × 4\n  Entity  Code   Year num_objects\n  &lt;chr&gt;   &lt;chr&gt; &lt;dbl&gt;       &lt;dbl&gt;\n1 Algeria DZA    2002           1\n2 Algeria DZA    2010           1\n3 Algeria DZA    2016           3\n4 Algeria DZA    2017           1\n5 Angola  AGO    2017           1\n6 Angola  AGO    2022           1\n'data.frame':   99338 obs. of  6 variables:\n $ long     : num  -69.9 -69.9 -69.9 -70 -70.1 ...\n $ lat      : num  12.5 12.4 12.4 12.5 12.5 ...\n $ group    : num  1 1 1 1 1 1 1 1 1 1 ...\n $ order    : int  1 2 3 4 5 6 7 8 9 10 ...\n $ region   : chr  \"Aruba\" \"Aruba\" \"Aruba\" \"Aruba\" ...\n $ subregion: chr  NA NA NA NA ...\n\n\n       long      lat group order region subregion\n1 -69.89912 12.45200     1     1  Aruba      &lt;NA&gt;\n2 -69.89571 12.42300     1     2  Aruba      &lt;NA&gt;\n3 -69.94219 12.43853     1     3  Aruba      &lt;NA&gt;\n4 -70.00415 12.50049     1     4  Aruba      &lt;NA&gt;\n5 -70.06612 12.54697     1     5  Aruba      &lt;NA&gt;\n6 -70.05088 12.59707     1     6  Aruba      &lt;NA&gt;\nregion      long      lat group order subregion Code Year num_objects\n1 Algeria 1.9745116 36.56758   486 35976      &lt;NA&gt;  DZA 2002           1\n2 Algeria 2.8464842 36.73887   486 35979      &lt;NA&gt;  DZA 2002           1\n3 Algeria 0.9716797 36.44395   486 35974      &lt;NA&gt;  DZA 2002           1\n4 Algeria 3.2037108 19.78970   486 35769      &lt;NA&gt;  DZA 2002           1\n5 Algeria 2.5933595 36.60069   486 35978      &lt;NA&gt;  DZA 2002           1\n6 Algeria 0.7908204 36.35654   486 35973      &lt;NA&gt;  DZA 2002           1\n\n\n[1] 1620676       9"
+    "text": "[1] \"D:/Dropbox/1a - MS Data Sci/INFO526 - Visualization/final-project-derekriceX\"\nWarning: There was 1 warning in `filter()`.\nℹ In argument: `Entity != c(\"World\", \"APSCO\")`.\nCaused by warning in `Entity != c(\"World\", \"APSCO\")`:\n! longer object length is not a multiple of shorter object length\n'data.frame':   99338 obs. of  6 variables:\n $ long     : num  -69.9 -69.9 -69.9 -70 -70.1 ...\n $ lat      : num  12.5 12.4 12.4 12.5 12.5 ...\n $ group    : num  1 1 1 1 1 1 1 1 1 1 ...\n $ order    : int  1 2 3 4 5 6 7 8 9 10 ...\n $ region   : chr  \"Aruba\" \"Aruba\" \"Aruba\" \"Aruba\" ...\n $ subregion: chr  NA NA NA NA ..."
   },
   {
     "objectID": "presentation.html#footnotes",

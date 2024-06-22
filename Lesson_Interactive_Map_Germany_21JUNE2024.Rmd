@@ -1,0 +1,47 @@
+---
+title: "map_interactive"
+author: "Derek Rice"
+date: "2024-06-22"
+output: html_document
+---
+
+cite: https://www.youtube.com/watch?v=efj6-aawubs
+
+```{r}
+if (!require("pacman"))
+  install.packages("pacman")
+
+pacman::p_load(tidyverse,
+               giscoR,
+               janitor,
+               s2)
+
+germany_districts <- gisco_get_nuts(
+  country = 'Germany',
+  nuts_level = 3,
+  year = "2021",
+  epsg = 3035) |>
+    as_tibble() |>
+    clean_names() 
+
+germany_states <- gisco_get_nuts(
+  country = 'Germany',
+  nuts_level = 1,
+  year = "2021",
+  epsg = 3035) |>
+    as_tibble() |>
+    clean_names() 
+```
+
+
+```{r}
+germany_districts |>
+  ggplot(aes (geometry = geometry)) +
+  geom_sf()
+
+```
+
+```{r}
+
+
+```

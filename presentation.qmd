@@ -16,53 +16,31 @@ execute:
   echo: false
 ---
 
-```{r load-packages, message = FALSE}
-#| echo: FALSE
-#| warning: FALSE
+```{r}
 
-# Install and load packages
-if(!require(pacman))
-  install.packages("pacman")
+#| label: load-pkgs
+#| message: false
+if (!require("pacman"))
+    install.packages("pacman")
 
-pacman::p_load(tidyverse,
-               sf,
-               ggspatial,
-               rnaturalearth,
-               rnaturalearthdata,
-               mapproj,
-               geofacet,
-               glue,
-               countdown,
-               here,
-               ggthemes,
-               ggrepel,
-               dlpyr,
-               viridis,
-               tigris,
-               readxl,
-               patchwork
-               )
+pacman::p_load(tidyverse, tidytuesdayR, dplyr, janitor, lubridate,ggplot2,ggmap, maps,mapproj,tmap)
 
-# global theme 
+```
 
+```{r}
+#| label: setup
+#| include: false
 
-# set theme for ggplot2
-ggplot2::theme_set(ggplot2::theme_minimal(base_size=25))
+# Plot theme
+ggplot2::theme_set(ggplot2::theme_minimal(base_size = 11))
 
-# set width of code output
-options(width = 65)
-
-# set figure parameters for knitr
+# For better figure resolution
 knitr::opts_chunk$set(
-  fig.width = 15,
-  fig.asp = 0.618,
   fig.retina = 3, 
-  fig.align = "center",
-  dpi = 300
-)
-                   
-here::here()
-
+  dpi = 300, 
+  fig.width = 6, 
+  fig.asp = 0.618 
+  )
 ```
 
 ```{r}
@@ -77,100 +55,33 @@ outer_space_objects <- na.omit(outer_space_objects)
 outer_space_objects <- outer_space_objects |>
   filter(Entity != c("World","APSCO"))
 
-view(outer_space_objects)
-
-world_map <- map_data("world") |>
-  as_tibble()
-
-
-outer_space_objects |> 
-  anti_join(world_map, by = c("Entity" = "region")) |>
-  select(Entity) |>
-  print(n = 14)
-
-outer_space_objects_updated <- outer_space_objects |>
-  mutate(Entity = case_when(
-    Entity == "Czechia" ~ "Czech Republic",
-    Entity == "United Kingdom" ~ "UK",
-    Entity == "United States" ~ "USA",
-    TRUE ~ Entity
-    )
-  )
-
-
-outer_space_objects_updated <- outer_space_objects_updated |>
-  filter(Entity != "World")
-
-
-outer_space_objects_updated |> 
-  anti_join(world_map, by = c("Entity" = "region")) |>
-  select(Entity) |>
-  print(n = 14)
-
-view(outer_space_objects_updated)
-
-# join the data together
-
-space_objects_map <- outer_space_objects_updated |> 
-  left_join(world_map, by = c("Entity" = "region"),
-            relationship = "many-to-many")|>
-  mutate(Year = factor(Year,ordered = TRUE))
-
-
-
-
-view(space_objects_map)
-
+head(outer_space_objects)
 ```
 
 ```{r}
 # cite: https://www.youtube.com/watch?v=2rnsbodsJVc
 
-world_map <- ggplot(map_data("world"), aes(x = long, y = lat, group = group)) +
-  geom_polygon(fill = "white", color = "#3c3b6e", linewidth = 0.5) +
-  labs(
-    x = NULL,
-    y = NULL
-  )
-
-world_map
-
-
-world_map +
-  coord_map(
-    projection = "mercator",
-    xlim = c(-180,180) # removes the horizontal lines (good to know)
-  )
-
-
-
+world_map = map_data("world")
+str(world_map)
+head(world_map)
 ```
 
-
 ```{r}
+unique_values <- unique(c(outer_space_objects$Entity, world_map$region))
 
-
-space_objects_map |>
-  ggplot(aes(x = long, y = lat, group = group)) + 
-  geom_polygon(aes(fill = num_objects), color = "gray", linewidth = 0.1) +
-  theme_minimal() +
-  theme(
-    legend.position = 'none'
-  )
-
-print(subset(world_map,region="USA"))
-print(subset(world_map,region="United States"))
+#print(unique_values)
 
 ```
 
 ```{r}
-map_unique <- space_objects_map |>
-  distinct(Entity)
 
-print(map_unique)
+launch_map <- merge(world_map, outer_space_objects, by.x="region", by.y="Entity")
 
+launch_map <- launch_map |>
+  arrange(region,Year)
 
-
+head(launch_map)
+dim(launch_map)
 ```
 
 ```{r}

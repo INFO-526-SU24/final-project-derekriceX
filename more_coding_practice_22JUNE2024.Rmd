@@ -18,9 +18,12 @@ execute:
   warning: false
 ---
 
-```{r}
+```{r setup, include = FALSE}
 #| label: load-pkgs
 #| message: false
+
+knitr::opts_chunk$set(echo = TRUE)
+
 if (!require("pacman"))
     install.packages("pacman")
 
@@ -29,13 +32,162 @@ pacman::p_load(tidyverse,
                dplyr, 
                janitor, 
                lubridate,
-               ggplot2)
+               ggplot2,
+               readr,
+               readxl,
+               )
 
 ```
 
 
 
 ```{r}
+# cite: https://www.youtube.com/watch?v=h29g21z0a68&t=290s 
+# just a review, should probably be more focused on maps and interactive maps, a quick review  
+
+data("faithful")
+ggplot(data = faithful,
+       mapping = aes(x = eruptions, y = waiting, colour = eruptions)) +
+  geom_point()
+
+
+ggplot() +
+  geom_point(mapping = aes(x = eruptions, y = waiting, colour = eruptions < 3),
+             data = faithful)
+
+ggplot(faithful) +
+  geom_histogram(aes(x = eruptions, fill = eruptions < 3))
+
+
+ggplot(faithful, aes(x = eruptions, y = waiting)) +
+  geom_density_2d() +
+  geom_point()
+
+
+# make points sqr and slightly transparent 
+
+
+ggplot(faithful) +
+  geom_point(aes(x = eruptions, y = waiting), shape = 'square')
+
+
+ggplot(faithful) +
+  geom_point(aes(x = eruptions, y = waiting), shape = 'square', alpha = 0.5)
+
+
+# colour dist. in two difference colours 
+ggplot(faithful) +
+  geom_histogram(aes(x = eruptions, fill = eruptions < 3.1))
+
+# colour based on weight > 60
+
+# view(faithful) # two para. eruptions and waiting 
+
+ggplot(faithful) +
+  geom_histogram(aes(x = eruptions, fill = waiting < 60, position = "identity", alpha = 0.5))
+
+
+
+# add a line that separates the two point dist.
+# how to draw a straight lines from a slope and intercept 
+
+ggplot(faithful) +
+  geom_point(aes(x = eruptions, y = waiting)) +
+  geom_abline(slope = 15, intercept = 25, colour = "red", linewidth = 3)
+
+
+
+
+```
+
+
+
+```{r}
+view(mpg)
+```
+
+```{r}
+ggplot(mpg) +
+  geom_bar(aes(x = class, fill = as.factor(cyl)), colour = "black")
+
+mpg_counted <- mpg |>
+  count(class, name = "count")
+
+view(mpg_counted)
+
+ggplot(mpg_counted) +
+  geom_bar(aes(x = class, y = count),
+           stat = 'identity') #identity is just passing the data along 
+
+
+ggplot(mpg) +
+  geom_density(aes(x = hwy, y = after_stat(scaled)))
+
+
+ggplot(mpg) +
+  geom_jitter(aes(x = class, y = hwy), width = 0.2)
+
+
+ggplot(mpg) +
+  geom_point(
+    aes(x = displ, y = hwy, colour = class)
+  ) +
+  scale_colour_brewer(name = 'CLASS', type = 'qual', palette = 'Set1')
+
+ggplot(mpg) +
+  geom_point(aes(x = displ, y = hwy)) +
+  scale_x_continuous(breaks = c(3,5,6)) +
+  scale_y_continuous(trans = 'log10')
+
+
+ggplot(mpg) +
+  geom_point(aes(x = displ, y = hwy, colour = class, size = cyl)) +
+  scale_colour_brewer(type = 'qual') +
+  scale_size_area(breaks = c(4,5,6,8))
+
+
+
+```
+
+
+```{r}
+ggplot(mpg) +
+  geom_point(aes(x = displ, y = hwy)) + 
+  facet_wrap(~ class)
+
+ggplot(mpg) +
+  geom_point(aes(x = displ, y = hwy)) + 
+  facet_grid(year ~ drv)
+
+```
+
+```{r}
+# coordinates 
+
+ggplot(mpg) +
+  geom_bar(aes(x = class)) +
+  coord_polar()
+
+ggplot(mpg) +
+  geom_bar(aes(x = class)) +
+  coord_polar(theta = 'y')
+
+ggplot(mpg) +
+  geom_bar(aes(x = class)) +
+  coord_polar(theta = 'y') +
+  expand_limits (y = 70) # set max on raidial dial 
+
+
+# zoom in on data - set limits on scale 
+ggplot(mpg)+ 
+  geom_bar(aes(x = class)) +
+  scale_y_continuous(limits = c(0,40)) #removes data 
+
+ggplot(mpg)+ 
+  geom_bar(aes(x = class)) +
+  coord_cartesian(ylim = c(0,40)) #coord_cartesian does NOT remove data 
+
+
 
 
 

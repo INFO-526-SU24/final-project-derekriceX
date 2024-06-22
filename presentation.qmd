@@ -55,15 +55,15 @@ outer_space_objects <- na.omit(outer_space_objects)
 outer_space_objects <- outer_space_objects |>
   filter(Entity != c("World","APSCO"))
 
-head(outer_space_objects)
+# head(outer_space_objects)
 ```
 
 ```{r}
 # cite: https://www.youtube.com/watch?v=2rnsbodsJVc
 
 world_map = map_data("world")
-str(world_map)
-head(world_map)
+# str(world_map)
+# head(world_map)
 ```
 
 ```{r}
@@ -80,8 +80,8 @@ launch_map <- merge(world_map, outer_space_objects, by.x="region", by.y="Entity"
 launch_map <- launch_map |>
   arrange(region,Year)
 
-head(launch_map)
-dim(launch_map)
+# head(launch_map)
+# dim(launch_map)
 ```
 
 ```{r}

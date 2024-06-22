@@ -128,7 +128,7 @@ ggplot(data = filtered_outer_space_objects, aes(x=Year, y=num_objects, color = E
 ## Plan of Attack
 
 | Task Name                                        | Status      | Date      | Summary                                                           |
-|--------------------------------------------------|-------------|-----------|-------------------------------------------------------------------|
+|--------------------|-------------|-------------|----------------------------|
 | Select dataset                                   | complete    | May 27th  | selected the Space Object Launch Dataset                          |
 | Define question to be answered                   | complete    | May 28th  | what country is most likely to become the 1st space faring nation |
 | Submit draft proposal for peer review            | complete    | May 29th  | proposal submitted - comments under review                        |

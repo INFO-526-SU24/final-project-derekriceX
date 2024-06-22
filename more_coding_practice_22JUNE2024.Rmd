@@ -1,0 +1,42 @@
+---
+title: "more review"
+subtitle: "ggplot etc. "
+author:
+  - name: "Derek Rice"
+    affiliations:
+      - name: "School of Information, University of Arizona"
+description: "INFO526 Term Project"
+format:
+  html:
+    code-tools: true
+    code-overflow: wrap
+    code-line-numbers: true
+    embed-resources: true
+editor: visual
+code-annotations: hover
+execute:
+  warning: false
+---
+
+```{r}
+#| label: load-pkgs
+#| message: false
+if (!require("pacman"))
+    install.packages("pacman")
+
+pacman::p_load(tidyverse, 
+               tidytuesday, 
+               dplyr, 
+               janitor, 
+               lubridate,
+               ggplot2)
+
+```
+
+
+
+```{r}
+
+
+
+```

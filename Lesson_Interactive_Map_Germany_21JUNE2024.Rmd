@@ -15,7 +15,8 @@ pacman::p_load(tidyverse,
                giscoR,
                janitor,
                s2,
-               ggiraph)
+               ggiraph,
+               sf)
 
 germany_districts <- gisco_get_nuts(
   country = 'Germany',
@@ -50,7 +51,13 @@ gg_plt <- germany_districts |>
     ),
     color = "red",
     linewidth = 0.1
+  ) +
+  theme_void() + 
+  theme(
+    legend.title = element_blank(),
+    legend.position = "none"
   )
+
 
 girafe(ggobj = gg_plt)
 

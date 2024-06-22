@@ -37,7 +37,14 @@ pacman::p_load(tidyverse,
                patchwork,
                gganimate,
                ggrepel,
-               ggforce
+               ggforce,
+               GGally,
+               ggnetwork, 
+               geomnet, 
+               ggtree, 
+               ggdag,
+               ggtree,
+               ape
                )
 
 ```
@@ -427,9 +434,30 @@ ggplot(mtcars, aes( x = disp, y = mpg)) +
 # https://www.youtube.com/watch?v=0m4yywqNPVY&t=3884s
 # 1:24:00
 
+# NETWORKS
+# GGally
+# ggnetwork
+# geomnet
+# ggtree
+# ggdag
+install.packages("BiocManager")
+BiocManager::install("ggtree")
 
+# install.packages("ggtree")
+library(ggtree)
+library(ape)
 
+# for graphically displaying socal networks, the interelatinship between nodes
 
+# can plot a hierarchical clusters 
+
+iris_clust <- hclust(dist(iris[,1:4]))
+
+iris_phylo <- as.phylo(iris_clust)
+
+ggtree(iris_phylo) +
+  geom_tiplab() +
+  theme_tree2()
 
 ```
 

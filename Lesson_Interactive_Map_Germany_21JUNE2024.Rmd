@@ -14,7 +14,8 @@ if (!require("pacman"))
 pacman::p_load(tidyverse,
                giscoR,
                janitor,
-               s2)
+               s2,
+               ggiraph)
 
 germany_districts <- gisco_get_nuts(
   country = 'Germany',
@@ -35,9 +36,23 @@ germany_states <- gisco_get_nuts(
 
 
 ```{r}
-germany_districts |>
+gg_plt <- germany_districts |>
   ggplot(aes (geometry = geometry)) +
-  geom_sf()
+  geom_sf(data = germany_states, 
+          aes(fill = nuts_name),
+          color = "blue",
+          linewidth = 1) +
+  geom_sf_interactive(
+    fill = NA,
+    aes(
+      data_id = nuts_id,
+      tooltip = nuts_name
+    ),
+    color = "red",
+    linewidth = 0.1
+  )
+
+girafe(ggobj = gg_plt)
 
 ```
 

@@ -35,6 +35,7 @@ pacman::p_load(tidyverse,
                ggplot2,
                readr,
                readxl,
+               patchwork
                )
 
 ```
@@ -194,16 +195,133 @@ ggplot(mpg)+
 ```
 
 ```{r}
+# cite: https://www.youtube.com/watch?v=0m4yywqNPVY&t=296s
+
 # Part 2
 
+# Partr 3 Beyond GGplot2
+
+# ggplot
+## 47 geoms
+## 25 stats
+## 62 scales 
+
+p1 <- ggplot(msleep) +
+  geom_boxplot(aes(x = sleep_total, y = vore, fill = vore))
+
+p2 <- ggplot(msleep) +
+  geom_bar(aes(y = vore, fill = vore))
+
+p3 <- ggplot(msleep) +
+  geom_point(aes(x = bodywt,
+                 y = sleep_total,
+                 colour = vore)) +
+  scale_x_log10()
+
+p3
+
+combined_plot <- p1 + p2 + p3
+
+print(combined_plot)
+
+
+plot_all <- (p1 | p2) / p3
+
+print(plot_all)
+
+
+new_plot &
+   theme(
+    legend.position = "none" # removes legend from all plots
+  ) 
+
+
+new_plot +
+   plot_annotation(
+    title = "Mammalian Sleep Patterns",
+    tag_levels = "A" # tags plots - can use roman I 
+  ) &  # must use & and not +
+   theme(
+    legend.position = "none" # removes legend from all plots
+  ) 
+
+new_plot +
+   plot_annotation(
+    title = "Mammalian Sleep Patterns",
+    tag_levels = "I" # tags plots - can use roman I 
+  ) &  # must use & and not +
+   theme(
+    legend.position = "none" # removes legend from all plots
+  ) 
+
+
+# Plot Composition
+
+# stories are told with multiple plots
+
+# plot layout hsould be flexible and well aligned 
+
+# many approaches
+## facet hacking
+## gridExtra::grid.arrange()
+## ggpubr::ggrange()
+## cowplot::plot_grid()
+
+## patchwork <- preferred? 
+
+```
+
+```{r}
+p = ggplot(mtcars) +
+  geom_point(aes(x = disp, y = mpg))
+
+p + p + p + plot_layout(width = c(1,2,1))
+
+p + p + p + plot_layout(width = unit(c(5,1,1),c('cm','null','null'))) # null is fill out remaining area
 
 
 
 
 
+```
+
+```{r}
+
+p1 <- ggplot(mtcars[mtcars$gear == 3,]) +
+  geom_point(aes(x = disp, y = mpg))
+
+p2 <- ggplot(mtcars[mtcars$gear == 4,]) +
+  geom_point(aes(x = disp, y = mpg))
+
+p1 + p2  # axis are not aligned
+
+# view(mtcars)
+
+p1 + p2 & scale_y_continuous(limits = c(10,40)) & scale_x_continuous(limits = c(50,500))
+```
 
 
+```{r}
+# how should the textual rep. be understood? 
 
+p1 <- ggplot(mtcars) +
+  geom_point(aes(x = disp, y = mpg))
+
+p2 <- ggplot(mtcars) +
+  geom_bar(aes(x = factor(gear)))
+
+p3 <- ggplot(mtcars) +
+  geom_boxplot(aes(x = factor(gear), y = mpg))
+
+p1 + p2 + p3
+
+layout <- '
+AA#
+#BB
+C##
+'
+
+p1 + p2 + p3 + plot_layout(design = layout)
 
 
 

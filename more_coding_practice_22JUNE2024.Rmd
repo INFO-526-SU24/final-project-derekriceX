@@ -28,14 +28,16 @@ if (!require("pacman"))
     install.packages("pacman")
 
 pacman::p_load(tidyverse, 
-               tidytuesday, 
                dplyr, 
                janitor, 
                lubridate,
                ggplot2,
                readr,
                readxl,
-               patchwork
+               patchwork,
+               gganimate,
+               ggrepel,
+               ggforce
                )
 
 ```
@@ -199,8 +201,6 @@ ggplot(mpg)+
 
 # Part 2
 
-# Partr 3 Beyond GGplot2
-
 # ggplot
 ## 47 geoms
 ## 25 stats
@@ -304,6 +304,8 @@ p1 + p2 & scale_y_continuous(limits = c(10,40)) & scale_x_continuous(limits = c(
 ```{r}
 # how should the textual rep. be understood? 
 
+### layout in Patchwork ### 
+
 p1 <- ggplot(mtcars) +
   geom_point(aes(x = disp, y = mpg))
 
@@ -316,12 +318,170 @@ p3 <- ggplot(mtcars) +
 p1 + p2 + p3
 
 layout <- '
-AA#
-#BB
+AAA #fraction of screen width used for plot AA# = left 2/3 and #AA = right 2/3 and AAA = full width
+#BB # can also use numbers 1, 2, 3 ... 
 C##
 '
 
 p1 + p2 + p3 + plot_layout(design = layout)
+
+
+
+```
+
+
+```{r}
+### animations 
+
+# ANIMATION 
+# story telling and attention grabbing
+# may turn boring people off
+# our eyes are drawn to movement and our mind thinks in motion 
+
+# many ways to make animaltions - gganimage may be the only one doing the "grammar" way 
+
+# ggplot2 wrapper - simply provides new grammar elements and takes over rendering 
+
+ggplot(economics) +
+  geom_line(aes(x = date, y = unemploy))
+
+
+ggplot(economics) +
+  geom_line(aes(x = date, y = unemploy)) +
+  transition_reveal(along = date)
+
+
+ggplot(mpg) +
+  geom_bar(aes(x = factor(cyl))) +
+  labs(title = "Number of cars in {closest_state} by number of cylinders") +
+  transition_states(states = year) +
+  enter_grow() +
+  exit_fade() 
+
+
+ggplot(mpg) +
+  geom_point(aes(x = displ, y = hwy)) +
+  ggtitle("Cars with {closest_state} cylinders") +
+  transition_states(factor(cyl))
+
+ggplot(mpg) +
+  geom_point(aes(x = displ, y = hwy, group = seq_len(nrow(mpg)))) + #define discrete groups with group=seq_len()
+  ggtitle("Cars with {closest_state} cylinders") +
+  transition_states(factor(cyl))
+
+
+```
+
+
+```{r}
+## ANNOTATION 
+# two key packages
+# ggrepel
+# ggforce 
+
+ggplot(mtcars, aes(x = disp, y = mpg)) +
+  geom_point() +
+  geom_text_repel(
+    aes(label = row.names(mtcars))
+  )
+
+# ggrepel
+ggplot(mtcars, aes(x = disp, y = mpg)) +
+  geom_point() +
+  geom_text_repel(
+    aes(label = row.names(mtcars))
+  )
+
+# ggforce
+ggplot(mtcars, aes(x = disp, y = mpg)) +
+  geom_point() +
+  geom_mark_ellipse(  # there are other options to ellipse, circle, square, hull
+    aes(filter = gear == 4,
+        label = '4 gear cars',
+        description = "cars with fewer gears .. "))
+
+
+# reduce number of points with labels
+# ggrepel
+mtcars2 <- mtcars
+mtcars2$label <- rownames(mtcars2)
+points_to_label <- sample(nrow(mtcars),10) #first ten labels 
+
+ggplot(mtcars2, aes(x = disp, y = mpg)) +
+  geom_point() +
+  geom_text_repel(aes(label = label), data = mtcars2[points_to_label,])
+
+
+
+ggplot(mtcars, aes( x = disp, y = mpg)) +
+  geom_point() +
+  geom_mark_ellipse(aes(fill = factor(gear), label = gear)) # very interesting 
+
+
+# also a package called gghighlight 
+
+```
+
+```{r}
+### Part 3: Beyond GGPLOT2 #######
+# https://www.youtube.com/watch?v=0m4yywqNPVY&t=3884s
+# 1:24:00
+
+
+
+
+
+```
+
+```{r}
+
+
+
+```
+
+```{r}
+
+
+
+```
+
+```{r}
+
+
+
+```
+
+```{r}
+
+
+
+```
+
+```{r}
+
+
+
+```
+
+```{r}
+
+
+
+```
+
+```{r}
+
+
+
+```
+
+```{r}
+
+
+
+```
+
+```{r}
 
 
 

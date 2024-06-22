@@ -1,6 +1,6 @@
 ---
 title: "more review"
-subtitle: "ggplot etc. "
+subtitle: "ggplot etc - Yt Part 1 and Part 2 - P2 is more interesting line #197. "
 author:
   - name: "Derek Rice"
     affiliations:
@@ -186,6 +186,22 @@ ggplot(mpg)+
 ggplot(mpg)+ 
   geom_bar(aes(x = class)) +
   coord_cartesian(ylim = c(0,40)) #coord_cartesian does NOT remove data 
+
+
+# then work on theme but nothing new 
+
+
+```
+
+```{r}
+# Part 2
+
+
+
+
+
+
+
 
 
 

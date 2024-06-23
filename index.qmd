@@ -156,23 +156,24 @@ for (i in 1:nrow(top_15_countries)) {
   extrapolated_data <- bind_rows(extrapolated_data,temp_data) 
   }
 
-# view(extrapolated_data)
 
 
-# the "extrapolated_data variable populated in the loop does not contain country code
-# I could not figure out how to add country codes within the loop - I tried for hours but so it goes
-# Here the left_join function is used to add country code to the "extrapolated_data" variable
-# the "extrapolated_data" variable has (i) year, (ii)y_pred, and (iii) Entity. The "country_plus_code" has
-# (iii) entity and (iv) code
-# "y_pred" was rename "Predicted_Launches" to help with legend on map. y_pred originated from the modeling
 
+#1 the "extrapolated_data variable populated in the loop does not contain country code
+#2 I could not figure out how to add country codes within the loop - I tried for hours but so it goes
+#3 Here the left_join function is used to add country code to the "extrapolated_data" variable
+#4 The "extrapolated_data" variable has (i) year, (ii)y_pred, and (iii) Entity. 
+#5 The "country_plus_code" has (iii) entity and (iv) code
+#6 "y_pred" was rename "Predicted_Launches" to help with legend on map. y_pred originated from the modeling
+#7 the model for Russia displayed negative launches at some point into the future so a mutate function was 
+#7 used to prevent the map from displaying a negative number 
 
 extrapolated_data <- extrapolated_data |>
   left_join(country_plus_code, by = "Entity") |>
   rename(predicted_launches = y_pred) |>
-  mutate(hover = paste0(Entity, "\n", predicted_launches))
-
-
+  mutate(predicted_launches = if_else(predicted_launches < 0, 0, predicted_launches)) |>
+  mutate(hover = paste0(Entity, "\n", predicted_launches)) 
+view(extrapolated_data)
 
 # summary(model)
 
@@ -181,13 +182,12 @@ extrapolated_data <- extrapolated_data |>
 
 ```{r}
 
-extrapolated_data
-
 predicted_objects <- plot_geo(extrapolated_data,
                           locationmode = "world",
                           frame = ~Year) |>
   add_trace(locations = ~Code,
             z = ~predicted_launches,
+            zmin = 0,
             colorscale = 'Electric',
             text = ~hover,
             hoverinfo = 'text') |>

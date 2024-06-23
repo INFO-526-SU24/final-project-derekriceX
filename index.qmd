@@ -17,6 +17,76 @@ execute:
   echo: false
 ---
 
+```{r}
+#| echo = FALSE
+  
+if (!require("pacman"))
+  install.packages("pacman")
+
+pacman::p_load(tidyverse, 
+               dplyr, 
+               janitor, 
+               lubridate,
+               ggplot2,
+               readr,
+               readxl,
+               patchwork,
+               gganimate,
+               ggrepel,
+               spData,
+               plotly,
+               rnaturalearth
+              )
+
+
+# cite: https://github.com/rfordatascience/tidytuesday/blob/master/data/2024/2024-04-23/readme.md
+
+outer_space_objects <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2024/2024-04-23/outer_space_objects.csv')
+
+#view(outer_space_objects)
+
+objects <- outer_space_objects |>
+  na.omit() |>
+  mutate(hover = paste0(Entity, "\n", num_objects))
+
+
+view(objects)
+
+```
+
+```{r}
+# cite: https://www.youtube.com/watch?v=RrtqBYLf404
+# cite: https://plotly-r.com/maps
+# cite: https://plotly.com/r/map-configuration/
+
+world <- ne_countries(returnclass = 'sf')
+
+objects_graph <- plot_geo(objects,
+                          locationmode = "world",
+                          frame = ~Year) |>
+  add_trace(locations = ~Code,
+            z = ~num_objects,
+            zmin = 0,
+            zmax = ~num_objects,
+            colorscale = 'Electric',
+            text = ~hover,
+            hoverinfo = 'text') |>
+  layout(title = "Number of Objects Launched into Space by country \n between 1957 and 2022",
+         geo = list(
+           scope = 'world',
+           showland = TRUE,
+           landcolor = toRGB("LightGreen"),
+           showocean = TRUE,
+           oceancolor = toRGB("LightBlue"),
+           showcountries = TRUE,
+           projection = list(type = "Mercator"))) |>
+  colorbar(title = "Number of Objects") 
+
+objects_graph
+
+```
+
+
 ## Abstract
 
 
@@ -25,9 +95,15 @@ execute:
 
 ### The Dataset
 
+
+
 ### Question 1: What nation is likely to dominate space in the not so distant future?
 
+Question 1 - what country is most likely to become the first "space faring nation" and is there a close second? I propose to define "space faring nation" as the country that launches an order of magnitude more vehicles into space than all other countries combined. I'll fit a polynomial regression model to the dataset by country and extrapolate the model into the future to help identify the likely candidates.
+
 ## Introduction
+
+
 
 ## Approach
 

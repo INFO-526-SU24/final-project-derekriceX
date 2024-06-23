@@ -7,9 +7,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="Derek Rice">
-<meta name="description" content="Project description">
+<meta name="description" content="INFO526 Term Project">
 
-<title>Project Title - Objects Launched into Space</title>
+<title>Project Title - more review</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -4715,7 +4715,7 @@ vertical-align: -.125em;
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" aria-current="page"> 
+    <a class="nav-link" href="./index.html"> 
 <span class="menu-text">Project</span></a>
   </li>  
   <li class="nav-item">
@@ -4750,35 +4750,20 @@ vertical-align: -.125em;
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">On this page</h2>
-   
-  <ul>
-  <li><a href="#abstract" id="toc-abstract" class="nav-link active" data-scroll-target="#abstract">Abstract</a></li>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a>
-  <ul class="collapse">
-  <li><a href="#the-dataset" id="toc-the-dataset" class="nav-link" data-scroll-target="#the-dataset">The Dataset</a></li>
-  <li><a href="#question-1-what-nation-is-likely-to-dominate-space-in-the-not-so-distant-future" id="toc-question-1-what-nation-is-likely-to-dominate-space-in-the-not-so-distant-future" class="nav-link" data-scroll-target="#question-1-what-nation-is-likely-to-dominate-space-in-the-not-so-distant-future">Question 1: What nation is likely to dominate space in the not so distant future?</a></li>
-  </ul></li>
-  <li><a href="#introduction-1" id="toc-introduction-1" class="nav-link" data-scroll-target="#introduction-1">Introduction</a></li>
-  <li><a href="#approach" id="toc-approach" class="nav-link" data-scroll-target="#approach">Approach</a></li>
-  <li><a href="#analysis" id="toc-analysis" class="nav-link" data-scroll-target="#analysis">Analysis</a></li>
-  <li><a href="#discussion" id="toc-discussion" class="nav-link" data-scroll-target="#discussion">Discussion</a></li>
-  </ul>
-</nav>
+        
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">Objects Launched into Space</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
-<p class="subtitle lead">INFO 526 - Summer 2024 - Final Project</p>
+<div class="quarto-title-block"><div><h1 class="title">more review</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<p class="subtitle lead">dplyr package review</p>
 </div>
 
 <div>
   <div class="description">
-    Project description
+    INFO526 Term Project
   </div>
 </div>
 
@@ -4808,34 +4793,675 @@ vertical-align: -.125em;
 </header>
 
 
-<section id="abstract" class="level2">
-<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
-</section>
-<section id="introduction" class="level2">
-<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<section id="the-dataset" class="level3">
-<h3 class="anchored" data-anchor-id="the-dataset">The Dataset</h3>
-</section>
-<section id="question-1-what-nation-is-likely-to-dominate-space-in-the-not-so-distant-future" class="level3">
-<h3 class="anchored" data-anchor-id="question-1-what-nation-is-likely-to-dominate-space-in-the-not-so-distant-future">Question 1: What nation is likely to dominate space in the not so distant future?</h3>
-</section>
-</section>
-<section id="introduction-1" class="level2">
-<h2 class="anchored" data-anchor-id="introduction-1">Introduction</h2>
-</section>
-<section id="approach" class="level2">
-<h2 class="anchored" data-anchor-id="approach">Approach</h2>
-</section>
-<section id="analysis" class="level2">
-<h2 class="anchored" data-anchor-id="analysis">Analysis</h2>
-</section>
-<section id="discussion" class="level2">
-<h2 class="anchored" data-anchor-id="discussion">Discussion</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x1 =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>,</span>
+<span id="cb1-2"><a href="#cb1-2"></a>                   <span class="at">x2 =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">2</span>),</span>
+<span id="cb1-3"><a href="#cb1-3"></a>                   <span class="at">x3 =</span> <span class="fu">c</span>(<span class="st">&quot;f&quot;</span>,<span class="st">&quot;e&quot;</span>,<span class="st">&quot;C&quot;</span>,<span class="st">&quot;E&quot;</span>,<span class="st">&quot;A&quot;</span>,<span class="st">&quot;D&quot;</span>))</span>
+<span id="cb1-4"><a href="#cb1-4"></a></span>
+<span id="cb1-5"><a href="#cb1-5"></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  x1 x2 x3
+1  1  1  f
+2  2  2  e
+3  3  2  C
+4  4  3  E
+5  5  1  A
+6  6  2  D</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">arrange</span>(data,x3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  x1 x2 x3
+1  5  1  A
+2  3  2  C
+3  6  2  D
+4  4  3  E
+5  2  2  e
+6  1  1  f</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">filter</span>(data, x2 <span class="sc">==</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  x1 x2 x3
+1  2  2  e
+2  3  2  C
+3  6  2  D</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">mutate</span>(data, <span class="at">x4 =</span> x1<span class="sc">+</span>x2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  x1 x2 x3 x4
+1  1  1  f  2
+2  2  2  e  4
+3  3  2  C  5
+4  4  3  E  7
+5  5  1  A  6
+6  6  2  D  8</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a><span class="fu">pull</span>(data, x2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 2 2 3 1 2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">rename</span>(data, <span class="at">new_name =</span> x3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  x1 x2 new_name
+1  1  1        f
+2  2  2        e
+3  3  2        C
+4  4  3        E
+5  5  1        A
+6  6  2        D</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">set.seed</span>(<span class="dv">765</span>)</span>
+<span id="cb13-2"><a href="#cb13-2"></a><span class="fu">sample_n</span>(data,<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  x1 x2 x3
+1  4  3  E
+2  6  2  D
+3  3  2  C</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">select</span>(data, <span class="fu">c</span>(x2,x3))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  x2 x3
+1  1  f
+2  2  e
+3  2  C
+4  3  E
+5  1  A
+6  2  D</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>data1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">ID =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>,</span>
+<span id="cb17-2"><a href="#cb17-2"></a>                    <span class="at">X1 =</span> <span class="fu">c</span>(<span class="st">&quot;a1&quot;</span>,<span class="st">&quot;a2&quot;</span>),</span>
+<span id="cb17-3"><a href="#cb17-3"></a>                    <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb17-4"><a href="#cb17-4"></a>data2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">ID =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>,</span>
+<span id="cb17-5"><a href="#cb17-5"></a>                    <span class="at">X2 =</span> <span class="fu">c</span>(<span class="st">&quot;b1&quot;</span>,<span class="st">&quot;b2&quot;</span>),</span>
+<span id="cb17-6"><a href="#cb17-6"></a>                    <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb17-7"><a href="#cb17-7"></a></span>
+<span id="cb17-8"><a href="#cb17-8"></a>data1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  ID X1
+1  1 a1
+2  2 a2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>data2</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  ID X2
+1  2 b1
+2  3 b2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">inner_join</span>(data1,data2,<span class="at">by =</span> <span class="st">&quot;ID&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  ID X1 X2
+1  2 a2 b1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">left_join</span>(data1, data2, <span class="at">by =</span> <span class="st">&quot;ID&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  ID X1   X2
+1  1 a1 &lt;NA&gt;
+2  2 a2   b1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1"></a><span class="fu">right_join</span>(data1,data2, <span class="at">by =</span> <span class="st">&quot;ID&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  ID   X1 X2
+1  2   a2 b1
+2  3 &lt;NA&gt; b2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="fu">full_join</span>(data1,data2, <span class="at">by =</span> <span class="st">&quot;ID&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  ID   X1   X2
+1  1   a1 &lt;NA&gt;
+2  2   a2   b1
+3  3 &lt;NA&gt;   b2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="fu">semi_join</span>(data1,data2, <span class="at">by =</span> <span class="st">&quot;ID&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  ID X1
+1  2 a2</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a><span class="fu">anti_join</span>(data1,data2, <span class="at">by =</span> <span class="st">&quot;ID&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  ID X1
+1  1 a1</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="co"># bind_rows and bind_cols functions of dplyr package</span></span>
+<span id="cb33-2"><a href="#cb33-2"></a></span>
+<span id="cb33-3"><a href="#cb33-3"></a>data1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x1 =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
+<span id="cb33-4"><a href="#cb33-4"></a>                    <span class="at">x2 =</span> letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>])</span>
+<span id="cb33-5"><a href="#cb33-5"></a>data2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x1 =</span> <span class="dv">0</span>,</span>
+<span id="cb33-6"><a href="#cb33-6"></a>                    <span class="at">x3 =</span> <span class="dv">5</span><span class="sc">:</span><span class="dv">9</span>)</span>
+<span id="cb33-7"><a href="#cb33-7"></a>                    </span>
+<span id="cb33-8"><a href="#cb33-8"></a>data3 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x3 =</span> <span class="dv">5</span><span class="sc">:</span><span class="dv">9</span>,</span>
+<span id="cb33-9"><a href="#cb33-9"></a>                    <span class="at">x4 =</span> letters[<span class="dv">5</span><span class="sc">:</span><span class="dv">9</span>])</span>
+<span id="cb33-10"><a href="#cb33-10"></a></span>
+<span id="cb33-11"><a href="#cb33-11"></a><span class="fu">bind_rows</span>(data1,data2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   x1   x2 x3
+1   1    a NA
+2   2    b NA
+3   3    c NA
+4   4    d NA
+5   5    e NA
+6   0 &lt;NA&gt;  5
+7   0 &lt;NA&gt;  6
+8   0 &lt;NA&gt;  7
+9   0 &lt;NA&gt;  8
+10  0 &lt;NA&gt;  9</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="fu">bind_cols</span>(data1,data3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  x1 x2 x3 x4
+1  1  a  5  e
+2  2  b  6  f
+3  3  c  7  g
+4  4  d  8  h
+5  5  e  9  i</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a><span class="co"># arrange function of dplyr </span></span>
+<span id="cb37-2"><a href="#cb37-2"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x1 =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
+<span id="cb37-3"><a href="#cb37-3"></a>                   <span class="at">x2 =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">2</span>),</span>
+<span id="cb37-4"><a href="#cb37-4"></a>                   <span class="at">x3 =</span> <span class="fu">c</span>(<span class="st">&quot;b&quot;</span>,<span class="st">&quot;E&quot;</span>,<span class="st">&quot;C&quot;</span>,<span class="st">&quot;A&quot;</span>,<span class="st">&quot;D&quot;</span>))</span>
+<span id="cb37-5"><a href="#cb37-5"></a></span>
+<span id="cb37-6"><a href="#cb37-6"></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  x1 x2 x3
+1  1  1  b
+2  2  2  E
+3  3  2  C
+4  4  1  A
+5  5  2  D</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a><span class="fu">arrange</span>(data,x2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  x1 x2 x3
+1  1  1  b
+2  4  1  A
+3  2  2  E
+4  3  2  C
+5  5  2  D</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1"></a><span class="fu">arrange</span>(data,x2,x3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  x1 x2 x3
+1  4  1  A
+2  1  1  b
+3  3  2  C
+4  5  2  D
+5  2  2  E</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a>data1 <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
+<span id="cb43-2"><a href="#cb43-2"></a>  <span class="fu">arrange</span>(data,x2) <span class="sc">|&gt;</span></span>
+<span id="cb43-3"><a href="#cb43-3"></a>  <span class="fu">mutate</span>(<span class="at">x4 =</span> x1 <span class="sc">+</span> x2) <span class="sc">|&gt;</span></span>
+<span id="cb43-4"><a href="#cb43-4"></a>  <span class="fu">arrange</span>(x4)</span>
+<span id="cb43-5"><a href="#cb43-5"></a></span>
+<span id="cb43-6"><a href="#cb43-6"></a>data1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  x1 x2 x3 x4
+1  1  1  b  2
+2  2  2  E  4
+3  3  2  C  5
+4  4  1  A  5
+5  5  2  D  7</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1"></a><span class="co"># apply lead and lag functions </span></span>
+<span id="cb45-2"><a href="#cb45-2"></a></span>
+<span id="cb45-3"><a href="#cb45-3"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb45-4"><a href="#cb45-4"></a><span class="co"># lead function shifted our vector one element to the right side</span></span>
+<span id="cb45-5"><a href="#cb45-5"></a><span class="co"># lag function shifts our vector one element to the left </span></span>
+<span id="cb45-6"><a href="#cb45-6"></a></span>
+<span id="cb45-7"><a href="#cb45-7"></a></span>
+<span id="cb45-8"><a href="#cb45-8"></a><span class="fu">lead</span>(x)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  2  3  4  5  6  7  8  9 10 NA</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1"></a><span class="fu">lead</span>(x,<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  4  5  6  7  8  9 10 NA NA NA</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1"></a><span class="fu">lag</span>(x,<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] NA NA NA  1  2  3  4  5  6  7</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1"></a><span class="co"># filter R function of dplyr</span></span>
+<span id="cb51-2"><a href="#cb51-2"></a></span>
+<span id="cb51-3"><a href="#cb51-3"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x1 =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
+<span id="cb51-4"><a href="#cb51-4"></a>                   <span class="at">x2 =</span> letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>],</span>
+<span id="cb51-5"><a href="#cb51-5"></a>                   <span class="at">group =</span> <span class="fu">c</span>(<span class="st">&quot;gr1&quot;</span>,<span class="st">&quot;gr2&quot;</span>,<span class="st">&quot;gr3&quot;</span>,<span class="st">&quot;gr4&quot;</span>,<span class="st">&quot;gr5&quot;</span>))</span>
+<span id="cb51-6"><a href="#cb51-6"></a></span>
+<span id="cb51-7"><a href="#cb51-7"></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  x1 x2 group
+1  1  a   gr1
+2  2  b   gr2
+3  3  c   gr3
+4  4  d   gr4
+5  5  e   gr5</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1"></a><span class="fu">filter</span>(data,group <span class="sc">==</span> <span class="st">&quot;gr2&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  x1 x2 group
+1  2  b   gr2</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb55-1"><a href="#cb55-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x1 =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
+<span id="cb55-2"><a href="#cb55-2"></a>                   <span class="at">x2 =</span> <span class="dv">5</span><span class="sc">:</span><span class="dv">9</span>)</span>
+<span id="cb55-3"><a href="#cb55-3"></a></span>
+<span id="cb55-4"><a href="#cb55-4"></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  x1 x2
+1  1  5
+2  2  6
+3  3  7
+4  4  8
+5  5  9</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1"></a><span class="fu">mutate</span>(data, <span class="at">x3 =</span> x1<span class="sc">+</span>x2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  x1 x2 x3
+1  1  5  6
+2  2  6  8
+3  3  7 10
+4  4  8 12
+5  5  9 14</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb59-1"><a href="#cb59-1"></a><span class="fu">transmute</span>(data, <span class="at">x3 =</span> x1<span class="sc">+</span>x2) <span class="co"># returns only x3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  x3
+1  6
+2  8
+3 10
+4 12
+5 14</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb61-1"><a href="#cb61-1"></a><span class="co"># dataframe vs. tibble </span></span>
+<span id="cb61-2"><a href="#cb61-2"></a></span>
+<span id="cb61-3"><a href="#cb61-3"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span> (</span>
+<span id="cb61-4"><a href="#cb61-4"></a>  <span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
+<span id="cb61-5"><a href="#cb61-5"></a>  <span class="at">y =</span> <span class="fu">c</span>(<span class="st">&quot;a&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="st">&quot;c&quot;</span>,<span class="st">&quot;d&quot;</span>,<span class="st">&quot;e&quot;</span>)</span>
+<span id="cb61-6"><a href="#cb61-6"></a>)</span>
+<span id="cb61-7"><a href="#cb61-7"></a></span>
+<span id="cb61-8"><a href="#cb61-8"></a><span class="fu">print</span>(df) <span class="co"># int, chr</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  x y
+1 1 a
+2 2 b
+3 3 c
+4 4 d
+5 5 e</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb63"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1"></a><span class="fu">str</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&#39;data.frame&#39;:   5 obs. of  2 variables:
+ $ x: int  1 2 3 4 5
+ $ y: chr  &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; ...</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb65-2"><a href="#cb65-2"></a></span>
+<span id="cb65-3"><a href="#cb65-3"></a>tb <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb65-4"><a href="#cb65-4"></a>  <span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
+<span id="cb65-5"><a href="#cb65-5"></a>  <span class="at">y =</span> <span class="fu">c</span>(<span class="st">&quot;a&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="st">&quot;c&quot;</span>,<span class="st">&quot;d&quot;</span>,<span class="st">&quot;e&quot;</span>)</span>
+<span id="cb65-6"><a href="#cb65-6"></a>)</span>
+<span id="cb65-7"><a href="#cb65-7"></a></span>
+<span id="cb65-8"><a href="#cb65-8"></a><span class="fu">print</span>(tb) <span class="co">#int, chr</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 2
+      x y    
+  &lt;int&gt; &lt;chr&gt;
+1     1 a    
+2     2 b    
+3     3 c    
+4     4 d    
+5     5 e    </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x1 =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
+<span id="cb67-2"><a href="#cb67-2"></a>                   <span class="at">x2 =</span> letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>],</span>
+<span id="cb67-3"><a href="#cb67-3"></a>                   <span class="at">x3 =</span> <span class="dv">1</span>)</span>
+<span id="cb67-4"><a href="#cb67-4"></a></span>
+<span id="cb67-5"><a href="#cb67-5"></a>data <span class="co"># int, chr, dbl</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  x1 x2 x3
+1  1  a  1
+2  2  b  1
+3  3  c  1
+4  4  d  1
+5  5  e  1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb69-1"><a href="#cb69-1"></a>data1 <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(data)</span>
+<span id="cb69-2"><a href="#cb69-2"></a></span>
+<span id="cb69-3"><a href="#cb69-3"></a>data1 <span class="co">#int, chr, dbl - so what is the big deal? </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 3
+     x1 x2       x3
+  &lt;int&gt; &lt;chr&gt; &lt;dbl&gt;
+1     1 a         1
+2     2 b         1
+3     3 c         1
+4     4 d         1
+5     5 e         1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb71"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1"></a>x1 <span class="ot">&lt;-</span> data1 <span class="sc">|&gt;</span></span>
+<span id="cb71-2"><a href="#cb71-2"></a>  <span class="fu">pull</span>(x1)</span>
+<span id="cb71-3"><a href="#cb71-3"></a></span>
+<span id="cb71-4"><a href="#cb71-4"></a>x1</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 2 3 4 5</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb73"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1"></a><span class="co"># subset data frame rows by logical conditions </span></span>
+<span id="cb73-2"><a href="#cb73-2"></a></span>
+<span id="cb73-3"><a href="#cb73-3"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x1 =</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">7</span>,<span class="dv">1</span>,<span class="dv">8</span>,<span class="dv">5</span>),</span>
+<span id="cb73-4"><a href="#cb73-4"></a>                   <span class="at">x2 =</span> letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>],</span>
+<span id="cb73-5"><a href="#cb73-5"></a>                   <span class="at">group =</span> <span class="fu">c</span>(<span class="st">&quot;g1&quot;</span>,<span class="st">&quot;g2&quot;</span>,<span class="st">&quot;g3&quot;</span>,<span class="st">&quot;g4&quot;</span>,<span class="st">&quot;g5&quot;</span>))</span>
+<span id="cb73-6"><a href="#cb73-6"></a></span>
+<span id="cb73-7"><a href="#cb73-7"></a>data[data<span class="sc">$</span>group <span class="sc">==</span> <span class="st">&quot;g1&quot;</span>,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  x1 x2 group
+1  3  a    g1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb75"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1"></a>data[data<span class="sc">$</span>group <span class="sc">!=</span> <span class="st">&quot;g1&quot;</span>,]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  x1 x2 group
+2  7  b    g2
+3  1  c    g3
+4  8  d    g4
+5  5  e    g5</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb77"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1"></a>data[data<span class="sc">$</span>group <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;g1&quot;</span>,<span class="st">&quot;g3&quot;</span>),]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  x1 x2 group
+1  3  a    g1
+3  1  c    g3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb79"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1"></a><span class="fu">subset</span>(data,group <span class="sc">==</span> <span class="st">&quot;g1&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  x1 x2 group
+1  3  a    g1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb81"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1"></a><span class="fu">filter</span>(data, group <span class="sc">==</span> <span class="st">&quot;g1&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  x1 x2 group
+1  3  a    g1</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1"></a><span class="co"># if_else R funciton of dplyr package </span></span>
+<span id="cb83-2"><a href="#cb83-2"></a></span>
+<span id="cb83-3"><a href="#cb83-3"></a>x <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">3</span><span class="sc">:</span><span class="dv">3</span></span>
+<span id="cb83-4"><a href="#cb83-4"></a>x</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -3 -2 -1  0  1  2  3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1"></a><span class="fu">if_else</span> (x <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="st">&quot;neg&quot;</span>,<span class="st">&quot;pos&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] &quot;neg&quot; &quot;neg&quot; &quot;neg&quot; &quot;pos&quot; &quot;pos&quot; &quot;pos&quot; &quot;pos&quot;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1"></a>x_NA <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">3</span><span class="sc">:</span><span class="dv">3</span>,<span class="cn">NA</span>)</span>
+<span id="cb87-2"><a href="#cb87-2"></a>x_NA</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -3 -2 -1  0  1  2  3 NA</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb89"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb89-1"><a href="#cb89-1"></a><span class="fu">if_else</span>(x_NA <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="st">&quot;neg&quot;</span>,<span class="st">&quot;pos&quot;</span>, <span class="st">&quot;xxx&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] &quot;neg&quot; &quot;neg&quot; &quot;neg&quot; &quot;pos&quot; &quot;pos&quot; &quot;pos&quot; &quot;pos&quot; &quot;xxx&quot;</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb91"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1"></a><span class="co"># sample_n and sample_frac R function in dplyr</span></span>
+<span id="cb91-2"><a href="#cb91-2"></a></span>
+<span id="cb91-3"><a href="#cb91-3"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x1 =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">3</span>),</span>
+<span id="cb91-4"><a href="#cb91-4"></a>                   <span class="at">x2 =</span> <span class="fu">c</span>(<span class="st">&quot;a&quot;</span>,<span class="st">&quot;a&quot;</span>,<span class="st">&quot;c&quot;</span>,<span class="st">&quot;a&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="st">&quot;c&quot;</span>))</span>
+<span id="cb91-5"><a href="#cb91-5"></a></span>
+<span id="cb91-6"><a href="#cb91-6"></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  x1 x2
+1  1  a
+2  2  a
+3  1  c
+4  3  a
+5  2  b
+6  3  c</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb93"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1"></a><span class="fu">set.seed</span>(<span class="dv">14</span>)</span>
+<span id="cb93-2"><a href="#cb93-2"></a></span>
+<span id="cb93-3"><a href="#cb93-3"></a><span class="fu">sample_n</span>(data,<span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  x1 x2
+1  1  a
+2  3  c
+3  1  c</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb95"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb95-1"><a href="#cb95-1"></a><span class="fu">sample_frac</span>(data,<span class="fl">0.33</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  x1 x2
+1  3  a
+2  1  c</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb97"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb97-1"><a href="#cb97-1"></a><span class="co"># convert data frame to tibble and test </span></span>
+<span id="cb97-2"><a href="#cb97-2"></a></span>
+<span id="cb97-3"><a href="#cb97-3"></a>my_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x1 =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
+<span id="cb97-4"><a href="#cb97-4"></a>                      <span class="at">x2 =</span> LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>],</span>
+<span id="cb97-5"><a href="#cb97-5"></a>                      <span class="at">x3 =</span> <span class="dv">5</span>)</span>
+<span id="cb97-6"><a href="#cb97-6"></a></span>
+<span id="cb97-7"><a href="#cb97-7"></a></span>
+<span id="cb97-8"><a href="#cb97-8"></a>my_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  x1 x2 x3
+1  1  A  5
+2  2  B  5
+3  3  C  5
+4  4  D  5
+5  5  E  5</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb99"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1"></a>my_tbl <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(my_data)</span>
+<span id="cb99-2"><a href="#cb99-2"></a>my_tbl</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 3
+     x1 x2       x3
+  &lt;int&gt; &lt;chr&gt; &lt;dbl&gt;
+1     1 A         5
+2     2 B         5
+3     3 C         5
+4     4 D         5
+5     5 E         5</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb101"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb101-1"><a href="#cb101-1"></a><span class="fu">is.tbl</span>(my_data) <span class="co"># false</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] FALSE</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb103"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb103-1"><a href="#cb103-1"></a><span class="fu">is.tbl</span>(my_tbl) <span class="co"># true</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] TRUE</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb105"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span> (<span class="at">x1 =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
+<span id="cb105-2"><a href="#cb105-2"></a>                   <span class="at">x2 =</span> LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>])</span>
+<span id="cb105-3"><a href="#cb105-3"></a></span>
+<span id="cb105-4"><a href="#cb105-4"></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  x1 x2
+1  1  A
+2  2  B
+3  3  C
+4  4  D
+5  5  E</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb107"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb107-1"><a href="#cb107-1"></a><span class="fu">pull</span>(data,x1) <span class="co"># apply pull function </span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 2 3 4 5</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb109"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb109-1"><a href="#cb109-1"></a><span class="fu">pull</span>(data,<span class="dv">1</span>) <span class="co"># pull function with index</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 2 3 4 5</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb111"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb111-1"><a href="#cb111-1"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x1 =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
+<span id="cb111-2"><a href="#cb111-2"></a>                   <span class="at">x2 =</span> LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>],</span>
+<span id="cb111-3"><a href="#cb111-3"></a>                   <span class="at">x3 =</span> <span class="dv">5</span>)</span>
+<span id="cb111-4"><a href="#cb111-4"></a></span>
+<span id="cb111-5"><a href="#cb111-5"></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  x1 x2 x3
+1  1  A  5
+2  2  B  5
+3  3  C  5
+4  4  D  5
+5  5  E  5</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb113"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb113-1"><a href="#cb113-1"></a><span class="fu">select</span>(data, <span class="fu">c</span>(x1,x3))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  x1 x3
+1  1  5
+2  2  5
+3  3  5
+4  4  5
+5  5  5</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb115"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb115-1"><a href="#cb115-1"></a><span class="fu">rename</span>(data,<span class="at">x1_new =</span> x1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  x1_new x2 x3
+1      1  A  5
+2      2  B  5
+3      3  C  5
+4      4  D  5
+5      5  E  5</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb117"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb117-1"><a href="#cb117-1"></a>my_data <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
+<span id="cb117-2"><a href="#cb117-2"></a>  <span class="fu">select</span>(<span class="fu">c</span>(x1,x3)) <span class="sc">|&gt;</span></span>
+<span id="cb117-3"><a href="#cb117-3"></a>  <span class="fu">arrange</span>(x1) <span class="sc">|&gt;</span></span>
+<span id="cb117-4"><a href="#cb117-4"></a>  <span class="fu">rename</span>(<span class="at">x1_new =</span> x1, <span class="at">x3_new =</span> x3)</span>
+<span id="cb117-5"><a href="#cb117-5"></a></span>
+<span id="cb117-6"><a href="#cb117-6"></a>my_data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  x1_new x3_new
+1      1      5
+2      2      5
+3      3      5
+4      4      5
+5      5      5</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb119"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb119-1"><a href="#cb119-1"></a><span class="co"># summarize</span></span>
+<span id="cb119-2"><a href="#cb119-2"></a></span>
+<span id="cb119-3"><a href="#cb119-3"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span> (<span class="at">gr1 =</span> <span class="fu">rep</span>(LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>],<span class="at">each =</span> <span class="dv">3</span>),</span>
+<span id="cb119-4"><a href="#cb119-4"></a>                    <span class="at">gr2 =</span> LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>],</span>
+<span id="cb119-5"><a href="#cb119-5"></a>                    <span class="at">values =</span> <span class="dv">101</span><span class="sc">:</span><span class="dv">112</span>)</span>
+<span id="cb119-6"><a href="#cb119-6"></a></span>
+<span id="cb119-7"><a href="#cb119-7"></a>data</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   gr1 gr2 values
+1    A   A    101
+2    A   B    102
+3    A   A    103
+4    B   B    104
+5    B   A    105
+6    B   B    106
+7    C   A    107
+8    C   B    108
+9    C   A    109
+10   D   B    110
+11   D   A    111
+12   D   B    112</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb121"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb121-1"><a href="#cb121-1"></a>data_group <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
+<span id="cb121-2"><a href="#cb121-2"></a>  <span class="fu">group_by</span>(gr1,gr2) <span class="sc">|&gt;</span></span>
+<span id="cb121-3"><a href="#cb121-3"></a>  <span class="fu">summarise</span>(<span class="at">gr_sum =</span> <span class="fu">sum</span>(values))</span>
+<span id="cb121-4"><a href="#cb121-4"></a></span>
+<span id="cb121-5"><a href="#cb121-5"></a></span>
+<span id="cb121-6"><a href="#cb121-6"></a></span>
+<span id="cb121-7"><a href="#cb121-7"></a>data_group</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 8 × 3
+# Groups:   gr1 [4]
+  gr1   gr2   gr_sum
+  &lt;chr&gt; &lt;chr&gt;  &lt;int&gt;
+1 A     A        204
+2 A     B        102
+3 B     A        105
+4 B     B        210
+5 C     A        216
+6 C     B        108
+7 D     A        111
+8 D     B        222</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb123"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb123-1"><a href="#cb123-1"></a>tib_dest <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/Most_Visited_Destination_in_2018_and_2019.csv&quot;</span>)</span>
+<span id="cb123-2"><a href="#cb123-2"></a></span>
+<span id="cb123-3"><a href="#cb123-3"></a><span class="co"># view(tib_dest)</span></span>
+<span id="cb123-4"><a href="#cb123-4"></a></span>
+<span id="cb123-5"><a href="#cb123-5"></a>tib_dest <span class="sc">|&gt;</span></span>
+<span id="cb123-6"><a href="#cb123-6"></a>  <span class="fu">class</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] &quot;spec_tbl_df&quot; &quot;tbl_df&quot;      &quot;tbl&quot;         &quot;data.frame&quot; </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb125"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb125-1"><a href="#cb125-1"></a>tib_dest_new <span class="ot">&lt;-</span> tib_dest <span class="sc">|&gt;</span></span>
+<span id="cb125-2"><a href="#cb125-2"></a>  <span class="fu">rename</span>(<span class="at">T2019 =</span> <span class="st">&quot;International  tourist  arrivals  (2019)&quot;</span>, <span class="at">T2018 =</span> <span class="st">&quot;International  tourist  arrivals  (2018)&quot;</span>)</span>
+<span id="cb125-3"><a href="#cb125-3"></a></span>
+<span id="cb125-4"><a href="#cb125-4"></a>tib_dest_new <span class="ot">&lt;-</span> tib_dest_new <span class="sc">|&gt;</span></span>
+<span id="cb125-5"><a href="#cb125-5"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), <span class="sc">~</span> <span class="fu">replace</span>(., . <span class="sc">==</span> <span class="st">&quot;-&quot;</span>, <span class="cn">NA</span> )),</span>
+<span id="cb125-6"><a href="#cb125-6"></a>         <span class="at">T2019 =</span> <span class="fu">as.numeric</span>(<span class="fu">str_replace</span>(T2019, <span class="st">&quot;million&quot;</span>, <span class="st">&quot;&quot;</span>))<span class="sc">*</span><span class="fl">1e6</span>,</span>
+<span id="cb125-7"><a href="#cb125-7"></a>         <span class="at">T2018 =</span> <span class="fu">as.numeric</span>(<span class="fu">str_replace</span>(T2018, <span class="st">&quot;million&quot;</span>, <span class="st">&quot;&quot;</span>))<span class="sc">*</span><span class="fl">1e6</span>) <span class="sc">|&gt;</span></span>
+<span id="cb125-8"><a href="#cb125-8"></a>  <span class="fu">filter</span>(Destination <span class="sc">!=</span> <span class="st">&quot;Egypt&quot;</span> <span class="sc">|</span> Region <span class="sc">==</span> <span class="st">&quot;Africa&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb125-9"><a href="#cb125-9"></a>  <span class="fu">na.omit</span>()</span>
+<span id="cb125-10"><a href="#cb125-10"></a></span>
+<span id="cb125-11"><a href="#cb125-11"></a></span>
+<span id="cb125-12"><a href="#cb125-12"></a>tib_dest_new</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 35 × 5
+    ...1 Destination      T2019    T2018 Region 
+   &lt;dbl&gt; &lt;chr&gt;            &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;  
+ 1     0 Egypt         13000000 11300000 Africa 
+ 2     1 Morocco       12900000 12300000 Africa 
+ 3     2 South Africa  10200000 10500000 Africa 
+ 4     3 Tunisia        9400000  8300000 Africa 
+ 5     4 Algeria        2400000  2700000 Africa 
+ 6     5 Zimbabwe       2300000  2600000 Africa 
+ 7     6 Mozambique     2000000  2700000 Africa 
+ 8    10 United States 79300000 79700000 America
+ 9    11 Mexico        45000000 41300000 America
+10    12 Canada        22100000 21100000 America
+# ℹ 25 more rows</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb127"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb127-1"><a href="#cb127-1"></a>my_plot <span class="ot">&lt;-</span> tib_dest_new <span class="sc">|&gt;</span></span>
+<span id="cb127-2"><a href="#cb127-2"></a>  <span class="fu">mutate</span>(<span class="at">Destination =</span> <span class="fu">reorder</span>(Destination, <span class="sc">-</span> T2019)) <span class="sc">|&gt;</span></span>
+<span id="cb127-3"><a href="#cb127-3"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Destination,</span>
+<span id="cb127-4"><a href="#cb127-4"></a>             <span class="at">y =</span> T2019,</span>
+<span id="cb127-5"><a href="#cb127-5"></a>             <span class="at">fill =</span> Region)) <span class="sc">+</span></span>
+<span id="cb127-6"><a href="#cb127-6"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb127-7"><a href="#cb127-7"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb127-8"><a href="#cb127-8"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>,</span>
+<span id="cb127-9"><a href="#cb127-9"></a>                                   <span class="at">hjust =</span> <span class="dv">1</span>,</span>
+<span id="cb127-10"><a href="#cb127-10"></a>                                   <span class="at">vjust =</span> <span class="fl">0.5</span>))</span>
+<span id="cb127-11"><a href="#cb127-11"></a></span>
+<span id="cb127-12"><a href="#cb127-12"></a></span>
+<span id="cb127-13"><a href="#cb127-13"></a>my_plot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="data:image/png;base64,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" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 
 
 <!-- -->
 
-</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -5383,25 +6009,64 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         }
       };
     }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
+      const annoteTargets = window.document.querySelectorAll('.code-annotation-anchor');
+      for (let i=0; i<annoteTargets.length; i++) {
+        const annoteTarget = annoteTargets[i];
+        const targetCell = annoteTarget.getAttribute("data-target-cell");
+        const targetAnnotation = annoteTarget.getAttribute("data-target-annotation");
+        const contentFn = () => {
+          const content = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          if (content) {
+            const tipContent = content.cloneNode(true);
+            tipContent.classList.add("code-annotation-tip-content");
+            return tipContent.outerHTML;
           }
-        });
+        }
+        const config = {
+          allowHTML: true,
+          content: contentFn,
+          onShow: (instance) => {
+            selectCodeLines(instance.reference);
+            instance.reference.classList.add('code-annotation-active');
+            window.tippy.hideAll();
+          },
+          onHide: (instance) => {
+            unselectCodeLines();
+            instance.reference.classList.remove('code-annotation-active');
+          },
+          maxWidth: 300,
+          delay: [50, 0],
+          duration: [200, 0],
+          offset: [5, 10],
+          arrow: true,
+          appendTo: function(el) {
+            return el.parentElement.parentElement.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'quarto',
+          placement: 'right',
+          popperOptions: {
+            modifiers: [
+            {
+              name: 'flip',
+              options: {
+                flipVariations: false, // true by default
+                allowedAutoPlacements: ['right'],
+                fallbackPlacements: ['right', 'top', 'top-start', 'top-end', 'bottom', 'bottom-start', 'bottom-end', 'left'],
+              },
+            },
+            {
+              name: 'preventOverflow',
+              options: {
+                mainAxis: false,
+                altAxis: false
+              }
+            }
+            ]        
+          }      
+        };
+        window.tippy(annoteTarget, config); 
       }
   const findCites = (el) => {
     const parentEl = el.parentElement;
@@ -5442,42 +6107,366 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class>
-<div class="sourceCode" id="cb1" data-shortcodes="false"><pre class="sourceCode markdown code-with-copy"><code class="sourceCode markdown"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="an">title:</span><span class="co"> &quot;Objects Launched into Space&quot;</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="an">subtitle:</span><span class="co"> &quot;INFO 526 - Summer 2024 - Final Project&quot;</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="an">author:</span><span class="co"> </span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">  - name: &quot;Derek Rice&quot;</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">    affiliations:</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co">      - name: &quot;School of Information, University of Arizona&quot;</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="an">description:</span><span class="co"> &quot;Project description&quot;</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="an">format:</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">   html:</span></span>
-<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="co">    code-tools: true</span></span>
-<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="co">    code-overflow: wrap</span></span>
-<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">    embed-resources: true</span></span>
-<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="an">editor:</span><span class="co"> visual</span></span>
-<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="an">execute:</span></span>
-<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co">  warning: false</span></span>
-<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a><span class="co">  echo: false</span></span>
-<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a><span class="co">---</span></span>
-<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="fu">## Abstract</span></span>
-<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a><span class="fu">## Introduction</span></span>
-<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="fu">### The Dataset</span></span>
-<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a><span class="fu">### Question 1: What nation is likely to dominate space in the not so distant future?</span></span>
-<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a><span class="fu">## Introduction</span></span>
-<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a><span class="fu">## Approach</span></span>
-<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a><span class="fu">## Analysis</span></span>
-<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="fu">## Discussion</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode" id="cb128" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb128-1"><a href="#cb128-1"></a><span class="co">---</span></span>
+<span id="cb128-2"><a href="#cb128-2"></a><span class="an">title:</span><span class="co"> &quot;more review&quot;</span></span>
+<span id="cb128-3"><a href="#cb128-3"></a><span class="an">subtitle:</span><span class="co"> &quot;dplyr package review&quot;</span></span>
+<span id="cb128-4"><a href="#cb128-4"></a><span class="an">author:</span></span>
+<span id="cb128-5"><a href="#cb128-5"></a><span class="co">  - name: &quot;Derek Rice&quot;</span></span>
+<span id="cb128-6"><a href="#cb128-6"></a><span class="co">    affiliations:</span></span>
+<span id="cb128-7"><a href="#cb128-7"></a><span class="co">      - name: &quot;School of Information, University of Arizona&quot;</span></span>
+<span id="cb128-8"><a href="#cb128-8"></a><span class="an">description:</span><span class="co"> &quot;INFO526 Term Project&quot;</span></span>
+<span id="cb128-9"><a href="#cb128-9"></a><span class="an">format:</span></span>
+<span id="cb128-10"><a href="#cb128-10"></a><span class="co">  html:</span></span>
+<span id="cb128-11"><a href="#cb128-11"></a><span class="co">    code-tools: true</span></span>
+<span id="cb128-12"><a href="#cb128-12"></a><span class="co">    code-overflow: wrap</span></span>
+<span id="cb128-13"><a href="#cb128-13"></a><span class="co">    code-line-numbers: true</span></span>
+<span id="cb128-14"><a href="#cb128-14"></a><span class="co">    embed-resources: true</span></span>
+<span id="cb128-15"><a href="#cb128-15"></a><span class="an">editor:</span><span class="co"> visual</span></span>
+<span id="cb128-16"><a href="#cb128-16"></a><span class="an">code-annotations:</span><span class="co"> hover</span></span>
+<span id="cb128-17"><a href="#cb128-17"></a><span class="an">execute:</span></span>
+<span id="cb128-18"><a href="#cb128-18"></a><span class="co">  warning: false</span></span>
+<span id="cb128-19"><a href="#cb128-19"></a><span class="co">---</span></span>
+<span id="cb128-20"><a href="#cb128-20"></a></span>
+<span id="cb128-21"><a href="#cb128-21"></a><span class="in">```{r setup, include = FALSE}</span></span>
+<span id="cb128-22"><a href="#cb128-22"></a><span class="in">#| label: load-pkgs</span></span>
+<span id="cb128-23"><a href="#cb128-23"></a><span class="in">#| message: false</span></span>
+<span id="cb128-24"><a href="#cb128-24"></a></span>
+<span id="cb128-25"><a href="#cb128-25"></a><span class="in">knitr::opts_chunk$set(echo = TRUE)</span></span>
+<span id="cb128-26"><a href="#cb128-26"></a></span>
+<span id="cb128-27"><a href="#cb128-27"></a><span class="in">if (!require(&quot;pacman&quot;))</span></span>
+<span id="cb128-28"><a href="#cb128-28"></a><span class="in">    install.packages(&quot;pacman&quot;)</span></span>
+<span id="cb128-29"><a href="#cb128-29"></a></span>
+<span id="cb128-30"><a href="#cb128-30"></a><span class="in">pacman::p_load(tidyverse, </span></span>
+<span id="cb128-31"><a href="#cb128-31"></a><span class="in">               dplyr, </span></span>
+<span id="cb128-32"><a href="#cb128-32"></a><span class="in">               janitor, </span></span>
+<span id="cb128-33"><a href="#cb128-33"></a><span class="in">               lubridate,</span></span>
+<span id="cb128-34"><a href="#cb128-34"></a><span class="in">               ggplot2,</span></span>
+<span id="cb128-35"><a href="#cb128-35"></a><span class="in">               readr,</span></span>
+<span id="cb128-36"><a href="#cb128-36"></a><span class="in">               readxl</span></span>
+<span id="cb128-37"><a href="#cb128-37"></a><span class="in">               )</span></span>
+<span id="cb128-38"><a href="#cb128-38"></a></span>
+<span id="cb128-39"><a href="#cb128-39"></a><span class="in">```</span></span>
+<span id="cb128-40"><a href="#cb128-40"></a></span>
+<span id="cb128-43"><a href="#cb128-43"></a><span class="in">```{r}</span></span>
+<span id="cb128-44"><a href="#cb128-44"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x1 =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">6</span>,</span>
+<span id="cb128-45"><a href="#cb128-45"></a>                   <span class="at">x2 =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">1</span>,<span class="dv">2</span>),</span>
+<span id="cb128-46"><a href="#cb128-46"></a>                   <span class="at">x3 =</span> <span class="fu">c</span>(<span class="st">&quot;f&quot;</span>,<span class="st">&quot;e&quot;</span>,<span class="st">&quot;C&quot;</span>,<span class="st">&quot;E&quot;</span>,<span class="st">&quot;A&quot;</span>,<span class="st">&quot;D&quot;</span>))</span>
+<span id="cb128-47"><a href="#cb128-47"></a></span>
+<span id="cb128-48"><a href="#cb128-48"></a>data</span>
+<span id="cb128-49"><a href="#cb128-49"></a></span>
+<span id="cb128-50"><a href="#cb128-50"></a><span class="fu">arrange</span>(data,x3)</span>
+<span id="cb128-51"><a href="#cb128-51"></a></span>
+<span id="cb128-52"><a href="#cb128-52"></a><span class="fu">filter</span>(data, x2 <span class="sc">==</span><span class="dv">2</span>)</span>
+<span id="cb128-53"><a href="#cb128-53"></a></span>
+<span id="cb128-54"><a href="#cb128-54"></a><span class="fu">mutate</span>(data, <span class="at">x4 =</span> x1<span class="sc">+</span>x2)</span>
+<span id="cb128-55"><a href="#cb128-55"></a></span>
+<span id="cb128-56"><a href="#cb128-56"></a><span class="fu">pull</span>(data, x2)</span>
+<span id="cb128-57"><a href="#cb128-57"></a></span>
+<span id="cb128-58"><a href="#cb128-58"></a><span class="fu">rename</span>(data, <span class="at">new_name =</span> x3)</span>
+<span id="cb128-59"><a href="#cb128-59"></a></span>
+<span id="cb128-60"><a href="#cb128-60"></a><span class="fu">set.seed</span>(<span class="dv">765</span>)</span>
+<span id="cb128-61"><a href="#cb128-61"></a><span class="fu">sample_n</span>(data,<span class="dv">3</span>)</span>
+<span id="cb128-62"><a href="#cb128-62"></a></span>
+<span id="cb128-63"><a href="#cb128-63"></a><span class="fu">select</span>(data, <span class="fu">c</span>(x2,x3))</span>
+<span id="cb128-64"><a href="#cb128-64"></a></span>
+<span id="cb128-65"><a href="#cb128-65"></a><span class="in">```</span></span>
+<span id="cb128-66"><a href="#cb128-66"></a></span>
+<span id="cb128-69"><a href="#cb128-69"></a><span class="in">```{r}</span></span>
+<span id="cb128-70"><a href="#cb128-70"></a>data1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">ID =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>,</span>
+<span id="cb128-71"><a href="#cb128-71"></a>                    <span class="at">X1 =</span> <span class="fu">c</span>(<span class="st">&quot;a1&quot;</span>,<span class="st">&quot;a2&quot;</span>),</span>
+<span id="cb128-72"><a href="#cb128-72"></a>                    <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb128-73"><a href="#cb128-73"></a>data2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">ID =</span> <span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>,</span>
+<span id="cb128-74"><a href="#cb128-74"></a>                    <span class="at">X2 =</span> <span class="fu">c</span>(<span class="st">&quot;b1&quot;</span>,<span class="st">&quot;b2&quot;</span>),</span>
+<span id="cb128-75"><a href="#cb128-75"></a>                    <span class="at">stringsAsFactors =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb128-76"><a href="#cb128-76"></a></span>
+<span id="cb128-77"><a href="#cb128-77"></a>data1</span>
+<span id="cb128-78"><a href="#cb128-78"></a>data2</span>
+<span id="cb128-79"><a href="#cb128-79"></a></span>
+<span id="cb128-80"><a href="#cb128-80"></a></span>
+<span id="cb128-81"><a href="#cb128-81"></a><span class="fu">inner_join</span>(data1,data2,<span class="at">by =</span> <span class="st">&quot;ID&quot;</span>)</span>
+<span id="cb128-82"><a href="#cb128-82"></a><span class="fu">left_join</span>(data1, data2, <span class="at">by =</span> <span class="st">&quot;ID&quot;</span>)</span>
+<span id="cb128-83"><a href="#cb128-83"></a><span class="fu">right_join</span>(data1,data2, <span class="at">by =</span> <span class="st">&quot;ID&quot;</span>)</span>
+<span id="cb128-84"><a href="#cb128-84"></a><span class="fu">full_join</span>(data1,data2, <span class="at">by =</span> <span class="st">&quot;ID&quot;</span>)</span>
+<span id="cb128-85"><a href="#cb128-85"></a><span class="fu">semi_join</span>(data1,data2, <span class="at">by =</span> <span class="st">&quot;ID&quot;</span>)</span>
+<span id="cb128-86"><a href="#cb128-86"></a><span class="fu">anti_join</span>(data1,data2, <span class="at">by =</span> <span class="st">&quot;ID&quot;</span>)</span>
+<span id="cb128-87"><a href="#cb128-87"></a>          </span>
+<span id="cb128-88"><a href="#cb128-88"></a><span class="in">```</span></span>
+<span id="cb128-89"><a href="#cb128-89"></a></span>
+<span id="cb128-92"><a href="#cb128-92"></a><span class="in">```{r}</span></span>
+<span id="cb128-93"><a href="#cb128-93"></a><span class="co"># bind_rows and bind_cols functions of dplyr package</span></span>
+<span id="cb128-94"><a href="#cb128-94"></a></span>
+<span id="cb128-95"><a href="#cb128-95"></a>data1 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x1 =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
+<span id="cb128-96"><a href="#cb128-96"></a>                    <span class="at">x2 =</span> letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>])</span>
+<span id="cb128-97"><a href="#cb128-97"></a>data2 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x1 =</span> <span class="dv">0</span>,</span>
+<span id="cb128-98"><a href="#cb128-98"></a>                    <span class="at">x3 =</span> <span class="dv">5</span><span class="sc">:</span><span class="dv">9</span>)</span>
+<span id="cb128-99"><a href="#cb128-99"></a>                    </span>
+<span id="cb128-100"><a href="#cb128-100"></a>data3 <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x3 =</span> <span class="dv">5</span><span class="sc">:</span><span class="dv">9</span>,</span>
+<span id="cb128-101"><a href="#cb128-101"></a>                    <span class="at">x4 =</span> letters[<span class="dv">5</span><span class="sc">:</span><span class="dv">9</span>])</span>
+<span id="cb128-102"><a href="#cb128-102"></a></span>
+<span id="cb128-103"><a href="#cb128-103"></a><span class="fu">bind_rows</span>(data1,data2)</span>
+<span id="cb128-104"><a href="#cb128-104"></a><span class="fu">bind_cols</span>(data1,data3)</span>
+<span id="cb128-105"><a href="#cb128-105"></a></span>
+<span id="cb128-106"><a href="#cb128-106"></a><span class="in">```</span></span>
+<span id="cb128-107"><a href="#cb128-107"></a></span>
+<span id="cb128-110"><a href="#cb128-110"></a><span class="in">```{r}</span></span>
+<span id="cb128-111"><a href="#cb128-111"></a><span class="co"># arrange function of dplyr </span></span>
+<span id="cb128-112"><a href="#cb128-112"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x1 =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
+<span id="cb128-113"><a href="#cb128-113"></a>                   <span class="at">x2 =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">2</span>),</span>
+<span id="cb128-114"><a href="#cb128-114"></a>                   <span class="at">x3 =</span> <span class="fu">c</span>(<span class="st">&quot;b&quot;</span>,<span class="st">&quot;E&quot;</span>,<span class="st">&quot;C&quot;</span>,<span class="st">&quot;A&quot;</span>,<span class="st">&quot;D&quot;</span>))</span>
+<span id="cb128-115"><a href="#cb128-115"></a></span>
+<span id="cb128-116"><a href="#cb128-116"></a>data</span>
+<span id="cb128-117"><a href="#cb128-117"></a></span>
+<span id="cb128-118"><a href="#cb128-118"></a><span class="fu">arrange</span>(data,x2)</span>
+<span id="cb128-119"><a href="#cb128-119"></a><span class="fu">arrange</span>(data,x2,x3)</span>
+<span id="cb128-120"><a href="#cb128-120"></a></span>
+<span id="cb128-121"><a href="#cb128-121"></a></span>
+<span id="cb128-122"><a href="#cb128-122"></a>data1 <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
+<span id="cb128-123"><a href="#cb128-123"></a>  <span class="fu">arrange</span>(data,x2) <span class="sc">|&gt;</span></span>
+<span id="cb128-124"><a href="#cb128-124"></a>  <span class="fu">mutate</span>(<span class="at">x4 =</span> x1 <span class="sc">+</span> x2) <span class="sc">|&gt;</span></span>
+<span id="cb128-125"><a href="#cb128-125"></a>  <span class="fu">arrange</span>(x4)</span>
+<span id="cb128-126"><a href="#cb128-126"></a></span>
+<span id="cb128-127"><a href="#cb128-127"></a>data1</span>
+<span id="cb128-128"><a href="#cb128-128"></a></span>
+<span id="cb128-129"><a href="#cb128-129"></a><span class="in">```</span></span>
+<span id="cb128-130"><a href="#cb128-130"></a></span>
+<span id="cb128-133"><a href="#cb128-133"></a><span class="in">```{r}</span></span>
+<span id="cb128-134"><a href="#cb128-134"></a><span class="co"># apply lead and lag functions </span></span>
+<span id="cb128-135"><a href="#cb128-135"></a></span>
+<span id="cb128-136"><a href="#cb128-136"></a>x <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">10</span></span>
+<span id="cb128-137"><a href="#cb128-137"></a><span class="co"># lead function shifted our vector one element to the right side</span></span>
+<span id="cb128-138"><a href="#cb128-138"></a><span class="co"># lag function shifts our vector one element to the left </span></span>
+<span id="cb128-139"><a href="#cb128-139"></a></span>
+<span id="cb128-140"><a href="#cb128-140"></a></span>
+<span id="cb128-141"><a href="#cb128-141"></a><span class="fu">lead</span>(x)</span>
+<span id="cb128-142"><a href="#cb128-142"></a><span class="fu">lead</span>(x,<span class="dv">3</span>)</span>
+<span id="cb128-143"><a href="#cb128-143"></a><span class="fu">lag</span>(x,<span class="dv">3</span>)</span>
+<span id="cb128-144"><a href="#cb128-144"></a><span class="in">```</span></span>
+<span id="cb128-145"><a href="#cb128-145"></a></span>
+<span id="cb128-148"><a href="#cb128-148"></a><span class="in">```{r}</span></span>
+<span id="cb128-149"><a href="#cb128-149"></a><span class="co"># filter R function of dplyr</span></span>
+<span id="cb128-150"><a href="#cb128-150"></a></span>
+<span id="cb128-151"><a href="#cb128-151"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x1 =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
+<span id="cb128-152"><a href="#cb128-152"></a>                   <span class="at">x2 =</span> letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>],</span>
+<span id="cb128-153"><a href="#cb128-153"></a>                   <span class="at">group =</span> <span class="fu">c</span>(<span class="st">&quot;gr1&quot;</span>,<span class="st">&quot;gr2&quot;</span>,<span class="st">&quot;gr3&quot;</span>,<span class="st">&quot;gr4&quot;</span>,<span class="st">&quot;gr5&quot;</span>))</span>
+<span id="cb128-154"><a href="#cb128-154"></a></span>
+<span id="cb128-155"><a href="#cb128-155"></a>data</span>
+<span id="cb128-156"><a href="#cb128-156"></a></span>
+<span id="cb128-157"><a href="#cb128-157"></a><span class="fu">filter</span>(data,group <span class="sc">==</span> <span class="st">&quot;gr2&quot;</span>)</span>
+<span id="cb128-158"><a href="#cb128-158"></a></span>
+<span id="cb128-159"><a href="#cb128-159"></a></span>
+<span id="cb128-160"><a href="#cb128-160"></a><span class="in">```</span></span>
+<span id="cb128-161"><a href="#cb128-161"></a></span>
+<span id="cb128-164"><a href="#cb128-164"></a><span class="in">```{r}</span></span>
+<span id="cb128-165"><a href="#cb128-165"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x1 =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
+<span id="cb128-166"><a href="#cb128-166"></a>                   <span class="at">x2 =</span> <span class="dv">5</span><span class="sc">:</span><span class="dv">9</span>)</span>
+<span id="cb128-167"><a href="#cb128-167"></a></span>
+<span id="cb128-168"><a href="#cb128-168"></a>data</span>
+<span id="cb128-169"><a href="#cb128-169"></a></span>
+<span id="cb128-170"><a href="#cb128-170"></a><span class="fu">mutate</span>(data, <span class="at">x3 =</span> x1<span class="sc">+</span>x2)</span>
+<span id="cb128-171"><a href="#cb128-171"></a></span>
+<span id="cb128-172"><a href="#cb128-172"></a><span class="fu">transmute</span>(data, <span class="at">x3 =</span> x1<span class="sc">+</span>x2) <span class="co"># returns only x3</span></span>
+<span id="cb128-173"><a href="#cb128-173"></a></span>
+<span id="cb128-174"><a href="#cb128-174"></a><span class="in">```</span></span>
+<span id="cb128-175"><a href="#cb128-175"></a></span>
+<span id="cb128-178"><a href="#cb128-178"></a><span class="in">```{r}</span></span>
+<span id="cb128-179"><a href="#cb128-179"></a><span class="co"># dataframe vs. tibble </span></span>
+<span id="cb128-180"><a href="#cb128-180"></a></span>
+<span id="cb128-181"><a href="#cb128-181"></a>df <span class="ot">&lt;-</span> <span class="fu">data.frame</span> (</span>
+<span id="cb128-182"><a href="#cb128-182"></a>  <span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
+<span id="cb128-183"><a href="#cb128-183"></a>  <span class="at">y =</span> <span class="fu">c</span>(<span class="st">&quot;a&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="st">&quot;c&quot;</span>,<span class="st">&quot;d&quot;</span>,<span class="st">&quot;e&quot;</span>)</span>
+<span id="cb128-184"><a href="#cb128-184"></a>)</span>
+<span id="cb128-185"><a href="#cb128-185"></a></span>
+<span id="cb128-186"><a href="#cb128-186"></a><span class="fu">print</span>(df) <span class="co"># int, chr</span></span>
+<span id="cb128-187"><a href="#cb128-187"></a><span class="fu">str</span>(df)</span>
+<span id="cb128-188"><a href="#cb128-188"></a></span>
+<span id="cb128-189"><a href="#cb128-189"></a></span>
+<span id="cb128-190"><a href="#cb128-190"></a><span class="fu">library</span>(tibble)</span>
+<span id="cb128-191"><a href="#cb128-191"></a></span>
+<span id="cb128-192"><a href="#cb128-192"></a>tb <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb128-193"><a href="#cb128-193"></a>  <span class="at">x =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
+<span id="cb128-194"><a href="#cb128-194"></a>  <span class="at">y =</span> <span class="fu">c</span>(<span class="st">&quot;a&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="st">&quot;c&quot;</span>,<span class="st">&quot;d&quot;</span>,<span class="st">&quot;e&quot;</span>)</span>
+<span id="cb128-195"><a href="#cb128-195"></a>)</span>
+<span id="cb128-196"><a href="#cb128-196"></a></span>
+<span id="cb128-197"><a href="#cb128-197"></a><span class="fu">print</span>(tb) <span class="co">#int, chr</span></span>
+<span id="cb128-198"><a href="#cb128-198"></a></span>
+<span id="cb128-199"><a href="#cb128-199"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x1 =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
+<span id="cb128-200"><a href="#cb128-200"></a>                   <span class="at">x2 =</span> letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>],</span>
+<span id="cb128-201"><a href="#cb128-201"></a>                   <span class="at">x3 =</span> <span class="dv">1</span>)</span>
+<span id="cb128-202"><a href="#cb128-202"></a></span>
+<span id="cb128-203"><a href="#cb128-203"></a>data <span class="co"># int, chr, dbl</span></span>
+<span id="cb128-204"><a href="#cb128-204"></a></span>
+<span id="cb128-205"><a href="#cb128-205"></a>data1 <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(data)</span>
+<span id="cb128-206"><a href="#cb128-206"></a></span>
+<span id="cb128-207"><a href="#cb128-207"></a>data1 <span class="co">#int, chr, dbl - so what is the big deal? </span></span>
+<span id="cb128-208"><a href="#cb128-208"></a></span>
+<span id="cb128-209"><a href="#cb128-209"></a></span>
+<span id="cb128-210"><a href="#cb128-210"></a>x1 <span class="ot">&lt;-</span> data1 <span class="sc">|&gt;</span></span>
+<span id="cb128-211"><a href="#cb128-211"></a>  <span class="fu">pull</span>(x1)</span>
+<span id="cb128-212"><a href="#cb128-212"></a></span>
+<span id="cb128-213"><a href="#cb128-213"></a>x1</span>
+<span id="cb128-214"><a href="#cb128-214"></a></span>
+<span id="cb128-215"><a href="#cb128-215"></a><span class="in">```</span></span>
+<span id="cb128-216"><a href="#cb128-216"></a></span>
+<span id="cb128-219"><a href="#cb128-219"></a><span class="in">```{r}</span></span>
+<span id="cb128-220"><a href="#cb128-220"></a><span class="co"># subset data frame rows by logical conditions </span></span>
+<span id="cb128-221"><a href="#cb128-221"></a></span>
+<span id="cb128-222"><a href="#cb128-222"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x1 =</span> <span class="fu">c</span>(<span class="dv">3</span>,<span class="dv">7</span>,<span class="dv">1</span>,<span class="dv">8</span>,<span class="dv">5</span>),</span>
+<span id="cb128-223"><a href="#cb128-223"></a>                   <span class="at">x2 =</span> letters[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>],</span>
+<span id="cb128-224"><a href="#cb128-224"></a>                   <span class="at">group =</span> <span class="fu">c</span>(<span class="st">&quot;g1&quot;</span>,<span class="st">&quot;g2&quot;</span>,<span class="st">&quot;g3&quot;</span>,<span class="st">&quot;g4&quot;</span>,<span class="st">&quot;g5&quot;</span>))</span>
+<span id="cb128-225"><a href="#cb128-225"></a></span>
+<span id="cb128-226"><a href="#cb128-226"></a>data[data<span class="sc">$</span>group <span class="sc">==</span> <span class="st">&quot;g1&quot;</span>,]</span>
+<span id="cb128-227"><a href="#cb128-227"></a></span>
+<span id="cb128-228"><a href="#cb128-228"></a>data[data<span class="sc">$</span>group <span class="sc">!=</span> <span class="st">&quot;g1&quot;</span>,]</span>
+<span id="cb128-229"><a href="#cb128-229"></a></span>
+<span id="cb128-230"><a href="#cb128-230"></a>data[data<span class="sc">$</span>group <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;g1&quot;</span>,<span class="st">&quot;g3&quot;</span>),]</span>
+<span id="cb128-231"><a href="#cb128-231"></a></span>
+<span id="cb128-232"><a href="#cb128-232"></a><span class="fu">subset</span>(data,group <span class="sc">==</span> <span class="st">&quot;g1&quot;</span>)</span>
+<span id="cb128-233"><a href="#cb128-233"></a></span>
+<span id="cb128-234"><a href="#cb128-234"></a><span class="fu">filter</span>(data, group <span class="sc">==</span> <span class="st">&quot;g1&quot;</span>)</span>
+<span id="cb128-235"><a href="#cb128-235"></a></span>
+<span id="cb128-236"><a href="#cb128-236"></a></span>
+<span id="cb128-237"><a href="#cb128-237"></a></span>
+<span id="cb128-238"><a href="#cb128-238"></a><span class="in">```</span></span>
+<span id="cb128-239"><a href="#cb128-239"></a></span>
+<span id="cb128-242"><a href="#cb128-242"></a><span class="in">```{r}</span></span>
+<span id="cb128-243"><a href="#cb128-243"></a><span class="co"># if_else R funciton of dplyr package </span></span>
+<span id="cb128-244"><a href="#cb128-244"></a></span>
+<span id="cb128-245"><a href="#cb128-245"></a>x <span class="ot">&lt;-</span> <span class="sc">-</span><span class="dv">3</span><span class="sc">:</span><span class="dv">3</span></span>
+<span id="cb128-246"><a href="#cb128-246"></a>x</span>
+<span id="cb128-247"><a href="#cb128-247"></a></span>
+<span id="cb128-248"><a href="#cb128-248"></a><span class="fu">if_else</span> (x <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="st">&quot;neg&quot;</span>,<span class="st">&quot;pos&quot;</span>)</span>
+<span id="cb128-249"><a href="#cb128-249"></a></span>
+<span id="cb128-250"><a href="#cb128-250"></a>x_NA <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">3</span><span class="sc">:</span><span class="dv">3</span>,<span class="cn">NA</span>)</span>
+<span id="cb128-251"><a href="#cb128-251"></a>x_NA</span>
+<span id="cb128-252"><a href="#cb128-252"></a></span>
+<span id="cb128-253"><a href="#cb128-253"></a><span class="fu">if_else</span>(x_NA <span class="sc">&lt;</span> <span class="dv">0</span>, <span class="st">&quot;neg&quot;</span>,<span class="st">&quot;pos&quot;</span>, <span class="st">&quot;xxx&quot;</span>)</span>
+<span id="cb128-254"><a href="#cb128-254"></a></span>
+<span id="cb128-255"><a href="#cb128-255"></a><span class="in">```</span></span>
+<span id="cb128-256"><a href="#cb128-256"></a></span>
+<span id="cb128-259"><a href="#cb128-259"></a><span class="in">```{r}</span></span>
+<span id="cb128-260"><a href="#cb128-260"></a><span class="co"># sample_n and sample_frac R function in dplyr</span></span>
+<span id="cb128-261"><a href="#cb128-261"></a></span>
+<span id="cb128-262"><a href="#cb128-262"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x1 =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">2</span>,<span class="dv">3</span>),</span>
+<span id="cb128-263"><a href="#cb128-263"></a>                   <span class="at">x2 =</span> <span class="fu">c</span>(<span class="st">&quot;a&quot;</span>,<span class="st">&quot;a&quot;</span>,<span class="st">&quot;c&quot;</span>,<span class="st">&quot;a&quot;</span>,<span class="st">&quot;b&quot;</span>,<span class="st">&quot;c&quot;</span>))</span>
+<span id="cb128-264"><a href="#cb128-264"></a></span>
+<span id="cb128-265"><a href="#cb128-265"></a>data</span>
+<span id="cb128-266"><a href="#cb128-266"></a></span>
+<span id="cb128-267"><a href="#cb128-267"></a><span class="fu">set.seed</span>(<span class="dv">14</span>)</span>
+<span id="cb128-268"><a href="#cb128-268"></a></span>
+<span id="cb128-269"><a href="#cb128-269"></a><span class="fu">sample_n</span>(data,<span class="dv">3</span>)</span>
+<span id="cb128-270"><a href="#cb128-270"></a></span>
+<span id="cb128-271"><a href="#cb128-271"></a><span class="fu">sample_frac</span>(data,<span class="fl">0.33</span>)</span>
+<span id="cb128-272"><a href="#cb128-272"></a></span>
+<span id="cb128-273"><a href="#cb128-273"></a><span class="in">```</span></span>
+<span id="cb128-274"><a href="#cb128-274"></a></span>
+<span id="cb128-277"><a href="#cb128-277"></a><span class="in">```{r}</span></span>
+<span id="cb128-278"><a href="#cb128-278"></a><span class="co"># convert data frame to tibble and test </span></span>
+<span id="cb128-279"><a href="#cb128-279"></a></span>
+<span id="cb128-280"><a href="#cb128-280"></a>my_data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x1 =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
+<span id="cb128-281"><a href="#cb128-281"></a>                      <span class="at">x2 =</span> LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>],</span>
+<span id="cb128-282"><a href="#cb128-282"></a>                      <span class="at">x3 =</span> <span class="dv">5</span>)</span>
+<span id="cb128-283"><a href="#cb128-283"></a></span>
+<span id="cb128-284"><a href="#cb128-284"></a></span>
+<span id="cb128-285"><a href="#cb128-285"></a>my_data</span>
+<span id="cb128-286"><a href="#cb128-286"></a></span>
+<span id="cb128-287"><a href="#cb128-287"></a></span>
+<span id="cb128-288"><a href="#cb128-288"></a>my_tbl <span class="ot">&lt;-</span> <span class="fu">as_tibble</span>(my_data)</span>
+<span id="cb128-289"><a href="#cb128-289"></a>my_tbl</span>
+<span id="cb128-290"><a href="#cb128-290"></a></span>
+<span id="cb128-291"><a href="#cb128-291"></a><span class="fu">is.tbl</span>(my_data) <span class="co"># false</span></span>
+<span id="cb128-292"><a href="#cb128-292"></a><span class="fu">is.tbl</span>(my_tbl) <span class="co"># true</span></span>
+<span id="cb128-293"><a href="#cb128-293"></a></span>
+<span id="cb128-294"><a href="#cb128-294"></a><span class="in">```</span></span>
+<span id="cb128-295"><a href="#cb128-295"></a></span>
+<span id="cb128-298"><a href="#cb128-298"></a><span class="in">```{r}</span></span>
+<span id="cb128-299"><a href="#cb128-299"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span> (<span class="at">x1 =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
+<span id="cb128-300"><a href="#cb128-300"></a>                   <span class="at">x2 =</span> LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>])</span>
+<span id="cb128-301"><a href="#cb128-301"></a></span>
+<span id="cb128-302"><a href="#cb128-302"></a>data</span>
+<span id="cb128-303"><a href="#cb128-303"></a></span>
+<span id="cb128-304"><a href="#cb128-304"></a><span class="fu">pull</span>(data,x1) <span class="co"># apply pull function </span></span>
+<span id="cb128-305"><a href="#cb128-305"></a></span>
+<span id="cb128-306"><a href="#cb128-306"></a><span class="fu">pull</span>(data,<span class="dv">1</span>) <span class="co"># pull function with index</span></span>
+<span id="cb128-307"><a href="#cb128-307"></a></span>
+<span id="cb128-308"><a href="#cb128-308"></a><span class="in">```</span></span>
+<span id="cb128-309"><a href="#cb128-309"></a></span>
+<span id="cb128-312"><a href="#cb128-312"></a><span class="in">```{r}</span></span>
+<span id="cb128-313"><a href="#cb128-313"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(<span class="at">x1 =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>,</span>
+<span id="cb128-314"><a href="#cb128-314"></a>                   <span class="at">x2 =</span> LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="dv">5</span>],</span>
+<span id="cb128-315"><a href="#cb128-315"></a>                   <span class="at">x3 =</span> <span class="dv">5</span>)</span>
+<span id="cb128-316"><a href="#cb128-316"></a></span>
+<span id="cb128-317"><a href="#cb128-317"></a>data</span>
+<span id="cb128-318"><a href="#cb128-318"></a></span>
+<span id="cb128-319"><a href="#cb128-319"></a><span class="fu">select</span>(data, <span class="fu">c</span>(x1,x3))</span>
+<span id="cb128-320"><a href="#cb128-320"></a><span class="fu">rename</span>(data,<span class="at">x1_new =</span> x1)</span>
+<span id="cb128-321"><a href="#cb128-321"></a></span>
+<span id="cb128-322"><a href="#cb128-322"></a>my_data <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
+<span id="cb128-323"><a href="#cb128-323"></a>  <span class="fu">select</span>(<span class="fu">c</span>(x1,x3)) <span class="sc">|&gt;</span></span>
+<span id="cb128-324"><a href="#cb128-324"></a>  <span class="fu">arrange</span>(x1) <span class="sc">|&gt;</span></span>
+<span id="cb128-325"><a href="#cb128-325"></a>  <span class="fu">rename</span>(<span class="at">x1_new =</span> x1, <span class="at">x3_new =</span> x3)</span>
+<span id="cb128-326"><a href="#cb128-326"></a></span>
+<span id="cb128-327"><a href="#cb128-327"></a>my_data</span>
+<span id="cb128-328"><a href="#cb128-328"></a></span>
+<span id="cb128-329"><a href="#cb128-329"></a><span class="in">```</span></span>
+<span id="cb128-330"><a href="#cb128-330"></a></span>
+<span id="cb128-333"><a href="#cb128-333"></a><span class="in">```{r}</span></span>
+<span id="cb128-334"><a href="#cb128-334"></a><span class="co"># summarize</span></span>
+<span id="cb128-335"><a href="#cb128-335"></a></span>
+<span id="cb128-336"><a href="#cb128-336"></a>data <span class="ot">&lt;-</span> <span class="fu">data.frame</span> (<span class="at">gr1 =</span> <span class="fu">rep</span>(LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="dv">4</span>],<span class="at">each =</span> <span class="dv">3</span>),</span>
+<span id="cb128-337"><a href="#cb128-337"></a>                    <span class="at">gr2 =</span> LETTERS[<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>],</span>
+<span id="cb128-338"><a href="#cb128-338"></a>                    <span class="at">values =</span> <span class="dv">101</span><span class="sc">:</span><span class="dv">112</span>)</span>
+<span id="cb128-339"><a href="#cb128-339"></a></span>
+<span id="cb128-340"><a href="#cb128-340"></a>data</span>
+<span id="cb128-341"><a href="#cb128-341"></a></span>
+<span id="cb128-342"><a href="#cb128-342"></a>data_group <span class="ot">&lt;-</span> data <span class="sc">|&gt;</span></span>
+<span id="cb128-343"><a href="#cb128-343"></a>  <span class="fu">group_by</span>(gr1,gr2) <span class="sc">|&gt;</span></span>
+<span id="cb128-344"><a href="#cb128-344"></a>  <span class="fu">summarise</span>(<span class="at">gr_sum =</span> <span class="fu">sum</span>(values))</span>
+<span id="cb128-345"><a href="#cb128-345"></a></span>
+<span id="cb128-346"><a href="#cb128-346"></a></span>
+<span id="cb128-347"><a href="#cb128-347"></a></span>
+<span id="cb128-348"><a href="#cb128-348"></a>data_group</span>
+<span id="cb128-349"><a href="#cb128-349"></a><span class="in">```</span></span>
+<span id="cb128-350"><a href="#cb128-350"></a></span>
+<span id="cb128-351"><a href="#cb128-351"></a></span>
+<span id="cb128-354"><a href="#cb128-354"></a><span class="in">```{r}</span></span>
+<span id="cb128-355"><a href="#cb128-355"></a>tib_dest <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/Most_Visited_Destination_in_2018_and_2019.csv&quot;</span>)</span>
+<span id="cb128-356"><a href="#cb128-356"></a></span>
+<span id="cb128-357"><a href="#cb128-357"></a><span class="co"># view(tib_dest)</span></span>
+<span id="cb128-358"><a href="#cb128-358"></a></span>
+<span id="cb128-359"><a href="#cb128-359"></a>tib_dest <span class="sc">|&gt;</span></span>
+<span id="cb128-360"><a href="#cb128-360"></a>  <span class="fu">class</span>()</span>
+<span id="cb128-361"><a href="#cb128-361"></a></span>
+<span id="cb128-362"><a href="#cb128-362"></a>tib_dest_new <span class="ot">&lt;-</span> tib_dest <span class="sc">|&gt;</span></span>
+<span id="cb128-363"><a href="#cb128-363"></a>  <span class="fu">rename</span>(<span class="at">T2019 =</span> <span class="st">&quot;International  tourist  arrivals  (2019)&quot;</span>, <span class="at">T2018 =</span> <span class="st">&quot;International  tourist  arrivals  (2018)&quot;</span>)</span>
+<span id="cb128-364"><a href="#cb128-364"></a></span>
+<span id="cb128-365"><a href="#cb128-365"></a>tib_dest_new <span class="ot">&lt;-</span> tib_dest_new <span class="sc">|&gt;</span></span>
+<span id="cb128-366"><a href="#cb128-366"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">everything</span>(), <span class="sc">~</span> <span class="fu">replace</span>(., . <span class="sc">==</span> <span class="st">&quot;-&quot;</span>, <span class="cn">NA</span> )),</span>
+<span id="cb128-367"><a href="#cb128-367"></a>         <span class="at">T2019 =</span> <span class="fu">as.numeric</span>(<span class="fu">str_replace</span>(T2019, <span class="st">&quot;million&quot;</span>, <span class="st">&quot;&quot;</span>))<span class="sc">*</span><span class="fl">1e6</span>,</span>
+<span id="cb128-368"><a href="#cb128-368"></a>         <span class="at">T2018 =</span> <span class="fu">as.numeric</span>(<span class="fu">str_replace</span>(T2018, <span class="st">&quot;million&quot;</span>, <span class="st">&quot;&quot;</span>))<span class="sc">*</span><span class="fl">1e6</span>) <span class="sc">|&gt;</span></span>
+<span id="cb128-369"><a href="#cb128-369"></a>  <span class="fu">filter</span>(Destination <span class="sc">!=</span> <span class="st">&quot;Egypt&quot;</span> <span class="sc">|</span> Region <span class="sc">==</span> <span class="st">&quot;Africa&quot;</span>) <span class="sc">|&gt;</span></span>
+<span id="cb128-370"><a href="#cb128-370"></a>  <span class="fu">na.omit</span>()</span>
+<span id="cb128-371"><a href="#cb128-371"></a></span>
+<span id="cb128-372"><a href="#cb128-372"></a></span>
+<span id="cb128-373"><a href="#cb128-373"></a>tib_dest_new</span>
+<span id="cb128-374"><a href="#cb128-374"></a></span>
+<span id="cb128-375"><a href="#cb128-375"></a>my_plot <span class="ot">&lt;-</span> tib_dest_new <span class="sc">|&gt;</span></span>
+<span id="cb128-376"><a href="#cb128-376"></a>  <span class="fu">mutate</span>(<span class="at">Destination =</span> <span class="fu">reorder</span>(Destination, <span class="sc">-</span> T2019)) <span class="sc">|&gt;</span></span>
+<span id="cb128-377"><a href="#cb128-377"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Destination,</span>
+<span id="cb128-378"><a href="#cb128-378"></a>             <span class="at">y =</span> T2019,</span>
+<span id="cb128-379"><a href="#cb128-379"></a>             <span class="at">fill =</span> Region)) <span class="sc">+</span></span>
+<span id="cb128-380"><a href="#cb128-380"></a>  <span class="fu">geom_col</span>() <span class="sc">+</span></span>
+<span id="cb128-381"><a href="#cb128-381"></a>  <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb128-382"><a href="#cb128-382"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>,</span>
+<span id="cb128-383"><a href="#cb128-383"></a>                                   <span class="at">hjust =</span> <span class="dv">1</span>,</span>
+<span id="cb128-384"><a href="#cb128-384"></a>                                   <span class="at">vjust =</span> <span class="fl">0.5</span>))</span>
+<span id="cb128-385"><a href="#cb128-385"></a></span>
+<span id="cb128-386"><a href="#cb128-386"></a></span>
+<span id="cb128-387"><a href="#cb128-387"></a>my_plot</span>
+<span id="cb128-388"><a href="#cb128-388"></a><span class="in">```</span></span>
+<span id="cb128-389"><a href="#cb128-389"></a></span>
+<span id="cb128-392"><a href="#cb128-392"></a><span class="in">```{r}</span></span>
+<span id="cb128-393"><a href="#cb128-393"></a><span class="in">```</span></span>
+</code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 

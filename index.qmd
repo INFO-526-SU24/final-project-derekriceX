@@ -50,7 +50,7 @@ objects <- outer_space_objects |>
   mutate(hover = paste0(Entity, "\n", num_objects))
 
 
-view(objects)
+# view(objects)
 
 ```
 
@@ -68,7 +68,7 @@ objects_graph <- plot_geo(objects,
             text = ~hover,
             hoverinfo = 'text') |>
   layout(title = list(
-      text = "<b>Number of Objects Launched into Space by country \n (1957 and 2022)",
+      text = "<b>Figure 1: Number of Objects Launched into Space by country \n (1957 and 2022)",
       font = list(family = 'Arial', size = 16, color = 'black')   
       ),
            geo = list(
@@ -86,7 +86,7 @@ objects_graph <- plot_geo(objects,
            x = 1,
            y = 0
          )) |>
-   config(displayModeBar = FALSE) |>
+   config(displayModeBar = FALSE)|>
    colorbar(title = "<b>Number of Objects", color = 'black') 
 
 
@@ -94,6 +94,129 @@ objects_graph
 
 ```
 
+```{r}
+# The first plot provides data from 1957 to 2022
+# to make things more interesting here attempt to extrapolate data out to 2100 
+# next plot will provide data from 2001 to 2100 
+# we'll see how this goes? 
+
+# plan
+# 1 - split the dataset by country - select top 15 countries as of 2022 (simplify the work/code?)
+# 2 - use a polynomial to fit a model to the launch data for each country
+# 3 - use the model to extrapolate out to 2100
+# 4 - recombine the dataset into a single data frame 
+# 5 - use Plotly to recreate the above using the extrapolated dataset 
+
+data <-  objects # creating a new object 
+
+new_data <- tibble( # creating the list of years to be used as x to predict number of launches
+  Year = seq(2000, 2100, by = 1)
+)
+
+extrapolated_data <- tibble() # initialize an object 
+
+# view(data)
+# view(new_data)
+
+top_15_countries <- data |> # to keep things simple picked top 15 countries 
+  group_by(Entity)|>
+  summarize(total = sum(num_objects, na.rm = TRUE))|>
+  arrange(desc(total)) |>
+  top_n(total, n=16) |>
+  select(Entity)
+
+# view(top_15_countries)
+
+country_plus_code <- data |> # need country code to populate maps 
+  distinct(Entity, Code) |>
+  select(Entity, Code) |>
+  semi_join(top_15_countries, by = "Entity")
+
+# view(country_plus_code)
+
+# in the following for loop I extract data for a country
+# them model (number of launches = function(year)) as a 2nd order polynomial
+# I am using a 2nd order poly because the relationshis is not linear based on visual review of dataset
+# Once the model is defined predicted data is calculated and stored in the temp_data variable
+# dplyr mutate function is used to populate the temp_data variable with year, predicted launches, 
+# and country name
+# the loop calculates/predicts launches by country from 2000 to 2100
+# the predicted data is stored in the tibble "extrapolated_data"
+# bind_rows is used to add new calculations by country to the "extrapolated_data" variable
+
+for (i in 1:nrow(top_15_countries)) {
+  country = top_15_countries$Entity[i]
+  selected_country <- data |> filter(Entity == country)
+  model = lm(num_objects ~ poly(Year,2), data = selected_country)
+  temp_data <- new_data |>
+    mutate(
+      y_pred = round(predict(model, newdata = new_data),0),
+      Entity = country
+      )
+  extrapolated_data <- bind_rows(extrapolated_data,temp_data) 
+  }
+
+# view(extrapolated_data)
+
+
+# the "extrapolated_data variable populated in the loop does not contain country code
+# I could not figure out how to add country codes within the loop - I tried for hours but so it goes
+# Here the left_join function is used to add country code to the "extrapolated_data" variable
+# the "extrapolated_data" variable has (i) year, (ii)y_pred, and (iii) Entity. The "country_plus_code" has
+# (iii) entity and (iv) code
+# "y_pred" was rename "Predicted_Launches" to help with legend on map. y_pred originated from the modeling
+
+
+extrapolated_data <- extrapolated_data |>
+  left_join(country_plus_code, by = "Entity") |>
+  rename(predicted_launches = y_pred) |>
+  mutate(hover = paste0(Entity, "\n", predicted_launches))
+
+
+
+# summary(model)
+
+```
+
+
+```{r}
+
+extrapolated_data
+
+predicted_objects <- plot_geo(extrapolated_data,
+                          locationmode = "world",
+                          frame = ~Year) |>
+  add_trace(locations = ~Code,
+            z = ~predicted_launches,
+            colorscale = 'Electric',
+            text = ~hover,
+            hoverinfo = 'text') |>
+  layout(title = list(
+      text = "<b>Figure 2: Predicted Number of Objects Launched into Space by Country \n (2001 and 2100)",
+      font = list(family = 'Arial', size = 16, color = 'black')   
+      ),
+           geo = list(
+           scope = 'world',
+           showland = TRUE,
+           landcolor = toRGB("LightGreen"),
+           showocean = TRUE,
+           oceancolor = toRGB("LightBlue"),
+           showcountries = TRUE,
+           projection = list(type = "Mercator")),
+         font = list(family = 'Arial', size = 12, color = 'black'),
+         annotations = list(
+           text = "<b>Data Source: extrapolated polynomial model based on tidytuesday,outer_space_objects.csv",
+           showarrow = FALSE,
+           x = 1,
+           y = 0
+         )) |>
+   config(displayModeBar = FALSE) |>
+   colorbar(title = "<b>Number of Objects", color = 'black') 
+
+
+predicted_objects
+
+```
 
 ## Abstract
 

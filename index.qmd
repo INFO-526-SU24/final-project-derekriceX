@@ -1,8 +1,8 @@
 ---
-title: "Project Title"
+title: "Objects Launched into Space"
 subtitle: "INFO 526 - Summer 2024 - Final Project"
 author: 
-  - name: "Team name"
+  - name: "Derek Rice"
     affiliations:
       - name: "School of Information, University of Arizona"
 description: "Project description"
@@ -19,4 +19,18 @@ execute:
 
 ## Abstract
 
-Add project abstract here.
+
+
+## Introduction
+
+### The Dataset
+
+### Question 1: What nation is likely to dominate space in the not so distant future?
+
+## Introduction
+
+## Approach
+
+## Analysis
+
+## Discussion

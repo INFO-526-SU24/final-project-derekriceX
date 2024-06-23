@@ -59,28 +59,36 @@ view(objects)
 # cite: https://plotly-r.com/maps
 # cite: https://plotly.com/r/map-configuration/
 
-world <- ne_countries(returnclass = 'sf')
-
 objects_graph <- plot_geo(objects,
                           locationmode = "world",
                           frame = ~Year) |>
   add_trace(locations = ~Code,
             z = ~num_objects,
-            zmin = 0,
-            zmax = ~num_objects,
             colorscale = 'Electric',
             text = ~hover,
             hoverinfo = 'text') |>
-  layout(title = "Number of Objects Launched into Space by country \n between 1957 and 2022",
-         geo = list(
+  layout(title = list(
+      text = "<b>Number of Objects Launched into Space by country \n (1957 and 2022)",
+      font = list(family = 'Arial', size = 16, color = 'black')   
+      ),
+           geo = list(
            scope = 'world',
            showland = TRUE,
            landcolor = toRGB("LightGreen"),
            showocean = TRUE,
            oceancolor = toRGB("LightBlue"),
            showcountries = TRUE,
-           projection = list(type = "Mercator"))) |>
-  colorbar(title = "Number of Objects") 
+           projection = list(type = "Mercator")),
+         font = list(family = 'Arial', size = 12, color = 'black'),
+         annotations = list(
+           text = "<b>Data Source: tidytuesday,outer_space_objects.csv",
+           showarrow = FALSE,
+           x = 1,
+           y = 0
+         )) |>
+   config(displayModeBar = FALSE) |>
+   colorbar(title = "<b>Number of Objects", color = 'black') 
+
 
 objects_graph
 

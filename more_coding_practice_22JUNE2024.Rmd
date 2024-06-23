@@ -440,8 +440,8 @@ ggplot(mtcars, aes( x = disp, y = mpg)) +
 # geomnet
 # ggtree
 # ggdag
-install.packages("BiocManager")
-BiocManager::install("ggtree")
+#install.packages("BiocManager")
+#BiocManager::install("ggtree")
 
 # install.packages("ggtree")
 library(ggtree)
@@ -463,6 +463,8 @@ ggtree(iris_phylo) +
 
 ```{r}
 
+# Part 4 - drawing anything
+# 1:48:00
 
 
 ```

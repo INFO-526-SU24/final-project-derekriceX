@@ -1,0 +1,116 @@
+---
+title: "more review"
+subtitle: "dplyr package review"
+author:
+  - name: "Derek Rice"
+    affiliations:
+      - name: "School of Information, University of Arizona"
+description: "INFO526 Term Project"
+format:
+  html:
+    code-tools: true
+    code-overflow: wrap
+    code-line-numbers: true
+    embed-resources: true
+editor: visual
+code-annotations: hover
+execute:
+  warning: false
+---
+
+```{r setup, include = FALSE}
+#| label: load-pkgs
+#| message: false
+
+knitr::opts_chunk$set(echo = TRUE)
+
+if (!require("pacman"))
+    install.packages("pacman")
+
+pacman::p_load(tidyverse, 
+               dplyr, 
+               janitor, 
+               lubridate,
+               ggplot2,
+               readr,
+               readxl
+               )
+
+```
+
+```{r}
+
+
+```
+
+```{r}
+
+
+```
+
+```{r}
+
+
+```
+
+```{r}
+
+
+```
+
+```{r}
+
+
+```
+
+```{r}
+
+
+```
+
+```{r}
+
+
+```
+
+```{r}
+
+
+```
+
+```{r}
+
+
+```
+
+```{r}
+
+
+```
+
+```{r}
+
+
+```
+
+```{r}
+
+
+```
+
+```{r}
+
+
+```
+
+```{r}
+
+
+```
+
+```{r}
+
+
+```
+
+

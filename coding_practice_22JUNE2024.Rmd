@@ -39,78 +39,323 @@ pacman::p_load(tidyverse,
 ```
 
 ```{r}
+data <- data.frame(x1 = 1:6,
+                   x2 = c(1,2,2,3,1,2),
+                   x3 = c("f","e","C","E","A","D"))
+
+data
+
+arrange(data,x3)
+
+filter(data, x2 ==2)
+
+mutate(data, x4 = x1+x2)
+
+pull(data, x2)
+
+rename(data, new_name = x3)
+
+set.seed(765)
+sample_n(data,3)
+
+select(data, c(x2,x3))
+
+```
+
+```{r}
+data1 <- data.frame(ID = 1:2,
+                    X1 = c("a1","a2"),
+                    stringsAsFactors = FALSE)
+data2 <- data.frame(ID = 2:3,
+                    X2 = c("b1","b2"),
+                    stringsAsFactors = FALSE)
+
+data1
+data2
 
 
+inner_join(data1,data2,by = "ID")
+left_join(data1, data2, by = "ID")
+right_join(data1,data2, by = "ID")
+full_join(data1,data2, by = "ID")
+semi_join(data1,data2, by = "ID")
+anti_join(data1,data2, by = "ID")
+          
+```
+
+```{r}
+# bind_rows and bind_cols functions of dplyr package
+
+data1 <- data.frame(x1 = 1:5,
+                    x2 = letters[1:5])
+data2 <- data.frame(x1 = 0,
+                    x3 = 5:9)
+                    
+data3 <- data.frame(x3 = 5:9,
+                    x4 = letters[5:9])
+
+bind_rows(data1,data2)
+bind_cols(data1,data3)
+
+```
+
+```{r}
+# arrange function of dplyr 
+data <- data.frame(x1 = 1:5,
+                   x2 = c(1,2,2,1,2),
+                   x3 = c("b","E","C","A","D"))
+
+data
+
+arrange(data,x2)
+arrange(data,x2,x3)
+
+
+data1 <- data |>
+  arrange(data,x2) |>
+  mutate(x4 = x1 + x2) |>
+  arrange(x4)
+
+data1
+
+```
+
+```{r}
+# apply lead and lag functions 
+
+x <- 1:10
+# lead function shifted our vector one element to the right side
+# lag function shifts our vector one element to the left 
+
+
+lead(x)
+lead(x,3)
+lag(x,3)
+```
+
+```{r}
+# filter R function of dplyr
+
+data <- data.frame(x1 = 1:5,
+                   x2 = letters[1:5],
+                   group = c("gr1","gr2","gr3","gr4","gr5"))
+
+data
+
+filter(data,group == "gr2")
+
+
+```
+
+```{r}
+data <- data.frame(x1 = 1:5,
+                   x2 = 5:9)
+
+data
+
+mutate(data, x3 = x1+x2)
+
+transmute(data, x3 = x1+x2) # returns only x3
+
+```
+
+```{r}
+# dataframe vs. tibble 
+
+df <- data.frame (
+  x = 1:5,
+  y = c("a","b","c","d","e")
+)
+
+print(df) # int, chr
+str(df)
+
+
+library(tibble)
+
+tb <- tibble(
+  x = 1:5,
+  y = c("a","b","c","d","e")
+)
+
+print(tb) #int, chr
+
+data <- data.frame(x1 = 1:5,
+                   x2 = letters[1:5],
+                   x3 = 1)
+
+data # int, chr, dbl
+
+data1 <- as_tibble(data)
+
+data1 #int, chr, dbl - so what is the big deal? 
+
+
+x1 <- data1 |>
+  pull(x1)
+
+x1
+
+```
+
+```{r}
+# subset data frame rows by logical conditions 
+
+data <- data.frame(x1 = c(3,7,1,8,5),
+                   x2 = letters[1:5],
+                   group = c("g1","g2","g3","g4","g5"))
+
+data[data$group == "g1",]
+
+data[data$group != "g1",]
+
+data[data$group %in% c("g1","g3"),]
+
+subset(data,group == "g1")
+
+filter(data, group == "g1")
+
+
+
+```
+
+```{r}
+# if_else R funciton of dplyr package 
+
+x <- -3:3
+x
+
+if_else (x < 0, "neg","pos")
+
+x_NA <- c(-3:3,NA)
+x_NA
+
+if_else(x_NA < 0, "neg","pos", "xxx")
+
+```
+
+```{r}
+# sample_n and sample_frac R function in dplyr
+
+data <- data.frame(x1 = c(1,2,1,3,2,3),
+                   x2 = c("a","a","c","a","b","c"))
+
+data
+
+set.seed(14)
+
+sample_n(data,3)
+
+sample_frac(data,0.33)
+
+```
+
+```{r}
+# convert data frame to tibble and test 
+
+my_data <- data.frame(x1 = 1:5,
+                      x2 = LETTERS[1:5],
+                      x3 = 5)
+
+
+my_data
+
+
+my_tbl <- as_tibble(my_data)
+my_tbl
+
+is.tbl(my_data) # false
+is.tbl(my_tbl) # true
+
+```
+
+```{r}
+data <- data.frame (x1 = 1:5,
+                   x2 = LETTERS[1:5])
+
+data
+
+pull(data,x1) # apply pull function 
+
+pull(data,1) # pull function with index
+
+```
+
+```{r}
+data <- data.frame(x1 = 1:5,
+                   x2 = LETTERS[1:5],
+                   x3 = 5)
+
+data
+
+select(data, c(x1,x3))
+rename(data,x1_new = x1)
+
+my_data <- data |>
+  select(c(x1,x3)) |>
+  arrange(x1) |>
+  rename(x1_new = x1, x3_new = x3)
+
+my_data
+
+```
+
+```{r}
+# summarize
+
+data <- data.frame (gr1 = rep(LETTERS[1:4],each = 3),
+                    gr2 = LETTERS[1:2],
+                    values = 101:112)
+
+data
+
+data_group <- data |>
+  group_by(gr1,gr2) |>
+  summarise(gr_sum = sum(values))
+
+
+
+data_group
+```
+
+
+```{r}
+tib_dest <- read_csv("data/Most_Visited_Destination_in_2018_and_2019.csv")
+
+# view(tib_dest)
+
+tib_dest |>
+  class()
+
+tib_dest_new <- tib_dest |>
+  rename(T2019 = "International  tourist  arrivals  (2019)", T2018 = "International  tourist  arrivals  (2018)")
+
+tib_dest_new <- tib_dest_new |>
+  mutate(across(everything(), ~ replace(., . == "-", NA )),
+         T2019 = as.numeric(str_replace(T2019, "million", ""))*1e6,
+         T2018 = as.numeric(str_replace(T2018, "million", ""))*1e6) |>
+  filter(Destination != "Egypt" | Region == "Africa") |>
+  na.omit()
+
+
+tib_dest_new
+
+my_plot <- tib_dest_new |>
+  mutate(Destination = reorder(Destination, - T2019)) |>
+  ggplot(aes(x = Destination,
+             y = T2019,
+             fill = Region)) +
+  geom_col() +
+  coord_flip() +
+  theme(axis.text.x = element_text(angle = 90,
+                                   hjust = 1,
+                                   vjust = 0.5))
+
+
+my_plot
 ```
 
 ```{r}
 
 
 ```
-
-```{r}
-
-
-```
-
-```{r}
-
-
-```
-
-```{r}
-
-
-```
-
-```{r}
-
-
-```
-
-```{r}
-
-
-```
-
-```{r}
-
-
-```
-
-```{r}
-
-
-```
-
-```{r}
-
-
-```
-
-```{r}
-
-
-```
-
-```{r}
-
-
-```
-
-```{r}
-
-
-```
-
-```{r}
-
-
-```
-
-```{r}
-
-
-```
-
-

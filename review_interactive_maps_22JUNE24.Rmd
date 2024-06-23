@@ -5,7 +5,85 @@ date: "2024-06-23"
 output: html_document
 ---
 
+```{r setup, include = FALSE}
+#| label: load-pkgs
+#| message: false
+
+knitr::opts_chunk$set(echo = TRUE)
+
+if (!require("pacman"))
+    install.packages("pacman")
+
+pacman::p_load(tmap,
+               spData,
+               plotly,
+               dplyr,
+               readr
+               )
+
+# cite: https://www.youtube.com/watch?v=VnbnaPeI6pY
+
+data(world)
+
+tmap_mode("plot") #view = interactive
+
+tm_shape(world) +tm_polygons('pop')
+
+# view(world)
+
+
+tm_shape(world) +tm_polygons(c('pop','area_km2')) + tm_facets(sync = TRUE, ncol = 2)
+
+
+
+```
+
+```{r}
+# cite: https://www.youtube.com/watch?v=RrtqBYLf404
+
+minwage_df <- read_csv("data/Minimum Wage Data.csv") 
+states <- read_csv("data/states.csv")
+
+view(states)
+view(minwage_df)
+
+wage_columns <- grep("wage", names(minwage_df), ignore.case = TRUE, value = TRUE)
+wage_columns
+
+minwage <- minwage_df |>
+  inner_join(states, by = c("State" = "state")) |>
+  mutate(highest_wage = apply(across(all_of(wage_columns)), 1,min, na.rm = TRUE)) |>
+  select(Year, State, code, highest_wage)
+
+# view(minwage)
+
+```
+
 ```{r}
 
+minwage_graph <- plot_geo(minwage,
+                          locationmode = "USA-states",
+                          frame = ~Year) |>
+  add_trace(locations = ~code,
+            z = ~highest_wage)
+
+
+minwage_graph
+
+```
+
+
+```{r}
+
+minwage_graph <- plot_geo(minwage,
+                          locationmode = "USA-states",
+                          frame = ~Year) |>
+  add_trace(locations = ~code,
+            z = ~highest_wage,
+            colour = ~highest_wage) |>
+  layout(geo = list(scope = 'usa'))
+
+
+minwage_graph
 
 ```

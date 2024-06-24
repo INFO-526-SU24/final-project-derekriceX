@@ -90,29 +90,6 @@ top_11_entity <- top_11$Entity # identify the 11 most active countries - simplif
 objects_top_11_countries <- objects |> # getting dataset for top 11 most active countries 
    filter(Entity %in% top_11_entity)
 
-Figure_1 <- ggplot(data = objects_top_11_countries, aes(x=Year, y=num_objects, color = Entity)) +
-  geom_smooth(se = FALSE, method = loess) +
-  scale_color_brewer(palette = "Spectral") +
-  theme(
-    axis.text.x = element_text(size = 8, face = "bold"),
-    axis.text.y = element_text(size = 8, face = "bold"),
-    plot.title = element_text (size = 10, face = "bold", hjust = 0.5),
-    plot.subtitle = element_text(size = 8, face = "plain", hjust = 0.5),
-    plot.caption = element_text(size = 6, face = "plain", hjust = 1),
-    panel.background = element_rect(fill = "white"),
-    plot.background = element_rect(fill = "white"),
-    panel.grid.major = element_line(color = "gray90"),
-    panel.grid.minor = element_line(color = "gray95")
-   ) +
-  labs(
-    x = "year of launch",
-    y = "number of objects launched",
-    title = "Figure 1: Number of objects launched into space by year (1957 to 2022)",
-    subtitle = "data collected from United Nations Office of Outer Space Affairs",
-    caption = "objects are defined as satelllites, probes, landers, crewed spacecrafts, and space station flights",
-    colour = "Country"
-  )
-
 ```
 
 ```{r}
@@ -120,7 +97,7 @@ Figure_1 <- ggplot(data = objects_top_11_countries, aes(x=Year, y=num_objects, c
 # cite: https://plotly-r.com/maps
 # cite: https://plotly.com/r/map-configuration/ (plotly learning)
 
-Figure_2 <- plot_geo(objects,
+Figure_1 <- plot_geo(objects,
                           locationmode = "world",
                           frame = ~Year) |>
   add_trace(locations = ~Code,
@@ -129,7 +106,7 @@ Figure_2 <- plot_geo(objects,
             text = ~hover,
             hoverinfo = 'text') |>
   layout(title = list(
-      text = "<b>Figure 2: Number of Objects Launched into Space by country \n (1957 and 2023)",
+      text = "<b>Figure 1: Number of Objects Launched into Space by country \n (1957 and 2023)",
       font = list(family = 'Arial', size = 16, color = 'black')   
       ),
            geo = list(
@@ -246,33 +223,7 @@ extrapolated_data <- extrapolated_data |>
 ```
 
 ```{r}
-Figure_3 <- ggplot(data = extrapolated_data, aes(x=Year, y=predicted_launches, color = Entity)) +
-  geom_smooth(se = FALSE, method = loess) +
-#  scale_color_brewer(palette = "Paired") + # limited to n < 11
-  theme(
-    axis.text.x = element_text(size = 7, face = "bold"),
-    axis.text.y = element_text(size = 7, face = "bold"),
-    plot.title = element_text (size = 8, face = "bold", hjust = 0.5),
-    plot.subtitle = element_text(size = 7, face = "plain", hjust = 0.5),
-    plot.caption = element_text(size = 6, face = "plain", hjust = 1),
-    panel.background = element_rect(fill = "white"),
-    plot.background = element_rect(fill = "white"),
-    panel.grid.major = element_line(color = "gray90"),
-    panel.grid.minor = element_line(color = "gray95")
-   ) +
-  labs(
-    x = "year of launch",
-    y = "number of objects launched",
-    title = "Figure 3: Predicted number of objects launched into space by year (2000 to 2100)",
-    subtitle = "(extrapolated from data collected from United Nations Office of Outer Space Affairs)",
-    caption = "objects are defined as satelllites, probes, landers, crewed spacecrafts, and space station flights",
-    color = "Country"
-  )
-
-```
-
-```{r}
-Figure_4 <- plot_geo(extrapolated_data,
+Figure_2 <- plot_geo(extrapolated_data,
                           locationmode = "world",
                           frame = ~Year) |>
   add_trace(locations = ~Code,
@@ -282,7 +233,7 @@ Figure_4 <- plot_geo(extrapolated_data,
             text = ~hover,
             hoverinfo = 'text') |>
   layout(title = list(
-      text = "<b>Figure 4: Predicted Number of Objects Launched into Space by Country \n (2001 and 2100)",
+      text = "<b>Figure 2: Predicted Number of Objects Launched into Space by Country \n (2001 and 2100)",
       font = list(family = 'Arial', size = 16, color = 'black')   
       ),
            geo = list(
@@ -314,8 +265,6 @@ Figure_4 <- plot_geo(extrapolated_data,
 
 "What country will dominate the future of space launch?"
 
-The goal of this project is to understand the evolution of countries with space launch capabilities and then predict what countries will dominate the 21st century.
-
 ## The Dataset
 
 -   Analysis used the "yearly number of objects launched into outer space" dataset.
@@ -324,87 +273,39 @@ The goal of this project is to understand the evolution of countries with space 
 -   The dataset provides the number of objects launched into space from 1957 to 2023 as a function of country.
 -   The dataset starts with the Russian launch of Sputnik, maps out the space race between Russia and the United States, includes the global growth of spacing faring nations, and the recent exponential growth in launch activity.
 
-## Analysis Approach: initial dataset
+## Analysis Approach: 
 
--   The dataset was cleaned up to remove missing values and non-country specific launch data
--   The initial dataset plotted on a smooth line plot to help get a simple visualization, see Figure 1.
--   Figure 1 was limited to displaying eleven prominant countries due to the constraints of the color pallete.
--   The initial dataset was also plotted on an interactive map, see Figure 2.
+-   Step 1 - data cleanup
+-   Step 2 - plot and map dataset to understand the history space launch activity
+-   Step 3 - fit a model to the data for the fifteen most active nations
+-   Step 4 - use the model to predict future space launch activity
+-   Step 5 - plot and map future space launch activity
+-   Step 6 - tell the story of the future of space launch
 
+## 
 
-##
-
-```{r}
-
-Figure_1
-
-```
-
-## Figure 1: Summary
-
-- Figure 1 provides an overview of space launch activity between 1957 and 2023
-- The plot indicates Russia had a leadership role up until approximatly 2000
-- Post 2000 there is an exponential rise in American space launch 
-- Post 2010 both the United Kingdom and China experienced space launch growth
-
-##
 ```{r}
 # cite: https://plotly.com/r/setting-graph-size/
 
+Figure_1 <- Figure_1 %>% layout(width = 1000, height = 600)
+
+Figure_1
+```
+
+## 
+
+```{r}
+
 Figure_2 <- Figure_2 %>% layout(width = 1000, height = 600)
 
+
 Figure_2
-```
-
-## Figure 2: Summary
-- Figure 2 provides a history of space launch missions from 1957 to 2023
-- Using the scale the early dominance of Russia is erroded as the United States is focused on the Apollo moon missions 
-- The plot demonstrates the gloabl nature of space launch as countries for each continent contribute. 
-
-
-
-## Analysis Approach: making predictions
-
--   The fifteen most active countries were selected to make future forecast of space launch activities.
--   A second order polynomial model was fitted to each of the fifteen countries and their launch activity between 2001 and 2100 predicted.
--   Predicted launch activity is displayed on a static smooth line plot for the fifteen selected countries, see 
--   An interactive map was generated to display the predicted launch volume by country for each of the fifteen selected countries, see Figure 4.
-
-##
-
-```{r}
-
-Figure_3
 
 ```
-
-## Figure 3: Summary
-- Figure 3 is calculaed data from a second order polynomial model.
-- The model was created from the initial dataset of the 1957 to 2023 launch data.
-- The model was used to predict launch acitivty of the fifteen leading countries from 2001 through 2021.
-- The model predicts the exponential rise in American space efforts and the rise of China and the United Kingdom.
-
-##
-
-```{r}
-
-Figure_4 <- Figure_4 %>% layout(width = 1000, height = 600)
-
-
-Figure_4
-
-```
-
-## Figure 4: Summary
-- Figure 4 is an interactive plot displaying the predicted launch efforts of the fifteen leading countries. 
-- The plots predicts the demise of the Russian space launch capability. 
-- The plot also predicts an exponential growth in American space launch.
-- The model used to create the plot predicts significant growth in space launch by the United States, China, the United Kingdon, and India. 
-
 
 ## Conclusions
-- The original question was "What country will dominate the future of space launch?"
-- The inital dataset 1957 to 2023 indicates that the United States currently dominates space launch count. 
-- The predicted model suggests American, Chinese, Indian, and United Kingdon launch efforts will grow significantly while Russia will declide over the coming decades. 
 
-
+-   The original question was "What country will dominate the future of space launch?"
+-   The inital dataset 1957 to 2023 tells the story of Russian early leadership, the American race to catch up during the Apollo years, the evolving global nature of space launch, and the recent exponential growth in the industry.
+-   The predicted model suggests American, Chinese, Indian, and United Kingdon launch efforts will grow significantly while Russia will declide over the coming decades.
+-   The analysis indicates the first space faring nation will be the United States accounting for over 80% of global space launch activity.

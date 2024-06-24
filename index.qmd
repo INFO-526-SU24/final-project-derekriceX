@@ -50,9 +50,39 @@ objects <- outer_space_objects |>
   mutate(hover = paste0(Entity, "\n", num_objects))
 
 
-# view(objects)
+view(objects)
 
 ```
+
+
+```{r echo = FALSE, #| warning = FALSE}
+
+objects = objects |>
+  filter (Entity %in% c("United States","China","Russia","Japan","France","India","European Space Agency", "Germany"))
+
+ggplot(data = objects, aes(x=Year, y=num_objects, color = Entity)) +
+  geom_smooth(se = FALSE, method = loess) +
+  theme(
+    axis.text.x = element_text(size = 8, face = "bold"),
+    axis.text.y = element_text(size = 8, face = "bold"),
+    plot.title = element_text (size = 10, face = "bold", hjust = 0.5),
+    plot.subtitle = element_text(size = 8, face = "plain", hjust = 0.5),
+    plot.caption = element_text(size = 6, face = "plain", hjust = 1),
+    panel.background = element_rect(fill = "white"),
+    plot.background = element_rect(fill = "white"),
+    panel.grid.major = element_line(color = "gray90"),
+    panel.grid.minor = element_line(color = "gray95")
+   ) +
+  labs(
+    x = "year of launch",
+    y = "number of objects launched",
+    title = "Figure 1: Number of objects launched into space by year (1957 to 2022)",
+    subtitle = "data collected from United Nations Office of Outer Space Affairs",
+    caption = "objects are defined as satelllites, probes, landers, crewed spacecrafts, and space station flights",
+    colour = "Country"
+  )
+```
+
 
 ```{r}
 # cite: https://www.youtube.com/watch?v=RrtqBYLf404
@@ -68,7 +98,7 @@ objects_graph <- plot_geo(objects,
             text = ~hover,
             hoverinfo = 'text') |>
   layout(title = list(
-      text = "<b>Figure 1: Number of Objects Launched into Space by country \n (1957 and 2022)",
+      text = "<b>Figure 2: Number of Objects Launched into Space by country \n (1957 and 2022)",
       font = list(family = 'Arial', size = 16, color = 'black')   
       ),
            geo = list(
@@ -172,13 +202,45 @@ extrapolated_data <- extrapolated_data |>
   left_join(country_plus_code, by = "Entity") |>
   rename(predicted_launches = y_pred) |>
   mutate(predicted_launches = if_else(predicted_launches < 0, 0, predicted_launches)) |>
-  mutate(hover = paste0(Entity, "\n", predicted_launches)) 
+  mutate(hover = paste0(Entity, "\n", predicted_launches)) |>
+  filter(Entity != "World")
+
 view(extrapolated_data)
+
+
 
 # summary(model)
 
 ```
 
+
+```{r}
+
+
+ggplot(data = extrapolated_data, aes(x=Year, y=predicted_launches, color = Entity)) +
+  geom_smooth(se = FALSE, method = loess) +
+  theme(
+    axis.text.x = element_text(size = 8, face = "bold"),
+    axis.text.y = element_text(size = 8, face = "bold"),
+    plot.title = element_text (size = 10, face = "bold", hjust = 0.5),
+    plot.subtitle = element_text(size = 8, face = "plain", hjust = 0.5),
+    plot.caption = element_text(size = 6, face = "plain", hjust = 1),
+    panel.background = element_rect(fill = "white"),
+    plot.background = element_rect(fill = "white"),
+    panel.grid.major = element_line(color = "gray90"),
+    panel.grid.minor = element_line(color = "gray95")
+   ) +
+  labs(
+    x = "year of launch",
+    y = "number of objects launched",
+    title = "Figure 3: Number of objects launched into space by year (2000 to 2100)",
+    subtitle = "data collected from United Nations Office of Outer Space Affairs",
+    caption = "objects are defined as satelllites, probes, landers, crewed spacecrafts, and space station flights",
+    color = "Country"
+  )
+
+
+```
 
 ```{r}
 
@@ -192,7 +254,7 @@ predicted_objects <- plot_geo(extrapolated_data,
             text = ~hover,
             hoverinfo = 'text') |>
   layout(title = list(
-      text = "<b>Figure 2: Predicted Number of Objects Launched into Space by Country \n (2001 and 2100)",
+      text = "<b>Figure 4: Predicted Number of Objects Launched into Space by Country \n (2001 and 2100)",
       font = list(family = 'Arial', size = 16, color = 'black')   
       ),
            geo = list(

@@ -85,11 +85,16 @@ Question 1 - what country is most likely to become the first "space faring natio
 
 ## Approach
 
+The question to be answered was to identify future space faring nations by identifying the counties with the most launch events in the future. To accomplish the tasks the original dataset, launch events by country as a function of year, was plotted on a ggplot geom_smooth() plot with year on the x-axis and the number of events on the y-axis, see Figure 1. To enable the user to interact with the dataset the data was also plotted on an interactive map, where a slider displayed launch data for a selected year, and by using a mouse to hover over a country launch data for that country could be displayed, see Figure 2. Both figures 1 and 2 provided insight into the evolution of the space launch industry and helped identify dominant countries. 
+The tidytuesday space_launch_objects dataset was leveraged to create a second order polynomial model for the fifteen most dominant countries. The model was used to predict launch events by country for the fifteen selected countries for the period 2001 to 2100. That regression model was used to generate a new dataset “extrapolated_data” that stored the predicted launch event numbers by country. 
+The “extrapolated_data” was then plotted on a smooth line plot, with years (2001 to 2100) on the x-axis, and the number of launch events on the y-axis, see Figure 3. The extrapolated_data was also plotted on an interactive map, see Figure 4. Using the map uses can select a year using a slider, see the number of total launch events on an evolving scale, and hover over one of the fifteen select countries to see specific launch data for a selected year. 
 
 
+## Analysis 
 
-```{r}
-#| echo = FALSE
+The dataset “outer_space_objects” was loaded from the tidytuesday package and dplyr functions used to remove rows with missing data and, create the “hover” column to support the interactive map, and remove a categorical variable “world” from the “entity” column. Removing the “world” data reduced the dataset to include only country data for launched objects. The dataset provided the number of space vehicle launches by country between 1957 and 2023. The dataset was plotted on a static ggplot smooth line plot and an interactive map using ggplot2 and plotly respectively, see Figures 1 and 2. 
+
+```{r echo = FALSE, warning = FALSE}
   
 if (!require("pacman"))
   install.packages("pacman")
@@ -121,24 +126,26 @@ objects <- outer_space_objects |>
 
 ```
 
-```{r echo = FALSE, #| warning = FALSE}
+Creating the first plot, the smooth line plot in ggplot2, required reducing the number of countries to 11 to support the scale_color_brewer palette limitations, see Figure 1. The dplyr package and the pipe function was used to isolate the eleven most active countries and then separate out that dataset from the original “outer_space_objects” dataset. A smooth line plot was used to display launches by country for the time period 1957 to 2023 for the eleven most active countries, see Figure 1. 
+
+```{r echo = FALSE, warning = FALSE}
 # cite: https://ggplot2.tidyverse.org/
 # cite: Hadley Wickham, ggplot2, Elegant Graphics for Data Analysis 2nd Edition. Springer. 2016. 
 # cite: https://r-graph-gallery.com/38-rcolorbrewers-palettes.html
 
-top_15 <- objects |> # to keep things simple picked top 15 countries 
-group_by(Entity)|>
-summarize(total = sum(num_objects, na.rm = TRUE))|>
-arrange(desc(total)) |>
-top_n(total, n=11) |> #because scale_color_brewer has limits in number of entities
-select(Entity)
+top_11 <- objects |> # to keep things simple picked top 11 countries 
+  group_by(Entity)|>
+  summarize(total = sum(num_objects, na.rm = TRUE))|>
+  arrange(desc(total)) |>
+  top_n(total, n=11) |> #because scale_color_brewer has limits in number of entities
+  select(Entity)
 
-top_15_entity <- top_15$Entity # identify the 15 most active countries - simplify the plot
+top_11_entity <- top_11$Entity # identify the 11 most active countries - simplify the plot
 
-objects_top_15_countries <- objects |> # getting dataset for top 15 most active countries 
-   filter(Entity %in% top_15_entity)
+objects_top_11_countries <- objects |> # getting dataset for top 11 most active countries 
+   filter(Entity %in% top_11_entity)
 
-Figure_1 <- ggplot(data = objects_top_15_countries, aes(x=Year, y=num_objects, color = Entity)) +
+Figure_1 <- ggplot(data = objects_top_11_countries, aes(x=Year, y=num_objects, color = Entity)) +
   geom_smooth(se = FALSE, method = loess) +
   scale_color_brewer(palette = "Spectral") +
   theme(
@@ -165,12 +172,13 @@ Figure_1 # ggplot smooth line plot of 1957 to 2022 launch data
 
 ```
 
-```{r}
-# cite: https://www.youtube.com/watch?v=RrtqBYLf404
+
+To make things a little more interesting, enable some interaction with the data, the “outer_space_objects” dataset has been displayed on an interactive map, see Figure 2. Launch data for all countries in the “outer_space_objects” dataset is displayed on the map as a function of year and country, see Figure 2. Users can use the bar slider at the base of the map to see launch events per year by country. Hovering over a country displays the number of launch events in the year selected by the slider. The year selected on the sliding bar scale is displayed on the top right of the slider graphic. There is also a play function for the slider to the left. The interactive map was created using plotly after a lot of reading and watching an excellent YouTube video on the package, see citation. 
+
+```{r echo = FALSE, warning = FALSE}
+# cite: https://www.youtube.com/watch?v=RrtqBYLf404 (this is an excellent learning video)
 # cite: https://plotly-r.com/maps
 # cite: https://plotly.com/r/map-configuration/ (plotly learning)
-
-
 
 Figure_2 <- plot_geo(objects,
                           locationmode = "world",
@@ -206,9 +214,10 @@ Figure_2 # interactve map of launched objects by country 1957 to 2023
 
 ```
 
+The intent of the analysis was to determine what countries would dominate space launch events in the future. To answer the question a original “outer_space_objects” dataset was used to calculate a second order polynomial regression model for the fifteen most active countries. The model was used to predict the number of launch events as a function of year for each country. To accomplish this task a new dataset was created (new_data) with years 2001 to 2100 and the tibble() to hold the final data initialized (extrapolated_data). The fifteen most active countries were separated from the “outer_space_objects” dataset using dplyr pipe function (top_15_countries) and the country code added (country_plus_code) to enable the interactive map. Dplyr pipe functions significantly reduced the complexity of these tasks, prior to this class I would have used a lot of loops. A combination of a loop with embedded dplyr pipe functions was utilized to (a) select data for a country, (b) apply a polynomial model to that country data, (c) create the predicted launch data (y_pred) for the selected country, and (d) assemble all the data into one dataset “extrapolated_data" using the bind_rows function. Dplyr pipe functions were utilized again to create the final “extrapolated_data” dataset by renaming columns, setting negative y_pred value to zero, create the data for the hover column, and removing the non-country data i.e. “world”. 
 
 
-```{r}
+```{r echo = FALSE, warning = FALSE}
 # cite: https://www.youtube.com/watch?v=LRU5TxFD394&list=PLu6UwBFCnlEddsED6LFhgrg1vH-X6e4Ah (dplyr learning)
 
 
@@ -230,6 +239,8 @@ new_data <- tibble( # creating the list of years to be used as x to predict numb
   Year = seq(2000, 2100, by = 1)
 )
 
+# unique(data$Entity)
+
 extrapolated_data <- tibble() # initialize an object 
 
 # view(data)
@@ -242,14 +253,16 @@ top_15_countries <- data |> # to keep things simple picked top 15 countries
   top_n(total, n=16) |>
   select(Entity)
 
-# view(top_15_countries)
+# unique(top_15_countries$Entity)
 
 country_plus_code <- data |> # need country code to populate maps 
   distinct(Entity, Code) |>
   select(Entity, Code) |>
   semi_join(top_15_countries, by = "Entity")
 
-# view(country_plus_code)
+
+
+# unique(country_plus_code$Entity)
 
 # in the following for loop I extract data for a country
 # them model (number of launches = function(year)) as a 2nd order polynomial
@@ -273,6 +286,7 @@ for (i in 1:nrow(top_15_countries)) {
   extrapolated_data <- bind_rows(extrapolated_data,temp_data) 
   }
 
+# unique(extrapolated_data$Entity)
 
 #1 the "extrapolated_data variable populated in the loop does not contain country code
 #2 I could not figure out how to add country codes within the loop - I tried for hours but so it goes
@@ -290,18 +304,19 @@ extrapolated_data <- extrapolated_data |>
   mutate(hover = paste0(Entity, "\n", predicted_launches)) |>
   filter(Entity != "World")
 
-view(extrapolated_data)
+# unique(extrapolated_data$Entity)
 
 # summary(model)
 
 ```
 
-```{r echo=FALSE,waring = FALSE}
+The predicted launch data from 2001 to 2100 is displayed on a ggplot2, geom_smooth(), smooth line plot, see Figure 3. To display all fifteen countries the scale_color_brewer was removed from the code, that palette was limited to displaying eleven categorical variables. A review of available palettes did not identify an alternative capable of assigning high contract colors to fifteen variables within a category; as a result, the default was used. The colors displayed are not the best, the contrast is weak, but the only other option was to reduce the number of countries displayed from fifteen to eleven. 
 
+```{r echo=FALSE,waring = FALSE}
 
 Figure_3 <- ggplot(data = extrapolated_data, aes(x=Year, y=predicted_launches, color = Entity)) +
   geom_smooth(se = FALSE, method = loess) +
-#  scale_color_brewer(palette = "Paired") +
+#  scale_color_brewer(palette = "Paired") + # limited to n < 11
   theme(
     axis.text.x = element_text(size = 8, face = "bold"),
     axis.text.y = element_text(size = 8, face = "bold"),
@@ -326,7 +341,10 @@ Figure_3 # ggplot smooth line plot of predicted launch events 2001 to 2100
 
 ```
 
-```{r}
+An interactive map displaying predicted space launch events between 2001 and 2023, see Figure 4. The data displayed between 2001 and 2023 are predicted events based on the regression model, not actual launch events. The data 2024 to 2100 is the modeling extrapolating the data from 1957 to 2023 into the future. The map was created using Plotly and the “extrapolated_data” generated from the regression model. Within Plotly; plot_geo defines the type of plot – a world map in this instance. The add_trace functionality defines the variable tracked by the scale bar at the bottom of the plot. The layout definition describes the fonts, colors of land and oceans, the borders between countries, etc. 
+
+
+```{r echo = FALSE, warning = FALSE}
 
 Figure_4 <- plot_geo(extrapolated_data,
                           locationmode = "world",
@@ -363,7 +381,10 @@ Figure_4 # interactive map with predicted and extrapolated launch data from 2001
 
 ```
 
+## Discussion 
 
-## Analysis
+An interactive map displaying predicted space launch events between 2001 and 2023. The data displayed between 2001 and 2023 is predicted events based on the regression model, not actual launch events. The data 2024 to 2100 is the modeling extrapolating the data from 1957 to 2023 into the future. On the map you can see the United States and Russia starting on an equal footing. As time progresses, the United States become more dominant, the demise of Russa is predicted, and the rise of both China and India is forecast. 
+
+
 
 ## Discussion

@@ -43,24 +43,35 @@ pacman::p_load(tidyverse,
 
 outer_space_objects <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2024/2024-04-23/outer_space_objects.csv')
 
-#view(outer_space_objects)
+view(outer_space_objects)
 
 objects <- outer_space_objects |>
   na.omit() |>
-  mutate(hover = paste0(Entity, "\n", num_objects))
-
+  mutate(hover = paste0(Entity, "\n", num_objects)) |>
+  filter(Entity != "World") 
 
 view(objects)
 
-```
+temp = objects
 
+
+```
 
 ```{r echo = FALSE, #| warning = FALSE}
 
-objects = objects |>
-  filter (Entity %in% c("United States","China","Russia","Japan","France","India","European Space Agency", "Germany"))
+top_15 <- objects |> # to keep things simple picked top 15 countries 
+group_by(Entity)|>
+summarize(total = sum(num_objects, na.rm = TRUE))|>
+arrange(desc(total)) |>
+top_n(total, n=16) |>
+select(Entity)
 
-ggplot(data = objects, aes(x=Year, y=num_objects, color = Entity)) +
+top_15_entity <- top_15$Entity # identify the 15 most active countries - simplify the plot
+
+objects_top_15_countries <- objects |> # getting dataset for top 15 most active countries 
+   filter(Entity %in% top_15_entity)
+
+Figure_1 <- ggplot(data = objects_top_15_countries, aes(x=Year, y=num_objects, color = Entity)) +
   geom_smooth(se = FALSE, method = loess) +
   theme(
     axis.text.x = element_text(size = 8, face = "bold"),
@@ -81,15 +92,17 @@ ggplot(data = objects, aes(x=Year, y=num_objects, color = Entity)) +
     caption = "objects are defined as satelllites, probes, landers, crewed spacecrafts, and space station flights",
     colour = "Country"
   )
-```
 
+Figure_1 # ggplot smooth line plot of 1957 to 2022 launch data
+
+```
 
 ```{r}
 # cite: https://www.youtube.com/watch?v=RrtqBYLf404
 # cite: https://plotly-r.com/maps
 # cite: https://plotly.com/r/map-configuration/
 
-objects_graph <- plot_geo(objects,
+Figure_2 <- plot_geo(objects,
                           locationmode = "world",
                           frame = ~Year) |>
   add_trace(locations = ~Code,
@@ -98,7 +111,7 @@ objects_graph <- plot_geo(objects,
             text = ~hover,
             hoverinfo = 'text') |>
   layout(title = list(
-      text = "<b>Figure 2: Number of Objects Launched into Space by country \n (1957 and 2022)",
+      text = "<b>Figure 2: Number of Objects Launched into Space by country \n (1957 and 2023)",
       font = list(family = 'Arial', size = 16, color = 'black')   
       ),
            geo = list(
@@ -119,10 +132,21 @@ objects_graph <- plot_geo(objects,
    config(displayModeBar = FALSE)|>
    colorbar(title = "<b>Number of Objects", color = 'black') 
 
-
-objects_graph
+Figure_2 # interactve map of launched objects by country 1957 to 2023
 
 ```
+
+top_15_countries \<- data \|\> \# to keep things simple picked top 15 countries
+
+group_by(Entity)\|\>
+
+summarize(total = sum(num_objects, na.rm = TRUE))\|\>
+
+arrange(desc(total)) \|\>
+
+top_n(total, n=16) \|\>
+
+select(Entity)
 
 ```{r}
 # The first plot provides data from 1957 to 2022
@@ -207,17 +231,14 @@ extrapolated_data <- extrapolated_data |>
 
 view(extrapolated_data)
 
-
-
 # summary(model)
 
 ```
 
+```{r echo=FALSE,waring = FALSE}
 
-```{r}
 
-
-ggplot(data = extrapolated_data, aes(x=Year, y=predicted_launches, color = Entity)) +
+Figure_3 <- ggplot(data = extrapolated_data, aes(x=Year, y=predicted_launches, color = Entity)) +
   geom_smooth(se = FALSE, method = loess) +
   theme(
     axis.text.x = element_text(size = 8, face = "bold"),
@@ -233,18 +254,19 @@ ggplot(data = extrapolated_data, aes(x=Year, y=predicted_launches, color = Entit
   labs(
     x = "year of launch",
     y = "number of objects launched",
-    title = "Figure 3: Number of objects launched into space by year (2000 to 2100)",
-    subtitle = "data collected from United Nations Office of Outer Space Affairs",
+    title = "Figure 3: Predicted number of objects launched into space by year (2000 to 2100)",
+    subtitle = "(extrapolated from data collected from United Nations Office of Outer Space Affairs)",
     caption = "objects are defined as satelllites, probes, landers, crewed spacecrafts, and space station flights",
     color = "Country"
   )
 
+Figure_3 # ggplot smooth line plot of predicted launch events 2001 to 2100 
 
 ```
 
 ```{r}
 
-predicted_objects <- plot_geo(extrapolated_data,
+Figure_4 <- plot_geo(extrapolated_data,
                           locationmode = "world",
                           frame = ~Year) |>
   add_trace(locations = ~Code,
@@ -275,19 +297,73 @@ predicted_objects <- plot_geo(extrapolated_data,
    config(displayModeBar = FALSE) |>
    colorbar(title = "<b>Number of Objects", color = 'black') 
 
-
-predicted_objects
+Figure_4 # interactive map with predicted and extrapolated launch data from 2001 to 2100 
 
 ```
 
 ## Abstract
 
+The intent of this project was to understand the evolution of countries engaged in rocket and space technologies and predict countries who will dominate space in the near future. To complete the analysis the dataset "yearly number of objects launched into outer space" was leveraged. The dataset provides the number of objects launched into space from 1957 to 2022 as a function of country. The source of the dataset is the United Nations Office of Outer Space Affairs and the dataset is available within the tidytuesday package.
+
+The analysis was completed in two stages. First, the 1957 to 2022 data was analyzed and plotted as a smooth line plot by country and on a world map, see Figures 1 and 2 respectively. These two plots document the early years of the rocket technology and highlight the dominance of Russia during the infancy of rocket technology, see Figure 2. The static smooth line plots and the interactive maps used to tell the space faring story were created using ggplot2 and the Plotly package respectively.
+
+The 1957 to 2022 data was employed to identify the fifteen prominent space faring nations, the countries with the largest number of objects launched. For each of these fifteen countries a second order polynomial regression model was calculated. The country model was utilized to create a second dataset and predict launches between 2001 and 2022 and extrapolate the number of objects launched up to the year 2100. The results of the model and predicted number of launches are displayed on a static ggplot smooth line plot and an interactive world map, see Figures 3 and 4.
+
+The analysis indicates that Russia, once a dominant force in space technologies will fail to keep pace with other nations eventually losing its ability to launch space objects. The work suggests that the United States will dominate space and that China will replace Russia as an important contributor to the industry. Surprisingly the analysis indicates India will rise at the third most active nation with respect to launching objects into space.
+
+## Datasets
+
+### The Space Objects Dataset (1957 to 2023)
+
+-   The dataset summarizes the number of objects launched into space from 1957 to 2023 as a function of entity.
+-   The source of the dataset is the United Nations Office of Outer Space Affairs. A prior analysis of the dataset is available here: https://ourworldindata.org/grapher/yearly-number-of-objects-launched-into-outer-space
+-   Dataset source: https://github.com/rfordatascience/tidytuesday/blob/master/data/2024/2024-04-23/readme.md
+-   The dataset is comprised of 4 columns and 1175 rows - see "head" and "glimpse" summarized herein.
+-   I choose the dataset because I was thinking it would be interesting to identify the countries launching gadgets into space and the magnitude of the difference between the United States and other countries.
+-   Figure 1: A static graphical plot summary of the data - the plot presents an overview of the dataset and visually displays the number of launches per entity between 1957 and 2023.
+-   Figure 2: A dynamic world map - move the slider located on the bottom of the map graphic from 1957 to 2023 to see highlighted countries launching space vehicles each year.
+
+### The Space Objects Predicted (2001 to 2023 and Extrapolated (2024 to 2100) Dataset 
+
+- The origian dataset was used to identify the fifteen most active countries launching gadgets into space.
+- A second order polynomial Y (number of objects) = function (interectp + year + year^2) for the fifteen most active countries was calculated.
+- The model was used to predict the number of launches between 2001 and 2023 and extrapolate the number of launches up to year 2100.
+- The data generated by the model was stored in a dataset called "extrapolated_data" 
+- It was this extrapolated dataset that I was most interested in to understand tends in the industry 
+- The "extrapolated_data" included five columns (i) Year, (ii) predicted_launches, (iii) Entity, (iv) Code, and (v) hover
+- (iii) Entity was the country launching gadgets into space - nomenclature carry over from original dataset
+- (iv) Code was the country code needed for identifying the "entity" on the map
+- (v) hover was the information displayed when the mouse is hovering over a country on the interactive map  
+- Figure 3: A static graphical smooth line plot of the predicted and extrapolated data from 2001 to 2100.
+- Figure 4: A dynamic map, zoom in and move around the map, there is a slider located at the base of the map, move the slider to display predicted launch events from 2001 to 2100. 
 
 
-## Introduction
+### Data Variable Descriptions: The Space Objects Dataset (1957 to 2023)
 
-### The Dataset
+The dataset comprises 4 columns and 1175 rows. The dataset summarizes space launch events between 1957 and 2023 as a function of the entity or country responsible for the launch.
 
+Entity: <character> the country launching the space object
+
+Code: <character> the type of gadget launched into Earth orbit or beyond (satellites, probes, landers, crewed spacecrafts, and space station components)
+
+Year: <double-precision floating-point number> the year of the launch
+
+num_objects: <double-precision floating-point number> the number of objects launched by "Entity" during a year.
+
+
+### Data Variable Descriptions: The Space Objects Predicted (2001 to 2023 and Extrapolated (2024 to 2100) Dataset
+
+The extrapolated_data dataset comprises 5 columns. The dataset summarizes predicted space launch events from 2001 to 2100 using the second order polynomial regression model generated from the original "space objects dataset". 
+
+Year: <double-precision floating-point number> the year of the launch
+
+predicted_launches:  <double-precision floating-point number> the number of objects launched by "Entity" during a year.
+
+Entity: <character> the country launching the space object
+
+Code: <character> the type of gadget launched into Earth orbit or beyond (satellites, probes, landers, crewed spacecrafts, and space station components)
+
+hover: <character> text used on the interactve map when hovering over a country. Displays country name and number of launch events for year selected using the sliding scale at the base of the map. 
 
 
 ### Question 1: What nation is likely to dominate space in the not so distant future?
@@ -300,6 +376,19 @@ Question 1 - what country is most likely to become the first "space faring natio
 
 ## Approach
 
+
+
 ## Analysis
 
+
+
+
 ## Discussion
+
+
+
+
+
+
+
+

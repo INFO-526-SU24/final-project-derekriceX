@@ -53,14 +53,14 @@
     "href": "presentation.html#layouts",
     "title": "Outer Space Launch Data by Country",
     "section": "Layouts",
-    "text": "Layouts\nYou can use plain text\n\n\n\nor bullet points1\n\n\nor in two columns\n\n\n\nlike\nthis\n\nAnd add footnotes"
+    "text": "Layouts\nYou can use plain text\n\n\n\none\ntwo\nthree\nfour\nor bullet points1\n\n\nor in two columns\n\n\n\nlike\nthis\n\nAnd add footnotes"
   },
   {
     "objectID": "presentation.html#code",
     "href": "presentation.html#code",
-    "title": "Outer Space Launch Data by Country",
+    "title": "Outer Space Vehicle Launch - Forecast by Country",
     "section": "Code",
-    "text": "Code"
+    "text": "Code\n\n\n[1] \"what more code oges here\""
   },
   {
     "objectID": "presentation.html#plots",
@@ -72,35 +72,35 @@
   {
     "objectID": "presentation.html#plot-and-text",
     "href": "presentation.html#plot-and-text",
-    "title": "Outer Space Launch Data by Country",
+    "title": "Outer Space Vehicle Launch",
     "section": "Plot and text",
-    "text": "Plot and text\n\n\n\nSome text\ngoes here"
+    "text": "Plot and text\n\n\nFigure_2\n\nFigure_1"
   },
   {
     "objectID": "presentation.html#tables",
     "href": "presentation.html#tables",
-    "title": "Outer Space Launch Data by Country",
+    "title": "Outer Space Vehicle Launch",
     "section": "Tables",
     "text": "Tables\nIf you want to generate a table, make sure it is in the HTML format (instead of Markdown or other formats), e.g.,"
   },
   {
     "objectID": "presentation.html#images",
     "href": "presentation.html#images",
-    "title": "Outer Space Launch Data by Country",
+    "title": "Outer Space Vehicle Launch",
     "section": "Images",
     "text": "Images\n\nImage credit: Danielle Navarro, Percolate."
   },
   {
     "objectID": "presentation.html#math-expressions",
     "href": "presentation.html#math-expressions",
-    "title": "Outer Space Launch Data by Country",
+    "title": "Outer Space Vehicle Launch",
     "section": "Math Expressions",
     "text": "Math Expressions\nYou can write LaTeX math expressions inside a pair of dollar signs, e.g. $\\alpha+\\beta$ renders \\(\\alpha + \\beta\\). You can use the display style with double dollar signs:\n$$\\bar{X}=\\frac{1}{n}\\sum_{i=1}^nX_i$$\n\\[\n\\bar{X}=\\frac{1}{n}\\sum_{i=1}^nX_i\n\\]\nLimitations:\n\nThe source code of a LaTeX math expression must be in one line, unless it is inside a pair of double dollar signs, in which case the starting $$ must appear in the very beginning of a line, followed immediately by a non-space character, and the ending $$ must be at the end of a line, led by a non-space character;\nThere should not be spaces after the opening $ or before the closing $."
   },
   {
     "objectID": "presentation.html#feeling-adventurous",
     "href": "presentation.html#feeling-adventurous",
-    "title": "Outer Space Launch Data by Country",
+    "title": "Outer Space Vehicle Launch",
     "section": "Feeling adventurous?",
     "text": "Feeling adventurous?\n\nYou are welcomed to use the default styling of the slides. In fact, that’s what I expect majority of you will do. You will differentiate yourself with the content of your presentation.\nBut some of you might want to play around with slide styling. Some solutions for this can be found at https://quarto.org/docs/presentations/revealjs."
   },
@@ -236,5 +236,201 @@
     "title": "more review",
     "section": "",
     "text": "# cite: https://www.youtube.com/watch?v=h29g21z0a68&t=290s \n# just a review, should probably be more focused on maps and interactive maps, a quick review  \n\ndata(\"faithful\")\nggplot(data = faithful,\n       mapping = aes(x = eruptions, y = waiting, colour = eruptions)) +\n  geom_point()\n\n\n\n\n\n\n\nggplot() +\n  geom_point(mapping = aes(x = eruptions, y = waiting, colour = eruptions &lt; 3),\n             data = faithful)\n\n\n\n\n\n\n\nggplot(faithful) +\n  geom_histogram(aes(x = eruptions, fill = eruptions &lt; 3))\n\n\n\n\n\n\n\nggplot(faithful, aes(x = eruptions, y = waiting)) +\n  geom_density_2d() +\n  geom_point()\n\n\n\n\n\n\n\n# make points sqr and slightly transparent \n\n\nggplot(faithful) +\n  geom_point(aes(x = eruptions, y = waiting), shape = 'square')\n\n\n\n\n\n\n\nggplot(faithful) +\n  geom_point(aes(x = eruptions, y = waiting), shape = 'square', alpha = 0.5)\n\n\n\n\n\n\n\n# colour dist. in two difference colours \nggplot(faithful) +\n  geom_histogram(aes(x = eruptions, fill = eruptions &lt; 3.1))\n\n\n\n\n\n\n\n# colour based on weight &gt; 60\n\n# view(faithful) # two para. eruptions and waiting \n\nggplot(faithful) +\n  geom_histogram(aes(x = eruptions, fill = waiting &lt; 60, position = \"identity\", alpha = 0.5))\n\n\n\n\n\n\n\n# add a line that separates the two point dist.\n# how to draw a straight lines from a slope and intercept \n\nggplot(faithful) +\n  geom_point(aes(x = eruptions, y = waiting)) +\n  geom_abline(slope = 15, intercept = 25, colour = \"red\", linewidth = 3)\n\n\n\n\n\n\n\n\n\nview(mpg)\n\n\nggplot(mpg) +\n  geom_bar(aes(x = class, fill = as.factor(cyl)), colour = \"black\")\n\n\n\n\n\n\n\nmpg_counted &lt;- mpg |&gt;\n  count(class, name = \"count\")\n\nview(mpg_counted)\n\nggplot(mpg_counted) +\n  geom_bar(aes(x = class, y = count),\n           stat = 'identity') #identity is just passing the data along \n\n\n\n\n\n\n\nggplot(mpg) +\n  geom_density(aes(x = hwy, y = after_stat(scaled)))\n\n\n\n\n\n\n\nggplot(mpg) +\n  geom_jitter(aes(x = class, y = hwy), width = 0.2)\n\n\n\n\n\n\n\nggplot(mpg) +\n  geom_point(\n    aes(x = displ, y = hwy, colour = class)\n  ) +\n  scale_colour_brewer(name = 'CLASS', type = 'qual', palette = 'Set1')\n\n\n\n\n\n\n\nggplot(mpg) +\n  geom_point(aes(x = displ, y = hwy)) +\n  scale_x_continuous(breaks = c(3,5,6)) +\n  scale_y_continuous(trans = 'log10')\n\n\n\n\n\n\n\nggplot(mpg) +\n  geom_point(aes(x = displ, y = hwy, colour = class, size = cyl)) +\n  scale_colour_brewer(type = 'qual') +\n  scale_size_area(breaks = c(4,5,6,8))\n\n\n\n\n\n\n\n\n\nggplot(mpg) +\n  geom_point(aes(x = displ, y = hwy)) + \n  facet_wrap(~ class)\n\n\n\n\n\n\n\nggplot(mpg) +\n  geom_point(aes(x = displ, y = hwy)) + \n  facet_grid(year ~ drv)\n\n\n\n\n\n\n\n\n\n# coordinates \n\nggplot(mpg) +\n  geom_bar(aes(x = class)) +\n  coord_polar()\n\n\n\n\n\n\n\nggplot(mpg) +\n  geom_bar(aes(x = class)) +\n  coord_polar(theta = 'y')\n\n\n\n\n\n\n\nggplot(mpg) +\n  geom_bar(aes(x = class)) +\n  coord_polar(theta = 'y') +\n  expand_limits (y = 70) # set max on raidial dial \n\n\n\n\n\n\n\n# zoom in on data - set limits on scale \nggplot(mpg)+ \n  geom_bar(aes(x = class)) +\n  scale_y_continuous(limits = c(0,40)) #removes data \n\n\n\n\n\n\n\nggplot(mpg)+ \n  geom_bar(aes(x = class)) +\n  coord_cartesian(ylim = c(0,40)) #coord_cartesian does NOT remove data \n\n\n\n\n\n\n\n# then work on theme but nothing new \n\n\n# cite: https://www.youtube.com/watch?v=0m4yywqNPVY&t=296s\n\n# Part 2\n\n# ggplot\n## 47 geoms\n## 25 stats\n## 62 scales \n\np1 &lt;- ggplot(msleep) +\n  geom_boxplot(aes(x = sleep_total, y = vore, fill = vore))\n\np2 &lt;- ggplot(msleep) +\n  geom_bar(aes(y = vore, fill = vore))\n\np3 &lt;- ggplot(msleep) +\n  geom_point(aes(x = bodywt,\n                 y = sleep_total,\n                 colour = vore)) +\n  scale_x_log10()\n\np3\n\n\n\n\n\n\n\ncombined_plot &lt;- p1 + p2 + p3\n\nprint(combined_plot)\n\n\n\n\n\n\n\nplot_all &lt;- (p1 | p2) / p3\n\nprint(plot_all)\n\n\n\n\n\n\n\nnew_plot &lt;- plot_all\n\nnew_plot &\n   theme(\n    legend.position = \"none\" # removes legend from all plots\n  ) \n\n\n\n\n\n\n\nnew_plot +\n   plot_annotation(\n    title = \"Mammalian Sleep Patterns\",\n    tag_levels = \"A\" # tags plots - can use roman I \n  ) &  # must use & and not +\n   theme(\n    legend.position = \"none\" # removes legend from all plots\n  ) \n\n\n\n\n\n\n\nnew_plot +\n   plot_annotation(\n    title = \"Mammalian Sleep Patterns\",\n    tag_levels = \"I\" # tags plots - can use roman I \n  ) &  # must use & and not +\n   theme(\n    legend.position = \"none\" # removes legend from all plots\n  ) \n\n\n\n\n\n\n\n# Plot Composition\n\n# stories are told with multiple plots\n\n# plot layout hsould be flexible and well aligned \n\n# many approaches\n## facet hacking\n## gridExtra::grid.arrange()\n## ggpubr::ggrange()\n## cowplot::plot_grid()\n\n## patchwork &lt;- preferred? \n\n\np = ggplot(mtcars) +\n  geom_point(aes(x = disp, y = mpg))\n\np + p + p + plot_layout(width = c(1,2,1))\n\n\n\n\n\n\n\np + p + p + plot_layout(width = unit(c(5,1,1),c('cm','null','null'))) # null is fill out remaining area\n\n\n\n\n\n\n\n\n\np1 &lt;- ggplot(mtcars[mtcars$gear == 3,]) +\n  geom_point(aes(x = disp, y = mpg))\n\np2 &lt;- ggplot(mtcars[mtcars$gear == 4,]) +\n  geom_point(aes(x = disp, y = mpg))\n\np1 + p2  # axis are not aligned\n\n\n\n\n\n\n\n# view(mtcars)\n\np1 + p2 & scale_y_continuous(limits = c(10,40)) & scale_x_continuous(limits = c(50,500))\n\n\n\n\n\n\n\n\n\n# how should the textual rep. be understood? \n\n### layout in Patchwork ### \n\np1 &lt;- ggplot(mtcars) +\n  geom_point(aes(x = disp, y = mpg))\n\np2 &lt;- ggplot(mtcars) +\n  geom_bar(aes(x = factor(gear)))\n\np3 &lt;- ggplot(mtcars) +\n  geom_boxplot(aes(x = factor(gear), y = mpg))\n\np1 + p2 + p3\n\n\n\n\n\n\n\nlayout &lt;- '\nAAA #fraction of screen width used for plot AA# = left 2/3 and #AA = right 2/3 and AAA = full width\n#BB # can also use numbers 1, 2, 3 ... \nC##\n'\n\n# p1 + p2 + p3 + plot_layout(design = layout)\n\n\n### animations \n\n# ANIMATION \n# story telling and attention grabbing\n# may turn boring people off\n# our eyes are drawn to movement and our mind thinks in motion \n\n# many ways to make animaltions - gganimage may be the only one doing the \"grammar\" way \n\n# ggplot2 wrapper - simply provides new grammar elements and takes over rendering \n\nggplot(economics) +\n  geom_line(aes(x = date, y = unemploy))\n\n\n\n\n\n\n\nggplot(economics) +\n  geom_line(aes(x = date, y = unemploy)) +\n  transition_reveal(along = date)\n\n\nggplot(mpg) +\n  geom_bar(aes(x = factor(cyl))) +\n  labs(title = \"Number of cars in {closest_state} by number of cylinders\") +\n  transition_states(states = year) +\n  enter_grow() +\n  exit_fade() \n\n\nggplot(mpg) +\n  geom_point(aes(x = displ, y = hwy)) +\n  ggtitle(\"Cars with {closest_state} cylinders\") +\n  transition_states(factor(cyl))\n\nggplot(mpg) +\n  geom_point(aes(x = displ, y = hwy, group = seq_len(nrow(mpg)))) + #define discrete groups with group=seq_len()\n  ggtitle(\"Cars with {closest_state} cylinders\") +\n  transition_states(factor(cyl))\n\n\n\n\n\n\n\n\n\n## ANNOTATION \n# two key packages\n# ggrepel\n# ggforce \n\nggplot(mtcars, aes(x = disp, y = mpg)) +\n  geom_point() +\n  geom_text_repel(\n    aes(label = row.names(mtcars))\n  )\n\n\n\n\n\n\n\n# ggrepel\nggplot(mtcars, aes(x = disp, y = mpg)) +\n  geom_point() +\n  geom_text_repel(\n    aes(label = row.names(mtcars))\n  )\n\n\n\n\n\n\n\n# ggforce\nggplot(mtcars, aes(x = disp, y = mpg)) +\n  geom_point() +\n  geom_mark_ellipse(  # there are other options to ellipse, circle, square, hull\n    aes(filter = gear == 4,\n        label = '4 gear cars',\n        description = \"cars with fewer gears .. \"))\n\n\n\n\n\n\n\n# reduce number of points with labels\n# ggrepel\nmtcars2 &lt;- mtcars\nmtcars2$label &lt;- rownames(mtcars2)\npoints_to_label &lt;- sample(nrow(mtcars),10) #first ten labels \n\nggplot(mtcars2, aes(x = disp, y = mpg)) +\n  geom_point() +\n  geom_text_repel(aes(label = label), data = mtcars2[points_to_label,])\n\n\n\n\n\n\n\nggplot(mtcars, aes( x = disp, y = mpg)) +\n  geom_point() +\n  geom_mark_ellipse(aes(fill = factor(gear), label = gear)) # very interesting \n\n\n\n\n\n\n\n# also a package called gghighlight \n\n\n### Part 3: Beyond GGPLOT2 #######\n# https://www.youtube.com/watch?v=0m4yywqNPVY&t=3884s\n# 1:24:00\n\n# NETWORKS\n# GGally\n# ggnetwork\n# geomnet\n# ggtree\n# ggdag\n#install.packages(\"BiocManager\")\n#BiocManager::install(\"ggtree\")\n\n# install.packages(\"ggtree\")\nlibrary(ggtree)\nlibrary(ape)\n\n# for graphically displaying socal networks, the interelatinship between nodes\n\n# can plot a hierarchical clusters \n\niris_clust &lt;- hclust(dist(iris[,1:4]))\n\niris_phylo &lt;- as.phylo(iris_clust)\n\nggtree(iris_phylo) +\n  geom_tiplab() +\n  theme_tree2()\n\n\n\n\n\n\n\n\n\n# Part 4 - drawing anything\n# 1:48:00"
+  },
+  {
+    "objectID": "presentation.html#figure-1",
+    "href": "presentation.html#figure-1",
+    "title": "Outer Space Vehicle Launch - Forecast by Country",
+    "section": "Figure 1",
+    "text": "Figure 1\n\n\n\n[1] \"a summary of the slide\""
+  },
+  {
+    "objectID": "presentation.html#figure-2",
+    "href": "presentation.html#figure-2",
+    "title": "Outer Space Vehicle Launch - Forecast by Country",
+    "section": "Figure 2",
+    "text": "Figure 2"
+  },
+  {
+    "objectID": "presentation.html#figure-3",
+    "href": "presentation.html#figure-3",
+    "title": "Outer Space Vehicle Launch",
+    "section": "Figure 3",
+    "text": "Figure 3"
+  },
+  {
+    "objectID": "presentation.html#figure-4",
+    "href": "presentation.html#figure-4",
+    "title": "Outer Space Vehicle Launch",
+    "section": "Figure 4",
+    "text": "Figure 4"
+  },
+  {
+    "objectID": "presentation.html#dataset",
+    "href": "presentation.html#dataset",
+    "title": "Outer Space Vehicle Launch - Forecast by Country",
+    "section": "Dataset",
+    "text": "Dataset\n\nAnalysis used the “yearly number of objects launched into outer space” dataset.\nThe dataset is part of the tidytuesday package.\nThe dataset provides the number of objects launched into space from 1957 to 2023 as a function of country.\nThe dataset starts with the Russian launch of Sputnik, maps out the space race between Russia and the United States, includes the global growth of spacing faring nations, and the recent exponential growth in launch activity."
+  },
+  {
+    "objectID": "presentation.html#analysis-approach",
+    "href": "presentation.html#analysis-approach",
+    "title": "Outer Space Vehicle Launch - Forecast by Country",
+    "section": "Analysis Approach",
+    "text": "Analysis Approach\n\nThe dataset was cleaned up to remove missing values and non-country specific launch data\nThe initial dataset plotted on a smooth line plot to help get a simple visualization. The year of launch was plotted on the x-axis and the total number of launches in each year on the y-axis., see Figure 1.\nFigure 1 was limited to displaying eleven countries due to the limiations of the color pallete. As a result, the dataset was sorted and the eleven prominant countries displayed, see Figure 1.\nThe initial dataset was also plotted on an interactive map using Plotly. A moving scale allows the user to select a year between 1957 and 2023 - hovering over a country then displays the number of launches for that country in the selected year.\nThe fifteen most active countries were selected to make future forecast of space launch activities.\nA second order polynomial model was fitted to each of the fifteen countries and their launch activity between 2001 and 2100 predicted.\nPredicted launch activity is displayed on a static smooth line plot for the fifteen selected countries, see Figure 3.\nAn interactive map was generated to display the predicted launch volume by country for each of the fifteen selected countries, see Figure 4."
+  },
+  {
+    "objectID": "presentation.html#question",
+    "href": "presentation.html#question",
+    "title": "Outer Space Vehicle Launch",
+    "section": "Question:",
+    "text": "Question:\n“What country will dominate the future of space launch?”\nThe goal of this project is to understand the evolution of countries with space launch capabilities and then predict what countries will dominate the 21st century."
+  },
+  {
+    "objectID": "presentation.html#delete-later",
+    "href": "presentation.html#delete-later",
+    "title": "Outer Space Vehicle Launch - Forecast by Country",
+    "section": "delete later",
+    "text": "delete later\nYou can use plain text\n\n\n\none\ntwo\nthree\nfour\nor bullet points1\n\n\nor in two columns\n\n\n\nlike\nthis\n\nAnd add footnotes"
+  },
+  {
+    "objectID": "presentation.html#the-dataset",
+    "href": "presentation.html#the-dataset",
+    "title": "Outer Space Vehicle Launch",
+    "section": "The Dataset",
+    "text": "The Dataset\n\nAnalysis used the “yearly number of objects launched into outer space” dataset.\nThe source of the dataset is the United Nations Office of Outer Space Affairs.\nThe dataset is available within the tidytuesday package.\nThe dataset provides the number of objects launched into space from 1957 to 2023 as a function of country.\nThe dataset starts with the Russian launch of Sputnik, maps out the space race between Russia and the United States, includes the global growth of spacing faring nations, and the recent exponential growth in launch activity."
+  },
+  {
+    "objectID": "presentation.html#analysis-approach-initial-dataset",
+    "href": "presentation.html#analysis-approach-initial-dataset",
+    "title": "Outer Space Vehicle Launch",
+    "section": "Analysis Approach: initial dataset",
+    "text": "Analysis Approach: initial dataset\n\nThe dataset was cleaned up to remove missing values and non-country specific launch data\nThe initial dataset plotted on a smooth line plot to help get a simple visualization, see Figure 1.\nFigure 1 was limited to displaying eleven prominant countries due to the constraints of the color pallete.\nThe initial dataset was also plotted on an interactive map, see Figure 2."
+  },
+  {
+    "objectID": "presentation.html#analysis-approach-making-predictions",
+    "href": "presentation.html#analysis-approach-making-predictions",
+    "title": "Outer Space Vehicle Launch",
+    "section": "Analysis Approach: making predictions",
+    "text": "Analysis Approach: making predictions\n\nThe fifteen most active countries were selected to make future forecast of space launch activities.\nA second order polynomial model was fitted to each of the fifteen countries and their launch activity between 2001 and 2100 predicted.\nPredicted launch activity is displayed on a static smooth line plot for the fifteen selected countries, see\nAn interactive map was generated to display the predicted launch volume by country for each of the fifteen selected countries, see Figure 4."
+  },
+  {
+    "objectID": "presentation.html#initial-dataset",
+    "href": "presentation.html#initial-dataset",
+    "title": "Outer Space Vehicle Launch - Forecast by Country",
+    "section": "Initial Dataset",
+    "text": "Initial Dataset\n\nThe initial dataset displays the exponential rise in launch activity."
+  },
+  {
+    "objectID": "presentation.html#section",
+    "href": "presentation.html#section",
+    "title": "Outer Space Vehicle Launch - Forecast by Country",
+    "section": "",
+    "text": "The initial dataset displays the exponential rise in launch activity."
+  },
+  {
+    "objectID": "presentation.html#section-1",
+    "href": "presentation.html#section-1",
+    "title": "Outer Space Vehicle Launch - Forecast by Country",
+    "section": "",
+    "text": "::: columns ::: {.column width=“75%”} Figure_2 :::"
+  },
+  {
+    "objectID": "presentation.html#the-initial-dataset",
+    "href": "presentation.html#the-initial-dataset",
+    "title": "Outer Space Vehicle Launch - Forecast by Country",
+    "section": "The initial dataset",
+    "text": "The initial dataset"
+  },
+  {
+    "objectID": "presentation.html#interactive-map",
+    "href": "presentation.html#interactive-map",
+    "title": "Outer Space Vehicle Launch - Forecast by Country",
+    "section": "Interactive Map",
+    "text": "Interactive Map"
+  },
+  {
+    "objectID": "presentation.html#smaller-.scrollable",
+    "href": "presentation.html#smaller-.scrollable",
+    "title": "Outer Space Vehicle Launch - Forecast by Country",
+    "section": "{.smaller, .scrollable}",
+    "text": "{.smaller, .scrollable}"
+  },
+  {
+    "objectID": "presentation.html#multi-cols",
+    "href": "presentation.html#multi-cols",
+    "title": "Outer Space Vehicle Launch",
+    "section": "Multi Cols",
+    "text": "Multi Cols\n\n\nLeft column\n\nRight column"
+  },
+  {
+    "objectID": "presentation.html#code-for-predictive-model",
+    "href": "presentation.html#code-for-predictive-model",
+    "title": "Outer Space Vehicle Launch",
+    "section": "Code for Predictive Model",
+    "text": "Code for Predictive Model\nfor (i in 1:nrow(top_15_countries)) { country = top_15_countries$Entity[i] selected_country &lt;- data |&gt; filter(Entity == country) model = lm(num_objects ~ poly(Year,2), data = selected_country) temp_data &lt;- new_data |&gt; mutate( y_pred = round(predict(model, newdata = new_data),0), Entity = country ) extrapolated_data &lt;- bind_rows(extrapolated_data,temp_data) }"
+  },
+  {
+    "objectID": "presentation.html#summary",
+    "href": "presentation.html#summary",
+    "title": "Outer Space Vehicle Launch",
+    "section": "Summary",
+    "text": "Summary"
+  },
+  {
+    "objectID": "presentation.html#conclusions",
+    "href": "presentation.html#conclusions",
+    "title": "Outer Space Vehicle Launch",
+    "section": "Conclusions",
+    "text": "Conclusions\n\nThe original question was “What country will dominate the future of space launch?”\nThe inital dataset 1957 to 2023 indicates that the United States currently dominates space launch count.\nThe predicted model suggests American, Chinese, Indian, and United Kingdon launch efforts will grow significantly while Russia will declide over the coming decades."
+  },
+  {
+    "objectID": "presentation.html#figure-1---summary",
+    "href": "presentation.html#figure-1---summary",
+    "title": "Outer Space Vehicle Launch",
+    "section": "Figure 1 - Summary",
+    "text": "Figure 1 - Summary\n\nFigure 1 provides an overview of space launch activity between 1957 and 2023\nThe plot indicates Russia had a leadership role up until approximatly 2000\nPost 2000 there is an exponential rise in American space launch\nPost 2010 both the United Kingdom and China experienced space launch growth"
+  },
+  {
+    "objectID": "presentation.html#figure-2-summary",
+    "href": "presentation.html#figure-2-summary",
+    "title": "Outer Space Vehicle Launch",
+    "section": "Figure 2: Summary",
+    "text": "Figure 2: Summary\n\nFigure 2 provides a history of space launch missions from 1957 to 2023\nUsing the scale the early dominance of Russia is erroded as the United States is focused on the Apollo moon missions\nThe plot demonstrates the gloabl nature of space launch as countries for each continent contribute."
+  },
+  {
+    "objectID": "presentation.html#figure-3---summary",
+    "href": "presentation.html#figure-3---summary",
+    "title": "Outer Space Vehicle Launch",
+    "section": "Figure 3 - Summary",
+    "text": "Figure 3 - Summary\n\nFigure 3 is calculaed data from a second order polynomial model.\nThe model was created from the initial dataset of the 1957 to 2023 launch data.\nThe model was used to predict launch acitivty of the fifteen leading countries from 2001 through 2021.\nThe model predicts the exponential rise in American space efforts and the rise of China and the United Kingdom."
+  },
+  {
+    "objectID": "presentation.html#figure-4---summary",
+    "href": "presentation.html#figure-4---summary",
+    "title": "Outer Space Vehicle Launch",
+    "section": "Figure 4 - Summary",
+    "text": "Figure 4 - Summary\n\nFigure 4 is an interactive plot displaying the predicted launch efforts of the fifteen leading countries.\nThe plots predicts the demise of the Russian space launch capability.\nThe plot also predicts an exponential growth in American space launch.\nThe model used to create the plot predicts significant growth in space launch by the United States, China, the United Kingdon, and India."
+  },
+  {
+    "objectID": "presentation.html#figure-1-summary",
+    "href": "presentation.html#figure-1-summary",
+    "title": "Outer Space Vehicle Launch",
+    "section": "Figure 1: Summary",
+    "text": "Figure 1: Summary\n\nFigure 1 provides an overview of space launch activity between 1957 and 2023\nThe plot indicates Russia had a leadership role up until approximatly 2000\nPost 2000 there is an exponential rise in American space launch\nPost 2010 both the United Kingdom and China experienced space launch growth"
+  },
+  {
+    "objectID": "presentation.html#figure-3-summary",
+    "href": "presentation.html#figure-3-summary",
+    "title": "Outer Space Vehicle Launch",
+    "section": "Figure 3: Summary",
+    "text": "Figure 3: Summary\n\nFigure 3 is calculaed data from a second order polynomial model.\nThe model was created from the initial dataset of the 1957 to 2023 launch data.\nThe model was used to predict launch acitivty of the fifteen leading countries from 2001 through 2021.\nThe model predicts the exponential rise in American space efforts and the rise of China and the United Kingdom."
+  },
+  {
+    "objectID": "presentation.html#figure-4-summary",
+    "href": "presentation.html#figure-4-summary",
+    "title": "Outer Space Vehicle Launch",
+    "section": "Figure 4: Summary",
+    "text": "Figure 4: Summary\n\nFigure 4 is an interactive plot displaying the predicted launch efforts of the fifteen leading countries.\nThe plots predicts the demise of the Russian space launch capability.\nThe plot also predicts an exponential growth in American space launch.\nThe model used to create the plot predicts significant growth in space launch by the United States, China, the United Kingdon, and India."
   }
 ]

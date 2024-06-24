@@ -1,16 +1,17 @@
 ---
-title: "Outer Space Launch Data by Country"
+title: "Outer Space Vehicle Launch"
 subtitle: "INFO 526 - Summer 2024 - Final Project"
 author: "Derek Rice"
 title-slide-attributes:
-  data-background-image: images/watercolour_sys02_img34_teacup-ocean.jpg
+  data-background-image: images/curiosity-marker-band-valley.jpg
   data-background-size: stretch
   data-background-opacity: "0.7"
   data-slide-number: none
 format:
   revealjs:
     theme:  ['data/customtheming.scss']
-  
+    smaller: true
+    scrollable: false
 editor: visual
 execute:
   echo: false
@@ -23,7 +24,18 @@ execute:
 if (!require("pacman"))
     install.packages("pacman")
 
-pacman::p_load(tidyverse, tidytuesdayR, dplyr, janitor, lubridate,ggplot2,ggmap, maps,mapproj,tmap)
+pacman::p_load(tidyverse, 
+               dplyr, 
+               ggplot2,
+               readr,
+               patchwork,
+               gganimate,
+               ggrepel,
+               spData,
+               plotly,
+               rnaturalearth,
+               RColorBrewer
+              )
 
 ```
 
@@ -32,7 +44,7 @@ pacman::p_load(tidyverse, tidytuesdayR, dplyr, janitor, lubridate,ggplot2,ggmap,
 #| include: false
 
 # Plot theme
-ggplot2::theme_set(ggplot2::theme_minimal(base_size = 11))
+ggplot2::theme_set(ggplot2::theme_minimal(base_size = 8))
 
 # For better figure resolution
 knitr::opts_chunk$set(
@@ -47,145 +59,352 @@ knitr::opts_chunk$set(
 #| label: load-data
 #| include: false
 # Load data here
+
+# cite: https://github.com/rfordatascience/tidytuesday/blob/master/data/2024/2024-04-23/readme.md
+
 outer_space_objects <- readr::read_csv('https://raw.githubusercontent.com/rfordatascience/tidytuesday/master/data/2024/2024-04-23/outer_space_objects.csv')
-```
 
-```{r}
-outer_space_objects <- na.omit(outer_space_objects)
-outer_space_objects <- outer_space_objects |>
-  filter(Entity != c("World","APSCO"))
+# view(outer_space_objects)
 
-# head(outer_space_objects)
-```
-
-```{r}
-# cite: https://www.youtube.com/watch?v=2rnsbodsJVc
-
-world_map = map_data("world")
-# str(world_map)
-# head(world_map)
-```
-
-```{r}
-unique_values <- unique(c(outer_space_objects$Entity, world_map$region))
-
-#print(unique_values)
+objects <- outer_space_objects |>
+  na.omit() |>
+  mutate(hover = paste0(Entity, "\n", num_objects)) |>
+  filter(Entity != "World") 
 
 ```
 
 ```{r}
+# cite: https://ggplot2.tidyverse.org/
+# cite: Hadley Wickham, ggplot2, Elegant Graphics for Data Analysis 2nd Edition. Springer. 2016. 
+# cite: https://r-graph-gallery.com/38-rcolorbrewers-palettes.html
 
-launch_map <- merge(world_map, outer_space_objects, by.x="region", by.y="Entity")
+top_11 <- objects |> # to keep things simple picked top 11 countries 
+  group_by(Entity)|>
+  summarize(total = sum(num_objects, na.rm = TRUE))|>
+  arrange(desc(total)) |>
+  top_n(total, n=11) |> #because scale_color_brewer has limits in number of entities
+  select(Entity)
 
-launch_map <- launch_map |>
-  arrange(region,Year)
+top_11_entity <- top_11$Entity # identify the 11 most active countries - simplify the plot
 
-# head(launch_map)
-# dim(launch_map)
+objects_top_11_countries <- objects |> # getting dataset for top 11 most active countries 
+   filter(Entity %in% top_11_entity)
+
+Figure_1 <- ggplot(data = objects_top_11_countries, aes(x=Year, y=num_objects, color = Entity)) +
+  geom_smooth(se = FALSE, method = loess) +
+  scale_color_brewer(palette = "Spectral") +
+  theme(
+    axis.text.x = element_text(size = 8, face = "bold"),
+    axis.text.y = element_text(size = 8, face = "bold"),
+    plot.title = element_text (size = 10, face = "bold", hjust = 0.5),
+    plot.subtitle = element_text(size = 8, face = "plain", hjust = 0.5),
+    plot.caption = element_text(size = 6, face = "plain", hjust = 1),
+    panel.background = element_rect(fill = "white"),
+    plot.background = element_rect(fill = "white"),
+    panel.grid.major = element_line(color = "gray90"),
+    panel.grid.minor = element_line(color = "gray95")
+   ) +
+  labs(
+    x = "year of launch",
+    y = "number of objects launched",
+    title = "Figure 1: Number of objects launched into space by year (1957 to 2022)",
+    subtitle = "data collected from United Nations Office of Outer Space Affairs",
+    caption = "objects are defined as satelllites, probes, landers, crewed spacecrafts, and space station flights",
+    colour = "Country"
+  )
+
+```
+
+```{r}
+# cite: https://www.youtube.com/watch?v=RrtqBYLf404 (this is an excellent learning video)
+# cite: https://plotly-r.com/maps
+# cite: https://plotly.com/r/map-configuration/ (plotly learning)
+
+Figure_2 <- plot_geo(objects,
+                          locationmode = "world",
+                          frame = ~Year) |>
+  add_trace(locations = ~Code,
+            z = ~num_objects,
+            colorscale = 'Electric',
+            text = ~hover,
+            hoverinfo = 'text') |>
+  layout(title = list(
+      text = "<b>Figure 2: Number of Objects Launched into Space by country \n (1957 and 2023)",
+      font = list(family = 'Arial', size = 16, color = 'black')   
+      ),
+           geo = list(
+           scope = 'world',
+           showland = TRUE,
+           landcolor = toRGB("LightGreen"),
+           showocean = TRUE,
+           oceancolor = toRGB("LightBlue"),
+           showcountries = TRUE,
+           projection = list(type = "Mercator")),
+         font = list(family = 'Arial', size = 12, color = 'black'),
+         annotations = list(
+           text = "<b>Data Source: tidytuesday,outer_space_objects.csv",
+           showarrow = FALSE,
+           x = 1,
+           y = 0
+         )) |>
+   config(displayModeBar = FALSE)|>
+   colorbar(title = "<b>Number of Objects", color = 'black') 
+
+```
+
+```{r}
+# cite: https://www.youtube.com/watch?v=LRU5TxFD394&list=PLu6UwBFCnlEddsED6LFhgrg1vH-X6e4Ah (dplyr learning)
+
+
+# The first plot provides data from 1957 to 2022
+# to make things more interesting here attempt to extrapolate data out to 2100 
+# next plot will provide data from 2001 to 2100 
+# we'll see how this goes? 
+
+# plan
+# 1 - split the dataset by country - select top 15 countries as of 2022 (simplify the work/code?)
+# 2 - use a polynomial to fit a model to the launch data for each country
+# 3 - use the model to extrapolate out to 2100
+# 4 - recombine the dataset into a single data frame 
+# 5 - use Plotly to recreate the above using the extrapolated dataset 
+
+data <-  objects # creating a new object 
+
+new_data <- tibble( # creating the list of years to be used as x to predict number of launches
+  Year = seq(2000, 2100, by = 1)
+)
+
+# unique(data$Entity)
+
+extrapolated_data <- tibble() # initialize an object 
+
+# view(data)
+# view(new_data)
+
+top_15_countries <- data |> # to keep things simple picked top 15 countries 
+  group_by(Entity)|>
+  summarize(total = sum(num_objects, na.rm = TRUE))|>
+  arrange(desc(total)) |>
+  top_n(total, n=16) |>
+  select(Entity)
+
+# unique(top_15_countries$Entity)
+
+country_plus_code <- data |> # need country code to populate maps 
+  distinct(Entity, Code) |>
+  select(Entity, Code) |>
+  semi_join(top_15_countries, by = "Entity")
+
+
+
+# unique(country_plus_code$Entity)
+
+# in the following for loop I extract data for a country
+# them model (number of launches = function(year)) as a 2nd order polynomial
+# I am using a 2nd order poly because the relationshis is not linear based on visual review of dataset
+# Once the model is defined predicted data is calculated and stored in the temp_data variable
+# dplyr mutate function is used to populate the temp_data variable with year, predicted launches, 
+# and country name
+# the loop calculates/predicts launches by country from 2000 to 2100
+# the predicted data is stored in the tibble "extrapolated_data"
+# bind_rows is used to add new calculations by country to the "extrapolated_data" variable
+
+for (i in 1:nrow(top_15_countries)) {
+  country = top_15_countries$Entity[i]
+  selected_country <- data |> filter(Entity == country)
+  model = lm(num_objects ~ poly(Year,2), data = selected_country)
+  temp_data <- new_data |>
+    mutate(
+      y_pred = round(predict(model, newdata = new_data),0),
+      Entity = country
+      )
+  extrapolated_data <- bind_rows(extrapolated_data,temp_data) 
+  }
+
+# unique(extrapolated_data$Entity)
+
+#1 the "extrapolated_data variable populated in the loop does not contain country code
+#2 I could not figure out how to add country codes within the loop - I tried for hours but so it goes
+#3 Here the left_join function is used to add country code to the "extrapolated_data" variable
+#4 The "extrapolated_data" variable has (i) year, (ii)y_pred, and (iii) Entity. 
+#5 The "country_plus_code" has (iii) entity and (iv) code
+#6 "y_pred" was rename "Predicted_Launches" to help with legend on map. y_pred originated from the modeling
+#7 the model for Russia displayed negative launches at some point into the future so a mutate function was 
+#7 used to prevent the map from displaying a negative number 
+
+extrapolated_data <- extrapolated_data |>
+  left_join(country_plus_code, by = "Entity") |>
+  rename(predicted_launches = y_pred) |>
+  mutate(predicted_launches = if_else(predicted_launches < 0, 0, predicted_launches)) |>
+  mutate(hover = paste0(Entity, "\n", predicted_launches)) |>
+  filter(Entity != "World")
+
+# unique(extrapolated_data$Entity)
+
+# summary(model)
+
+```
+
+```{r}
+Figure_3 <- ggplot(data = extrapolated_data, aes(x=Year, y=predicted_launches, color = Entity)) +
+  geom_smooth(se = FALSE, method = loess) +
+#  scale_color_brewer(palette = "Paired") + # limited to n < 11
+  theme(
+    axis.text.x = element_text(size = 7, face = "bold"),
+    axis.text.y = element_text(size = 7, face = "bold"),
+    plot.title = element_text (size = 8, face = "bold", hjust = 0.5),
+    plot.subtitle = element_text(size = 7, face = "plain", hjust = 0.5),
+    plot.caption = element_text(size = 6, face = "plain", hjust = 1),
+    panel.background = element_rect(fill = "white"),
+    plot.background = element_rect(fill = "white"),
+    panel.grid.major = element_line(color = "gray90"),
+    panel.grid.minor = element_line(color = "gray95")
+   ) +
+  labs(
+    x = "year of launch",
+    y = "number of objects launched",
+    title = "Figure 3: Predicted number of objects launched into space by year (2000 to 2100)",
+    subtitle = "(extrapolated from data collected from United Nations Office of Outer Space Affairs)",
+    caption = "objects are defined as satelllites, probes, landers, crewed spacecrafts, and space station flights",
+    color = "Country"
+  )
+
+```
+
+```{r}
+Figure_4 <- plot_geo(extrapolated_data,
+                          locationmode = "world",
+                          frame = ~Year) |>
+  add_trace(locations = ~Code,
+            z = ~predicted_launches,
+            zmin = 0,
+            colorscale = 'Electric',
+            text = ~hover,
+            hoverinfo = 'text') |>
+  layout(title = list(
+      text = "<b>Figure 4: Predicted Number of Objects Launched into Space by Country \n (2001 and 2100)",
+      font = list(family = 'Arial', size = 16, color = 'black')   
+      ),
+           geo = list(
+           scope = 'world',
+           showland = TRUE,
+           landcolor = toRGB("LightGreen"),
+           showocean = TRUE,
+           oceancolor = toRGB("LightBlue"),
+           showcountries = TRUE,
+           projection = list(type = "Mercator")),
+         font = list(family = 'Arial', size = 12, color = 'black'),
+         annotations = list(
+           text = "<b>Data Source: extrapolated polynomial model based on tidytuesday,outer_space_objects.csv",
+           showarrow = FALSE,
+           x = 1,
+           y = 0
+         )) |>
+   config(displayModeBar = FALSE) |>
+   colorbar(title = "<b>Number of Objects", color = 'black') 
+
+
 ```
 
 ```{r}
 
-
-
 ```
+
+## Question:
+
+"What country will dominate the future of space launch?"
+
+The goal of this project is to understand the evolution of countries with space launch capabilities and then predict what countries will dominate the 21st century.
+
+## The Dataset
+
+-   Analysis used the "yearly number of objects launched into outer space" dataset.
+-   The source of the dataset is the United Nations Office of Outer Space Affairs.
+-   The dataset is available within the tidytuesday package.
+-   The dataset provides the number of objects launched into space from 1957 to 2023 as a function of country.
+-   The dataset starts with the Russian launch of Sputnik, maps out the space race between Russia and the United States, includes the global growth of spacing faring nations, and the recent exponential growth in launch activity.
+
+## Analysis Approach: initial dataset
+
+-   The dataset was cleaned up to remove missing values and non-country specific launch data
+-   The initial dataset plotted on a smooth line plot to help get a simple visualization, see Figure 1.
+-   Figure 1 was limited to displaying eleven prominant countries due to the constraints of the color pallete.
+-   The initial dataset was also plotted on an interactive map, see Figure 2.
+
+
+##
 
 ```{r}
 
-```
-
-# Using Quarto for presentations
-
-## Quarto
-
--   The presentation is created using the Quarto CLI
-
--   `##` sets the start of a new slide
-
-## Layouts
-
-You can use plain text
-
-::: columns
-::: {.column width="40%"}
--   or bullet points[^1]
-:::
-
-::: {.column width="60%"}
-or in two columns
-:::
-:::
-
-[^1]: And add footnotes
-
--   like
-
--   this
-
-## Code
-
-```{r, echo=FALSE}
-
+Figure_1
 
 ```
 
-## Plots
+## Figure 1: Summary
+
+- Figure 1 provides an overview of space launch activity between 1957 and 2023
+- The plot indicates Russia had a leadership role up until approximatly 2000
+- Post 2000 there is an exponential rise in American space launch 
+- Post 2010 both the United Kingdom and China experienced space launch growth
+
+##
+```{r}
+# cite: https://plotly.com/r/setting-graph-size/
+
+Figure_2 <- Figure_2 %>% layout(width = 1000, height = 600)
+
+Figure_2
+```
+
+## Figure 2: Summary
+- Figure 2 provides a history of space launch missions from 1957 to 2023
+- Using the scale the early dominance of Russia is erroded as the United States is focused on the Apollo moon missions 
+- The plot demonstrates the gloabl nature of space launch as countries for each continent contribute. 
+
+
+
+## Analysis Approach: making predictions
+
+-   The fifteen most active countries were selected to make future forecast of space launch activities.
+-   A second order polynomial model was fitted to each of the fifteen countries and their launch activity between 2001 and 2100 predicted.
+-   Predicted launch activity is displayed on a static smooth line plot for the fifteen selected countries, see 
+-   An interactive map was generated to display the predicted launch volume by country for each of the fifteen selected countries, see Figure 4.
+
+##
 
 ```{r}
 
+Figure_3
+
 ```
 
-## Plot and text
+## Figure 3: Summary
+- Figure 3 is calculaed data from a second order polynomial model.
+- The model was created from the initial dataset of the 1957 to 2023 launch data.
+- The model was used to predict launch acitivty of the fifteen leading countries from 2001 through 2021.
+- The model predicts the exponential rise in American space efforts and the rise of China and the United Kingdom.
 
-::: columns
-::: {.column width="50%"}
--   Some text
-
--   goes here
-:::
-
-::: {.column width="50%"}
-```         
-```
-:::
-:::
-
-# A new section...
-
-## Tables
-
-If you want to generate a table, make sure it is in the HTML format (instead of Markdown or other formats), e.g.,
+##
 
 ```{r}
 
+Figure_4 <- Figure_4 %>% layout(width = 1000, height = 600)
+
+
+Figure_4
+
 ```
 
-## Images
+## Figure 4: Summary
+- Figure 4 is an interactive plot displaying the predicted launch efforts of the fifteen leading countries. 
+- The plots predicts the demise of the Russian space launch capability. 
+- The plot also predicts an exponential growth in American space launch.
+- The model used to create the plot predicts significant growth in space launch by the United States, China, the United Kingdon, and India. 
 
-![Image credit: Danielle Navarro, Percolate.](images/watercolour_sys02_img34_teacup-ocean.png){fig-align="center" width="500"}
 
-## Math Expressions {.smaller}
+## Conclusions
+- The original question was "What country will dominate the future of space launch?"
+- The inital dataset 1957 to 2023 indicates that the United States currently dominates space launch count. 
+- The predicted model suggests American, Chinese, Indian, and United Kingdon launch efforts will grow significantly while Russia will declide over the coming decades. 
 
-You can write LaTeX math expressions inside a pair of dollar signs, e.g. \$\\alpha+\\beta\$ renders $\alpha + \beta$. You can use the display style with double dollar signs:
 
-```         
-$$\bar{X}=\frac{1}{n}\sum_{i=1}^nX_i$$
-```
-
-$$
-\bar{X}=\frac{1}{n}\sum_{i=1}^nX_i
-$$
-
-Limitations:
-
-1.  The source code of a LaTeX math expression must be in one line, unless it is inside a pair of double dollar signs, in which case the starting `$$` must appear in the very beginning of a line, followed immediately by a non-space character, and the ending `$$` must be at the end of a line, led by a non-space character;
-
-2.  There should not be spaces after the opening `$` or before the closing `$`.
-
-# Wrap up
-
-## Feeling adventurous?
-
--   You are welcomed to use the default styling of the slides. In fact, that's what I expect majority of you will do. You will differentiate yourself with the content of your presentation.
-
--   But some of you might want to play around with slide styling. Some solutions for this can be found at https://quarto.org/docs/presentations/revealjs.

@@ -11,6 +11,8 @@ format:
     code-tools: true
     code-overflow: wrap
     embed-resources: true
+    toc: true
+    tec_depth: 3
 editor: visual
 execute:
   warning: false
@@ -25,7 +27,7 @@ The analysis was completed in two stages. First, the 1957 to 2022 data was analy
 
 The 1957 to 2022 data was employed to identify the fifteen prominent space faring nations, the countries with the largest number of objects launched. For each of these fifteen countries a second order polynomial regression model was calculated. The country model was utilized to create a second dataset and predict launches between 2001 and 2022 and extrapolate the number of objects launched up to the year 2100. The results of the model and predicted number of launches are displayed on a static ggplot smooth line plot and an interactive world map, see Figures 3 and 4.
 
-The analysis indicates that Russia, once a dominant force in space technologies will fail to keep pace with other nations eventually losing its ability to launch space objects. The work suggests that the United States will dominate space and that China will replace Russia as an important contributor to the industry. Surprisingly the analysis indicates India will rise at the third most active nation with respect to launching objects into space.
+The analysis indicates that Russia, once a dominant force in space technologies will fail to keep pace with other nations eventually losing its ability to launch space objects. The work suggests that the United States will dominate space and that China will replace Russia as an important contributor to the industry. The analysis indicates Britian will be an important player in future space endeavors, and India will rise as the forth most active nation with respect to launching objects into space.
 
 ## Datasets
 
@@ -85,14 +87,11 @@ Question 1 - what country is most likely to become the first "space faring natio
 
 ## Approach
 
-The question to be answered was to identify future space faring nations by identifying the counties with the most launch events in the future. To accomplish the tasks the original dataset, launch events by country as a function of year, was plotted on a ggplot geom_smooth() plot with year on the x-axis and the number of events on the y-axis, see Figure 1. To enable the user to interact with the dataset the data was also plotted on an interactive map, where a slider displayed launch data for a selected year, and by using a mouse to hover over a country launch data for that country could be displayed, see Figure 2. Both figures 1 and 2 provided insight into the evolution of the space launch industry and helped identify dominant countries. 
-The tidytuesday space_launch_objects dataset was leveraged to create a second order polynomial model for the fifteen most dominant countries. The model was used to predict launch events by country for the fifteen selected countries for the period 2001 to 2100. That regression model was used to generate a new dataset “extrapolated_data” that stored the predicted launch event numbers by country. 
-The “extrapolated_data” was then plotted on a smooth line plot, with years (2001 to 2100) on the x-axis, and the number of launch events on the y-axis, see Figure 3. The extrapolated_data was also plotted on an interactive map, see Figure 4. Using the map uses can select a year using a slider, see the number of total launch events on an evolving scale, and hover over one of the fifteen select countries to see specific launch data for a selected year. 
+The question to be answered was to identify future space faring nations by identifying the counties with the most launch events in the future. To accomplish the tasks the original dataset, launch events by country as a function of year, was plotted on a ggplot geom_smooth() plot with year on the x-axis and the number of events on the y-axis, see Figure 1. To enable the user to interact with the dataset the data was also plotted on an interactive map, where a slider displayed launch data for a selected year, and by using a mouse to hover over a country launch data for that country could be displayed, see Figure 2. Both figures 1 and 2 provided insight into the evolution of the space launch industry and helped identify dominant countries. The tidytuesday space_launch_objects dataset was leveraged to create a second order polynomial model for the fifteen most dominant countries. The model was used to predict launch events by country for the fifteen selected countries for the period 2001 to 2100. That regression model was used to generate a new dataset "extrapolated_data" that stored the predicted launch event numbers by country. The "extrapolated_data" was then plotted on a smooth line plot, with years (2001 to 2100) on the x-axis, and the number of launch events on the y-axis, see Figure 3. The extrapolated_data was also plotted on an interactive map, see Figure 4. Using the map uses can select a year using a slider, see the number of total launch events on an evolving scale, and hover over one of the fifteen select countries to see specific launch data for a selected year.
 
+## Analysis
 
-## Analysis 
-
-The dataset “outer_space_objects” was loaded from the tidytuesday package and dplyr functions used to remove rows with missing data and, create the “hover” column to support the interactive map, and remove a categorical variable “world” from the “entity” column. Removing the “world” data reduced the dataset to include only country data for launched objects. The dataset provided the number of space vehicle launches by country between 1957 and 2023. The dataset was plotted on a static ggplot smooth line plot and an interactive map using ggplot2 and plotly respectively, see Figures 1 and 2. 
+The dataset "outer_space_objects" was loaded from the tidytuesday package and dplyr functions used to remove rows with missing data and, create the "hover" column to support the interactive map, and remove a categorical variable "world" from the "entity" column. Removing the "world" data reduced the dataset to include only country data for launched objects. The dataset provided the number of space vehicle launches by country between 1957 and 2023. The dataset was plotted on a static ggplot smooth line plot and an interactive map using ggplot2 and plotly respectively, see Figures 1 and 2.
 
 ```{r echo = FALSE, warning = FALSE}
   
@@ -126,7 +125,7 @@ objects <- outer_space_objects |>
 
 ```
 
-Creating the first plot, the smooth line plot in ggplot2, required reducing the number of countries to 11 to support the scale_color_brewer palette limitations, see Figure 1. The dplyr package and the pipe function was used to isolate the eleven most active countries and then separate out that dataset from the original “outer_space_objects” dataset. A smooth line plot was used to display launches by country for the time period 1957 to 2023 for the eleven most active countries, see Figure 1. 
+Creating the first plot, the smooth line plot in ggplot2, required reducing the number of countries to 11 to support the scale_color_brewer palette limitations, see Figure 1. The dplyr package and the pipe function was used to isolate the eleven most active countries and then separate out that dataset from the original "outer_space_objects" dataset. A smooth line plot was used to display launches by country for the time period 1957 to 2023 for the eleven most active countries, see Figure 1.
 
 ```{r echo = FALSE, warning = FALSE}
 # cite: https://ggplot2.tidyverse.org/
@@ -172,8 +171,7 @@ Figure_1 # ggplot smooth line plot of 1957 to 2022 launch data
 
 ```
 
-
-To make things a little more interesting, enable some interaction with the data, the “outer_space_objects” dataset has been displayed on an interactive map, see Figure 2. Launch data for all countries in the “outer_space_objects” dataset is displayed on the map as a function of year and country, see Figure 2. Users can use the bar slider at the base of the map to see launch events per year by country. Hovering over a country displays the number of launch events in the year selected by the slider. The year selected on the sliding bar scale is displayed on the top right of the slider graphic. There is also a play function for the slider to the left. The interactive map was created using plotly after a lot of reading and watching an excellent YouTube video on the package, see citation. 
+To make things a little more interesting, enable some interaction with the data, the "outer_space_objects" dataset has been displayed on an interactive map, see Figure 2. Launch data for all countries in the "outer_space_objects" dataset is displayed on the map as a function of year and country, see Figure 2. Users can use the bar slider at the base of the map to see launch events per year by country. Hovering over a country displays the number of launch events in the year selected by the slider. The year selected on the sliding bar scale is displayed on the top right of the slider graphic. There is also a play function for the slider to the left. The interactive map was created using plotly after a lot of reading and watching an excellent YouTube video on the package, see citation.
 
 ```{r echo = FALSE, warning = FALSE}
 # cite: https://www.youtube.com/watch?v=RrtqBYLf404 (this is an excellent learning video)
@@ -214,8 +212,7 @@ Figure_2 # interactve map of launched objects by country 1957 to 2023
 
 ```
 
-The intent of the analysis was to determine what countries would dominate space launch events in the future. To answer the question a original “outer_space_objects” dataset was used to calculate a second order polynomial regression model for the fifteen most active countries. The model was used to predict the number of launch events as a function of year for each country. To accomplish this task a new dataset was created (new_data) with years 2001 to 2100 and the tibble() to hold the final data initialized (extrapolated_data). The fifteen most active countries were separated from the “outer_space_objects” dataset using dplyr pipe function (top_15_countries) and the country code added (country_plus_code) to enable the interactive map. Dplyr pipe functions significantly reduced the complexity of these tasks, prior to this class I would have used a lot of loops. A combination of a loop with embedded dplyr pipe functions was utilized to (a) select data for a country, (b) apply a polynomial model to that country data, (c) create the predicted launch data (y_pred) for the selected country, and (d) assemble all the data into one dataset “extrapolated_data" using the bind_rows function. Dplyr pipe functions were utilized again to create the final “extrapolated_data” dataset by renaming columns, setting negative y_pred value to zero, create the data for the hover column, and removing the non-country data i.e. “world”. 
-
+The intent of the analysis was to determine what countries would dominate space launch events in the future. To answer the question a original "outer_space_objects" dataset was used to calculate a second order polynomial regression model for the fifteen most active countries. The model was used to predict the number of launch events as a function of year for each country. To accomplish this task a new dataset was created (new_data) with years 2001 to 2100 and the tibble() to hold the final data initialized (extrapolated_data). The fifteen most active countries were separated from the "outer_space_objects" dataset using dplyr pipe function (top_15_countries) and the country code added (country_plus_code) to enable the interactive map. Dplyr pipe functions significantly reduced the complexity of these tasks, prior to this class I would have used a lot of loops. A combination of a loop with embedded dplyr pipe functions was utilized to (a) select data for a country, (b) apply a polynomial model to that country data, (c) create the predicted launch data (y_pred) for the selected country, and (d) assemble all the data into one dataset "extrapolated_data" using the bind_rows function. Dplyr pipe functions were utilized again to create the final "extrapolated_data" dataset by renaming columns, setting negative y_pred value to zero, create the data for the hover column, and removing the non-country data i.e. "world".
 
 ```{r echo = FALSE, warning = FALSE}
 # cite: https://www.youtube.com/watch?v=LRU5TxFD394&list=PLu6UwBFCnlEddsED6LFhgrg1vH-X6e4Ah (dplyr learning)
@@ -310,7 +307,7 @@ extrapolated_data <- extrapolated_data |>
 
 ```
 
-The predicted launch data from 2001 to 2100 is displayed on a ggplot2, geom_smooth(), smooth line plot, see Figure 3. To display all fifteen countries the scale_color_brewer was removed from the code, that palette was limited to displaying eleven categorical variables. A review of available palettes did not identify an alternative capable of assigning high contract colors to fifteen variables within a category; as a result, the default was used. The colors displayed are not the best, the contrast is weak, but the only other option was to reduce the number of countries displayed from fifteen to eleven. 
+The predicted launch data from 2001 to 2100 is displayed on a ggplot2, geom_smooth(), smooth line plot, see Figure 3. To display all fifteen countries the scale_color_brewer was removed from the code, that palette was limited to displaying eleven categorical variables. A review of available palettes did not identify an alternative capable of assigning high contract colors to fifteen variables within a category; as a result, the default was used. The colors displayed are not the best, the contrast is weak, but the only other option was to reduce the number of countries displayed from fifteen to eleven.
 
 ```{r echo=FALSE,waring = FALSE}
 
@@ -341,8 +338,7 @@ Figure_3 # ggplot smooth line plot of predicted launch events 2001 to 2100
 
 ```
 
-An interactive map displaying predicted space launch events between 2001 and 2023, see Figure 4. The data displayed between 2001 and 2023 are predicted events based on the regression model, not actual launch events. The data 2024 to 2100 is the modeling extrapolating the data from 1957 to 2023 into the future. The map was created using Plotly and the “extrapolated_data” generated from the regression model. Within Plotly; plot_geo defines the type of plot – a world map in this instance. The add_trace functionality defines the variable tracked by the scale bar at the bottom of the plot. The layout definition describes the fonts, colors of land and oceans, the borders between countries, etc. 
-
+An interactive map displaying predicted space launch events between 2001 and 2023, see Figure 4. The data displayed between 2001 and 2023 are predicted events based on the regression model, not actual launch events. The data 2024 to 2100 is the modeling extrapolating the data from 1957 to 2023 into the future. The map was created using Plotly and the "extrapolated_data" generated from the regression model. Within Plotly; plot_geo defines the type of plot -- a world map in this instance. The add_trace functionality defines the variable tracked by the scale bar at the bottom of the plot. The layout definition describes the fonts, colors of land and oceans, the borders between countries, etc.
 
 ```{r echo = FALSE, warning = FALSE}
 
@@ -381,10 +377,22 @@ Figure_4 # interactive map with predicted and extrapolated launch data from 2001
 
 ```
 
-## Discussion 
-
-An interactive map displaying predicted space launch events between 2001 and 2023. The data displayed between 2001 and 2023 is predicted events based on the regression model, not actual launch events. The data 2024 to 2100 is the modeling extrapolating the data from 1957 to 2023 into the future. On the map you can see the United States and Russia starting on an equal footing. As time progresses, the United States become more dominant, the demise of Russa is predicted, and the rise of both China and India is forecast. 
-
-
-
 ## Discussion
+
+The original question asked the question – what countries will dominate space launch events in the near future. The dataset “yearly number of objects launched into space” available within tidytuesday was utilized to assess available space vehicle launch data and complete the assessment. The dataset provides the number of gadgets launched into space for each country per year during the time period 1957 and 2023, from the Russian launch of Sputnik, the American race to exceed the Russians, and the rise of SpaceX and Blue Origin funded by Musk and Bezos respectively. The smooth line plot visually displays the exponential growth in the number of gadgets launched in to Earth orbit. 
+
+The analysis of the original data set was completed by plotting the launch data on a ggplot geom_smooth() plot to see the number of events grow during the time period 1957 to 2023, see Figure 1. To understand the importance of nations the launch data was also plotted on an interactive map. While working on the project, several map applications were investigated, however, plotly simply provided ease of coding combined with the interactivity, see Figure 2. The interactive map shows the initial Russian leadership in 1957, the quick dominance demonstrated by the Americans several years later, and the evolving global participation in space during the period 2000 through 2023, see Figure 2. 
+
+The smooth line plot of the original data displays the exponential growth in the number of objects launched into space, see Figure 1. For that reason a second order polynomial was selected to model the dataset and predict future space launch events for the fifteen most prominent countries. The regression model was used to predict launch events during the period 2001 through 2023 and then extrapolate future activity to the year 2100, see Figure 3. The model predicts that by 2100 there will be in excess of 10,000 launch events a year with the United States responsible for over 8,000 of those instances. The model predicts the demise of the Russia space industry and the rise of both China and India as significant players along with Great Britian, see Figure 4.
+Using the interactive plotly map it is possible to zoom in and out, pan left and right, and use the sliding bar to understand the predicted dataset of future launch events. Zooming in on Europe in particular and looking at Great Britian vs. the rest of Europe is very informative. 
+
+To answer the question – The United States is on track to dominate space to become the first spacing faring nation. The data model indicates an incredible growth of the space industry within the United States outpacing all other nations combined. 
+
+
+
+## Conclusions
+
+I learned so much from this class – it is surprising to me. Prior to INFO526 I had no idea how to use ggplot2 beyond the simplest plots, I had no experience with dplyr and pipes, and the probability I would create an interactive map was a losing proposition.  When I wrote the project proposal, I had no idea then how I would plot the launch data on a map. In short, the class has been eye opening for me. I work in an industry where engineering is complex, but the decision makers are not technical people and communication between Engineering and Leadership can be challenging. Previously I would statistical analysis and some basic plots in Minitab or JMP to express a point of view, but not everybody has a statistical background. It will be interesting to see how I apply this new toolkit of visualization capabilities to improve how I express very complex topics to the decision makers. 
+
+
+

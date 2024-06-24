@@ -231,6 +231,7 @@ plot_all <- (p1 | p2) / p3
 
 print(plot_all)
 
+new_plot <- plot_all
 
 new_plot &
    theme(
@@ -324,7 +325,7 @@ AAA #fraction of screen width used for plot AA# = left 2/3 and #AA = right 2/3 a
 C##
 '
 
-p1 + p2 + p3 + plot_layout(design = layout)
+# p1 + p2 + p3 + plot_layout(design = layout)
 
 
 
@@ -461,50 +462,4 @@ ggtree(iris_phylo) +
 
 ```
 
-```{r}
 
-
-
-```
-
-```{r}
-
-
-
-```
-
-```{r}
-
-
-
-```
-
-```{r}
-
-
-
-```
-
-```{r}
-
-
-
-```
-
-```{r}
-
-
-
-```
-
-```{r}
-
-
-
-```
-
-```{r}
-
-
-
-```
